@@ -46,6 +46,7 @@
 
                 var option = document.createElement('option');
                 option.text = i;
+                option.value = i;
                 pagesSelect.add(option);
             }
         });
