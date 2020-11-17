@@ -10,7 +10,12 @@
 </head>
 <body>
     <h1>PDF.js Test</h1>
+    <div>
+        <label>Pagina:</label>
+        <select name="pages" id="pagesSelect">
 
+        </select>
+    </div>
     <div id="divCanvas">
         <canvas id="the-canvas"></canvas>
     </div>
@@ -29,6 +34,7 @@
 
         var pdfDoc = null,
             scale = 2;
+        var pagesSelect = document.getElementById('pagesSelect');
 
         //functino for get the pdf
         pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
@@ -37,6 +43,10 @@
             var i;
             for (i = 1; i <= pdfDoc.numPages; i++) {
                 RenderPage(i);
+
+                var option = document.createElement('option');
+                option.text = i;
+                pagesSelect.add(option);
             }
         });
 
