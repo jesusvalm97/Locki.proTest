@@ -191,6 +191,8 @@
             rect.on('mouseout', function () {
                 document.body.style.cursor = 'default';
             });
+
+            CreatePropertiesObjects();
         }
         document.getElementById('addObject').addEventListener('click', AddObjectDraggeable);
 
@@ -209,7 +211,27 @@
             layer.batchDraw();
         }
 
-        
+        //function for add a properties in the toolbar
+        function CreatePropertiesObjects() {
+            //div for position x
+            var divX = document.createElement('div');
+
+            //content of divX
+            var lblX = document.createTextNode('Posición x: ');
+            divX.appendChild(lblX);
+
+            var X = document.createTextNode(rect.x());
+            divX.appendChild(X);
+
+            //div main
+            var divMain = document.createElement('div');
+            divMain.appendChild(divX);
+
+            //add the div main before the reference div
+            var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
+            var referenceDiv = document.getElementById('divReferenceToolbarLeft');
+            parentDiv.insertBefore(divMain, referenceDiv);
+        }
     </script>
 </body>
 </html>
