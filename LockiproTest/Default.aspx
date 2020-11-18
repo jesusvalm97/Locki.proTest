@@ -13,23 +13,14 @@
     <h1>locki.pro Test</h1>
     <div>
         <label>Pagina:</label>
-        <select class="pages" name="pages" id="pagesSelect">
-        </select>
+        <select class="pages" name="pages" id="pagesSelect"></select>
+        <button id="addObject">Agregar objeto</button>
     </div>
-    <div id="divCanvas">
-        <canvas id="the-canvas"></canvas>
-    </div>
-    <div>
-        <h1>test agregar objetos</h1>
-        <button id="btnAddObject">Agregar objeto</button>
-    </div>
-    <div id="container"></div>
     <div style="position: relative;">
-        <h1>agregar objeto drageable a un canvas con un pdf</h1>
-        <div style="position: absolute; top: 0; left: 0;">
-            <canvas id="testCanvas"></canvas>
+        <div id="divCanvas" style="position: absolute; top: 0; left: 0;">
+            <canvas id="the-canvas"></canvas>
         </div>
-        <div id="containerTwo" style="position: absolute; top: 0; left: 0; z-index: 10;"></div>
+        <div id="containerKonva" style="position: absolute; top: 0; left: 0; z-index: 10;"></div>
     </div>
     <script>
         // If absolute URL from the remote server is provided, configure the CORS
@@ -94,160 +85,41 @@
         //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);
 
-        //test for konva**********************************************************************************************************************************
+        //properties for objects draggeables
         var width = window.innerWidth;
         var height = window.innerHeight;
 
+        //create stage for konvas
         var stage = new Konva.Stage({
-            container: 'container',
+            container: 'containerKonva',
             width: width,
             height: height,
         });
 
+        //create layer
         var layer = new Konva.Layer();
         stage.add(layer);
 
-        var rect = new Konva.Rect({
-            x: 160,
-            y: 60,
-            width: 100,
-            height: 90,
-            fill: 'red',
-            name: 'rect',
-            stroke: 'black',
-            draggable: true,
-        });
-        layer.add(rect);
-
-        var text = new Konva.Text({
-            x: 5,
-            y: 5,
-        });
-        layer.add(text);
-        updateText();
-
-        // create new transformer
-        var tr = new Konva.Transformer();
-        layer.add(tr);
-        tr.nodes([rect]);
-        layer.draw();
-
-        rect.on('transformstart', function () {
-            console.log('transform start');
-        });
-
-        rect.on('dragmove', function () {
-            updateText();
-        });
-        rect.on('transform', function () {
-            updateText();
-            console.log('transform');
-        });
-
-        rect.on('transformend', function () {
-            console.log('transform end');
-        });
-
-        rect.on('mouseover', function () {
-            document.body.style.cursor = 'pointer';
-        });
-
-        rect.on('mouseout', function () {
-            document.body.style.cursor = 'default';
-        });
-
-        function updateText() {
-            var lines = [
-                'x: ' + rect.x(),
-                'y: ' + rect.y(),
-                'rotation: ' + rect.rotation(),
-                'width: ' + rect.width(),
-                'height: ' + rect.height(),
-                'scaleX: ' + rect.scaleX(),
-                'scaleY: ' + rect.scaleY(),
-            ];
-            text.text(lines.join('\n'));
-            layer.batchDraw();
-        }
-
         function AddObjectDraggeable() {
-            var circle = new Konva.Circle({
+            var rect = new Konva.Rect({
                 x: 160,
                 y: 60,
                 width: 100,
                 height: 90,
                 fill: 'blue',
-                name: 'circle',
+                name: 'rect',
                 stroke: 'black',
                 draggable: true,
             });
-            layer.add(circle);
-            console.log('agregado circulo');
+            layer.add(rect);
 
-            // create new transformer
+            //create new transformer
             var transformer = new Konva.Transformer();
             layer.add(transformer);
-            transformer.nodes([circle]);
+            transformer.nodes([rect]);
             layer.draw();
-
-            console.log('agregado transformer');
         }
-        document.getElementById('btnAddObject').addEventListener('click', AddObjectDraggeable);
-
-        //test for add object draggeable in the canvas of pdf.js*******************************************************************************************
-        var pdfDocument = null;
-        var escala = 2;
-        var canvasTest = document.getElementById('testCanvas');
-        var ctx = canvasTest.getContext('2d');
-
-        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
-            pdfDocument = pdfDoc_;
-            pdfDocument.getPage(1).then(function (page) {
-                var viewport = page.getViewport({ scale: escala });
-                //set canvas canvas
-                canvasTest.height = viewport.height;
-                canvasTest.width = viewport.width;
-
-                //render pdf page into canvas context
-                var renderContext = {
-                    canvasContext: ctx,
-                    viewport: viewport
-                }
-                var renderTask = page.render(renderContext);
-                renderTask.promise.then(function () {
-                    console.log('Page rendered');
-                });
-            });
-        });
-
-        var width = window.innerWidth;
-        var height = window.innerHeight;
-
-        var stageTwo = new Konva.Stage({
-            container: 'containerTwo',
-            width: width,
-            height: height,
-        });
-
-        var layerTwo = new Konva.Layer();
-        stageTwo.add(layerTwo);
-
-        var rectTwo = new Konva.Rect({
-            x: 160,
-            y: 60,
-            width: 100,
-            height: 90,
-            fill: 'blue',
-            name: 'rect',
-            stroke: 'black',
-            draggable: true,
-        });
-        layerTwo.add(rectTwo);
-
-        var trans = new Konva.Transformer();
-        layerTwo.add(trans);
-        trans.nodes([rectTwo]);
-        layerTwo.draw();
+        document.getElementById('addObject').addEventListener('click', AddObjectDraggeable);
     </script>
 </body>
 </html>
