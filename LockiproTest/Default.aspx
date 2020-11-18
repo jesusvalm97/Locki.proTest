@@ -33,13 +33,31 @@
         // The workerSrc property shall be specified.
         pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
 
+        //array of objects draggeables
+        var objectsDragg = [];
 
+        //properties for pdf.js
         var pdfDoc = null;
         var scale = 2;
         var pageNum = 1;
         var pagesSelect = document.getElementById('pagesSelect');
         var canvas = document.getElementById('the-canvas');
         var context = canvas.getContext('2d');
+
+        //properties for objects draggeables
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+
+        //create stage for konvas
+        var stage = new Konva.Stage({
+            container: 'containerKonva',
+            width: width,
+            height: height,
+        });
+
+        //create layer
+        var layer = new Konva.Layer();
+        stage.add(layer);
 
         //functino for get the pdf
         pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
@@ -81,27 +99,17 @@
         function ChangePage() {
             RenderPage(parseInt(pagesSelect.value));
             console.log('pagina ' + pagesSelect.value);
+
+            layer.destroyChildren();
         }
         //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);
 
-        //properties for objects draggeables
-        var width = window.innerWidth;
-        var height = window.innerHeight;
-
-        //create stage for konvas
-        var stage = new Konva.Stage({
-            container: 'containerKonva',
-            width: width,
-            height: height,
-        });
-
-        //create layer
-        var layer = new Konva.Layer();
-        stage.add(layer);
-
+        //function for add a objects draggeables
+        var id = 1;
         function AddObjectDraggeable() {
             var rect = new Konva.Rect({
+                id: 'rect' + id,
                 x: 160,
                 y: 60,
                 width: 100,
@@ -118,6 +126,9 @@
             layer.add(transformer);
             transformer.nodes([rect]);
             layer.draw();
+
+            objectsDragg.push(rect);
+            id++;
         }
         document.getElementById('addObject').addEventListener('click', AddObjectDraggeable);
     </script>
