@@ -100,7 +100,7 @@
             RenderPage(parseInt(pagesSelect.value));
             console.log('pagina ' + pagesSelect.value);
 
-            layer.destroyChildren();
+            layer.removeChildren();
         }
         //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);
