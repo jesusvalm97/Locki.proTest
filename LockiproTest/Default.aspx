@@ -35,15 +35,17 @@
         var pdfDoc = null,
             scale = 2;
         var pagesSelect = document.getElementById('pagesSelect');
+        var canvas = document.getElementById('the-canvas');
+        var context = canvas.getContext('2d');
 
         //functino for get the pdf
         pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
 
+            RenderPage(1);
+
             var i;
             for (i = 1; i <= pdfDoc.numPages; i++) {
-                RenderPage(i);
-
                 var option = document.createElement('option');
                 option.text = i;
                 option.value = i;
@@ -56,13 +58,11 @@
             // Using promise to fetch the page
             pdfDoc.getPage(num).then(function (page) {
                 var viewport = page.getViewport({ scale: scale });
-                //create new canvas
-                var newCanvas = document.createElement('canvas');
-                newCanvas.height = viewport.height;
-                newCanvas.width = viewport.width;
+                //set canvas canvas
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
 
                 //render pdf page into canvas context
-                var context = newCanvas.getContext('2d');
                 var renderContext = {
                     canvasContext: context,
                     viewport: viewport
@@ -72,29 +72,15 @@
                     console.log('Page rendered');
                 });
 
-                //create div for number page
-                var newDivNumPage = document.createElement('div');
-
-                //crete text with number page
-                var numPage = document.createTextNode(num);
-                newDivNumPage.appendChild(numPage);
-
-                //create a new div
-                var newDivCanvas = document.createElement('div');
-
-                //add the new canvas in the new div
-                newDivCanvas.appendChild(newCanvas);
-
-                //create div main
-                var newDivMain = document.createElement('div');
-                newDivMain.appendChild(newDivNumPage);
-                newDivMain.appendChild(newDivCanvas);
-
-                //add the new div before the originalDiv
-                var currentDiv = document.getElementById('divCanvas');
-                document.body.insertBefore(newDivMain, currentDiv);
+                
             });
         }
+
+        function ChangePage() {
+
+        }
+        document.getElementById('pagesSelect').addEventListener('change',ChangePage);
+
     </script>
 </body>
 </html>
