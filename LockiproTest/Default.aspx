@@ -161,19 +161,21 @@
             id++;
 
             rect.on('transformstart', function () {
+                UpdateProperties();
                 console.log('transform start');
             });
 
             rect.on('dragmove', function () {
-                UpdateProperties()
+                UpdateProperties();
                 console.log('dragmove')
             });
             rect.on('transform', function () {
-                UpdateProperties()
+                UpdateProperties();
                 console.log('transform');
             });
 
             rect.on('transformend', function () {
+                UpdateProperties();
                 console.log('transform end');
             });
 
@@ -186,6 +188,7 @@
             });
 
             CreatePropertiesObjects();
+            UpdateProperties();
         }
         document.getElementById('addObject').addEventListener('click', AddObjectDraggeable);
 
@@ -207,21 +210,78 @@
         //function for add a properties in the toolbar
         var idProperties = 1;
         function CreatePropertiesObjects() {
-            //div for position x
+            //div for position x ************************************
             var divX = document.createElement('div');
 
             //content of divX
             var lblX = document.createTextNode('Posición x: ');
             divX.appendChild(lblX);
 
-            var X = document.createElement('span');
+            var X = document.createElement('input');
             X.id = 'x' + idProperties;
-            X.textContent = rect.x();
+            X.type = 'text';
+            X.value = rect.x();
             divX.appendChild(X);
+
+            //div for position y ***************************************
+            var divY = document.createElement('div');
+
+            //content of divY
+            var lblY = document.createTextNode('Posición y: ');
+            divY.appendChild(lblY);
+
+            var Y = document.createElement('input');
+            Y.id = 'y' + idProperties;
+            Y.type = 'text';
+            Y.value = rect.y();
+            divY.appendChild(Y);
+
+            //div for rotation *****************************************
+            var divR = document.createElement('div');
+
+            //content of divR
+            var lblR = document.createTextNode('Rotación: ');
+            divR.appendChild(lblR);
+
+            var R = document.createElement('input');
+            R.id = 'r' + idProperties;
+            R.type = 'text';
+            R.value = rect.rotation();
+            divR.appendChild(R);
+
+            //div for width *****************************************
+            var divW = document.createElement('div');
+
+            //content of divR
+            var lblW = document.createTextNode('Ancho: ');
+            divW.appendChild(lblW);
+
+            var W = document.createElement('input');
+            W.id = 'w' + idProperties;
+            W.type = 'text';
+            W.value = rect.width();
+            divW.appendChild(W);
+
+            //div for height *****************************************
+            var divH = document.createElement('div');
+
+            //content of divR
+            var lblH = document.createTextNode('Alto: ');
+            divH.appendChild(lblH);
+
+            var H = document.createElement('input');
+            H.id = 'h' + idProperties;
+            H.type = 'text';
+            H.value = rect.height();
+            divH.appendChild(H);
 
             //div main
             var divMain = document.createElement('div');
             divMain.appendChild(divX);
+            divMain.appendChild(divY);
+            divMain.appendChild(divR);
+            divMain.appendChild(divW);
+            divMain.appendChild(divH);
 
             //add the div main before the reference div
             var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
@@ -234,7 +294,19 @@
         //update datas of object draggeable
         function UpdateProperties() {
             var X = document.getElementById('x1');
-            X.textContent = rect.x();
+            X.value = rect.x();
+
+            var Y = document.getElementById('y1');
+            Y.value = rect.y();
+
+            var R = document.getElementById('r1');
+            R.value = rect.rotation();
+
+            var W = document.getElementById('w1');
+            W.value = rect.width();
+
+            var H = document.getElementById('h1');
+            H.value = rect.height();
         }
     </script>
 </body>
