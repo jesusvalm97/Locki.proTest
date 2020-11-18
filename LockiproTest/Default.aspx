@@ -134,12 +134,10 @@
         pagesSelect.addEventListener('change', ChangePage);
 
         //function for add a objects draggeables
-        var id = 1;
         var rect = null;
 
         function AddObjectDraggeable() {
             rect = new Konva.Rect({
-                id: 'rect' + id,
                 x: 160,
                 y: 60,
                 width: 100,
@@ -158,7 +156,6 @@
             layer.draw();
 
             objectsDragg.push(rect);
-            id++;
 
             rect.on('transformstart', function () {
                 UpdateProperties();
@@ -191,21 +188,6 @@
             UpdateProperties();
         }
         document.getElementById('addObject').addEventListener('click', AddObjectDraggeable);
-
-        //function for update the text with datas of objects
-        function UpdateText() {
-            var lines = [
-                'x: ' + rect.x(),
-                'y: ' + rect.y(),
-                'rotation: ' + rect.rotation(),
-                'width: ' + rect.width(),
-                'height: ' + rect.height(),
-                'scaleX: ' + rect.scaleX(),
-                'scaleY: ' + rect.scaleY(),
-            ];
-            text.text(lines.join('\n'));
-            layer.batchDraw();
-        }
 
         //function for add a properties in the toolbar
         var idProperties = 1;
@@ -295,18 +277,41 @@
         function UpdateProperties() {
             var X = document.getElementById('x1');
             X.value = rect.x();
+            X.addEventListener('change', ChangeProperties);
 
             var Y = document.getElementById('y1');
             Y.value = rect.y();
+            Y.addEventListener('change', ChangeProperties);
 
             var R = document.getElementById('r1');
             R.value = rect.rotation();
+            R.addEventListener('change', ChangeProperties);
 
             var W = document.getElementById('w1');
             W.value = rect.width();
+            W.addEventListener('change', ChangeProperties);
 
             var H = document.getElementById('h1');
             H.value = rect.height();
+            H.addEventListener('change', ChangeProperties);
+        }
+
+        //function for set datas of object draggeable
+        function ChangeProperties() {
+            var X = document.getElementById('x1');
+            rect.x(parseInt(X.value));
+            
+            var Y = document.getElementById('y1');
+            rect.y(parseInt(Y.value));
+
+            var R = document.getElementById('r1');
+            rect.rotation(parseInt(R.value));
+
+            var W = document.getElementById('w1');
+            rect.width(parseInt(W.value));
+
+            var H = document.getElementById('h1');
+            rect.height(parseInt(H.value));
         }
     </script>
 </body>
