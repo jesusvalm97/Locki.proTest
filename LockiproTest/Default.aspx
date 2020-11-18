@@ -9,17 +9,16 @@
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 </head>
 <body>
-    <h1>PDF.js Test</h1>
+    <h1>locki.pro Test</h1>
     <div>
         <label>Pagina:</label>
-        <select name="pages" id="pagesSelect">
-
+        <select class="pages" name="pages" id="pagesSelect">
         </select>
     </div>
     <div id="divCanvas">
         <canvas id="the-canvas"></canvas>
     </div>
-    
+
     <script>
         // If absolute URL from the remote server is provided, configure the CORS
         // header on that server.
@@ -32,8 +31,9 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
 
 
-        var pdfDoc = null,
-            scale = 2;
+        var pdfDoc = null;
+        var scale = 2;
+        var pageNum = 1;
         var pagesSelect = document.getElementById('pagesSelect');
         var canvas = document.getElementById('the-canvas');
         var context = canvas.getContext('2d');
@@ -42,7 +42,7 @@
         pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
 
-            RenderPage(1);
+            RenderPage(pageNum);
 
             var i;
             for (i = 1; i <= pdfDoc.numPages; i++) {
@@ -72,14 +72,15 @@
                     console.log('Page rendered');
                 });
 
-                
+
             });
         }
 
         function ChangePage() {
-
+            RenderPage(parseInt(pagesSelect.value));
+            console.log('pagina ' + pagesSelect.value);
         }
-        document.getElementById('pagesSelect').addEventListener('change',ChangePage);
+        pagesSelect.addEventListener('change', ChangePage);
 
     </script>
 </body>
