@@ -136,7 +136,6 @@
         //function for add a objects draggeables
         var id = 1;
         var rect = null;
-        var text = null;
 
         function AddObjectDraggeable() {
             rect = new Konva.Rect({
@@ -161,22 +160,16 @@
             objectsDragg.push(rect);
             id++;
 
-            text = new Konva.Text({
-                x: 5,
-                y: 5,
-            });
-            layer.add(text);
-
             rect.on('transformstart', function () {
                 console.log('transform start');
             });
 
             rect.on('dragmove', function () {
-                UpdateText();
+                UpdateProperties()
                 console.log('dragmove')
             });
             rect.on('transform', function () {
-                UpdateText();
+                UpdateProperties()
                 console.log('transform');
             });
 
@@ -212,6 +205,7 @@
         }
 
         //function for add a properties in the toolbar
+        var idProperties = 1;
         function CreatePropertiesObjects() {
             //div for position x
             var divX = document.createElement('div');
@@ -220,7 +214,9 @@
             var lblX = document.createTextNode('Posición x: ');
             divX.appendChild(lblX);
 
-            var X = document.createTextNode(rect.x());
+            var X = document.createElement('span');
+            X.id = 'x' + idProperties;
+            X.textContent = rect.x();
             divX.appendChild(X);
 
             //div main
@@ -231,6 +227,14 @@
             var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
             var referenceDiv = document.getElementById('divReferenceToolbarLeft');
             parentDiv.insertBefore(divMain, referenceDiv);
+
+            idProperties++;
+        }
+
+        //update datas of object draggeable
+        function UpdateProperties() {
+            var X = document.getElementById('x1');
+            X.textContent = rect.x();
         }
     </script>
 </body>
