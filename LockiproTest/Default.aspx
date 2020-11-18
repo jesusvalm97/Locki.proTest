@@ -107,8 +107,11 @@
 
         //function for add a objects draggeables
         var id = 1;
+        var rect = null;
+        var text = null;
+
         function AddObjectDraggeable() {
-            var rect = new Konva.Rect({
+            rect = new Konva.Rect({
                 id: 'rect' + id,
                 x: 160,
                 y: 60,
@@ -120,7 +123,7 @@
                 draggable: true,
             });
             layer.add(rect);
-
+            
             //create new transformer
             var transformer = new Konva.Transformer();
             layer.add(transformer);
@@ -129,8 +132,54 @@
 
             objectsDragg.push(rect);
             id++;
+
+            text = new Konva.Text({
+                x: 5,
+                y: 5,
+            });
+            layer.add(text);
+
+            rect.on('transformstart', function () {
+                console.log('transform start');
+            });
+
+            rect.on('dragmove', function () {
+                UpdateText();
+                console.log('dragmove')
+            });
+            rect.on('transform', function () {
+                UpdateText();
+                console.log('transform');
+            });
+
+            rect.on('transformend', function () {
+                console.log('transform end');
+            });
+
+            rect.on('mouseover', function () {
+                document.body.style.cursor = 'pointer';
+            });
+
+            rect.on('mouseout', function () {
+                document.body.style.cursor = 'default';
+            });
         }
         document.getElementById('addObject').addEventListener('click', AddObjectDraggeable);
+
+        //function for update the text with datas of objects
+        function UpdateText() {
+            var lines = [
+                'x: ' + rect.x(),
+                'y: ' + rect.y(),
+                'rotation: ' + rect.rotation(),
+                'width: ' + rect.width(),
+                'height: ' + rect.height(),
+                'scaleX: ' + rect.scaleX(),
+                'scaleY: ' + rect.scaleY(),
+            ];
+            text.text(lines.join('\n'));
+            layer.batchDraw();
+        }
     </script>
 </body>
 </html>
