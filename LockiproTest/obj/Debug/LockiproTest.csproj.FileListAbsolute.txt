@@ -52,8 +52,8 @@ C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\bin\roslyn\VBCSCompile
 C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\bin\roslyn\VBCSCompiler.exe.config
 C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\obj\Debug\LockiproTest.csprojAssemblyReference.cache
 C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\obj\Debug\LockiproTest.csproj.CoreCompileInputs.cache
 C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\obj\Debug\LockiproTest.csproj.CopyComplete
 C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\obj\Debug\LockiproTest.dll
 C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\obj\Debug\LockiproTest.pdb
+C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\obj\Debug\LockiproTest.csprojAssemblyReference.cache
