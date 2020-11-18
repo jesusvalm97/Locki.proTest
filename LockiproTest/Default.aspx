@@ -8,19 +8,47 @@
     <title>PDF Viewer</title>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script src="konva.js"></script>
+
+    <style>
+        #divToolbarLeft {
+            grid-area: divToolbarLeft;
+        }
+
+        #divPdf {
+            grid-area: divPdf;
+        }
+
+        #divToolbarRight {
+            grid-area: divToolbarRight;
+        }
+
+        #Container {
+            display: grid;
+            grid-template-areas: 'divToolbarLeft divPdf divToolbarRigh';
+        }
+    </style>
 </head>
 <body>
     <h1>locki.pro Test</h1>
     <div>
         <label>Pagina:</label>
         <select class="pages" name="pages" id="pagesSelect"></select>
-        <button id="addObject">Agregar objeto</button>
     </div>
-    <div style="position: relative;">
-        <div id="divCanvas" style="position: absolute; top: 0; left: 0;">
-            <canvas id="the-canvas"></canvas>
+    <div id="Container">
+        <div id="divToolbarLeft">
+            <button id="addObject">Agregar objeto</button>
+            <div id="divReferenceToolbarLeft"></div>
         </div>
-        <div id="containerKonva" style="position: absolute; top: 0; left: 0; z-index: 10;"></div>
+
+        <div id="divPdf" style="position: relative;">
+            <div id="divCanvas" style="position: absolute; top: 0; left: 0;">
+                <canvas id="the-canvas"></canvas>
+            </div>
+            <div id="containerKonva" style="position: absolute; top: 0; left: 0; z-index: 10;"></div>
+        </div>
+
+        <div id="divToolbarRight">
+        </div>
     </div>
     <script>
         // If absolute URL from the remote server is provided, configure the CORS
@@ -38,7 +66,7 @@
 
         //properties for pdf.js
         var pdfDoc = null;
-        var scale = 2;
+        var scale = 1.5;
         var pageNum = 1;
         var pagesSelect = document.getElementById('pagesSelect');
         var canvas = document.getElementById('the-canvas');
@@ -123,7 +151,7 @@
                 draggable: true,
             });
             layer.add(rect);
-            
+
             //create new transformer
             var transformer = new Konva.Transformer();
             layer.add(transformer);
@@ -180,6 +208,8 @@
             text.text(lines.join('\n'));
             layer.batchDraw();
         }
+
+        
     </script>
 </body>
 </html>
