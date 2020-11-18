@@ -76,10 +76,12 @@
             });
         }
 
+        //function for change page with select
         function ChangePage() {
             RenderPage(parseInt(pagesSelect.value));
             console.log('pagina ' + pagesSelect.value);
         }
+        //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);
 
     </script>
