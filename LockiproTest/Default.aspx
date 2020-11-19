@@ -37,6 +37,7 @@
     <div id="Container">
         <div id="divToolbarLeft">
             <button id="addObject">Agregar objeto</button>
+            <button id="addText">Agregar texto</button>
             <div id="divReferenceToolbarLeft"></div>
         </div>
 
@@ -132,6 +133,23 @@
         }
         //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);
+
+        //function for add a text draggeable
+        function AddTextDreaggeable() {
+            //create the Konva.Text
+            var text = new Konva.Text({
+                x: 10,
+                y: 15,
+                text: 'Simple Text',
+                fontSize: 30,
+                fontFamily: 'Calibri',
+                fill: 'green',
+                draggable: true
+            });
+            layer.add(text);
+            layer.draw();
+        }
+        document.getElementById('addText').addEventListener('click', AddTextDreaggeable);
 
         //function for add a objects draggeables
         var idObjectDrag = 1;
@@ -263,6 +281,8 @@
             H.value = rect.height();
             divH.appendChild(H);
 
+            var line = document.createElement('hr');
+
             //div main
             var divMain = document.createElement('div');
             divMain.appendChild(divX);
@@ -270,6 +290,7 @@
             divMain.appendChild(divR);
             divMain.appendChild(divW);
             divMain.appendChild(divH);
+            divMain.appendChild(line);
 
             //add the div main before the reference div
             var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
