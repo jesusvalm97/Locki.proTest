@@ -64,6 +64,7 @@
 
         //array of objects draggeables
         var objectsDragg = [];
+        var textsDragg = [];
 
         //properties for pdf.js
         var pdfDoc = null;
@@ -135,21 +136,172 @@
         pagesSelect.addEventListener('change', ChangePage);
 
         //function for add a text draggeable
+        var idTextDraggeable = 1;
+        var text = null;
+
         function AddTextDreaggeable() {
             //create the Konva.Text
-            var text = new Konva.Text({
+            text = new Konva.Text({
+                id: 'text' + idTextDraggeable,
                 x: 10,
                 y: 15,
-                text: 'Simple Text',
+                text: 'Lorem ipsum.',
                 fontSize: 30,
                 fontFamily: 'Calibri',
-                fill: 'green',
+                fill: 'black',
                 draggable: true
             });
+
             layer.add(text);
+            textsDragg.push(text);
+            idTextDraggeable++;
+
+            //create new transformer
+            var transformer = new Konva.Transformer();
+            layer.add(transformer);
+            transformer.nodes([text]);
             layer.draw();
+
+            text.on('mouseover', function () {
+                document.body.style.cursor = 'pointer';
+            });
+
+            text.on('mouseout', function () {
+                document.body.style.cursor = 'default';
+            });
+
+            CreatePropertiesTextDraggable(text.id);
         }
         document.getElementById('addText').addEventListener('click', AddTextDreaggeable);
+
+        //function for add a properties in the toolbar
+        function CreatePropertiesTextDraggable(id) {
+            //div for fontsize **************************************
+            var divFS = document.createElement('div');
+
+            //contetn of divFS
+            var lblFS = document.createTextNode('Tamaño de letra: ');
+            divFS.appendChild(lblFS);
+
+            var FS = document.createElement('input');
+            FS.id = 'fs' + id;
+            FS.type = 'text';
+            FS.value = text.fontSize();
+            divFS.appendChild(FS);
+
+            //div for font family **********************************
+            var divFF = document.createElement('div');
+
+            //content of divFF
+            var lblFF = document.createTextNode('Fuente: ');
+            divFF.appendChild(lblFF);
+
+            var FF = document.createElement('select');
+            FF.id = 'ff' + id;
+            divFF.appendChild(FF);
+
+            var FFArial = document.createElement('option');
+            FFArial.text = text.fontFamily();
+            FFArial.value = text.fontFamily();
+            FF.add(FFArial);
+
+            //div for font color ************************************
+            var divFC = document.createElement('div');
+
+            //content of divFC
+            var lblFC = document.createTextNode('Color: ');
+            divFC.appendChild(lblFC);
+
+            var FC = document.createElement('input');
+            FC.id = 'fc' + id;
+            FC.type = 'color';
+            FC.value = text.fill();
+            divFC.appendChild(FC);
+
+            //div for position x ************************************
+            var divX = document.createElement('div');
+
+            //content of divX
+            var lblX = document.createTextNode('Posición x: ');
+            divX.appendChild(lblX);
+
+            var X = document.createElement('input');
+            X.id = 'x' + id;
+            X.type = 'text';
+            X.value = text.x();
+            divX.appendChild(X);
+
+            //div for position y ***************************************
+            var divY = document.createElement('div');
+
+            //content of divY
+            var lblY = document.createTextNode('Posición y: ');
+            divY.appendChild(lblY);
+
+            var Y = document.createElement('input');
+            Y.id = 'y' + id;
+            Y.type = 'text';
+            Y.value = text.y();
+            divY.appendChild(Y);
+
+            //div for rotation *****************************************
+            var divR = document.createElement('div');
+
+            //content of divR
+            var lblR = document.createTextNode('Rotación: ');
+            divR.appendChild(lblR);
+
+            var R = document.createElement('input');
+            R.id = 'r' + id;
+            R.type = 'text';
+            R.value = text.rotation();
+            divR.appendChild(R);
+
+            //div for width *****************************************
+            var divW = document.createElement('div');
+
+            //content of divW
+            var lblW = document.createTextNode('Ancho: ');
+            divW.appendChild(lblW);
+
+            var W = document.createElement('input');
+            W.id = 'w' + id;
+            W.type = 'text';
+            W.value = text.width();
+            divW.appendChild(W);
+
+            //div for height *****************************************
+            var divH = document.createElement('div');
+
+            //content of divH
+            var lblH = document.createTextNode('Alto: ');
+            divH.appendChild(lblH);
+
+            var H = document.createElement('input');
+            H.id = 'h' + id;
+            H.type = 'text';
+            H.value = text.height();
+            divH.appendChild(H);
+
+            var line = document.createElement('hr');
+
+            //div main
+            var divMain = document.createElement('div');
+            divMain.appendChild(divFS);
+            divMain.appendChild(divFF);
+            divMain.appendChild(divFC);
+            divMain.appendChild(divX);
+            divMain.appendChild(divY);
+            divMain.appendChild(divR);
+            divMain.appendChild(divW);
+            divMain.appendChild(divH);
+            divMain.appendChild(line);
+
+            //add the div main before the reference div
+            var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
+            var referenceDiv = document.getElementById('divReferenceToolbarLeft');
+            parentDiv.insertBefore(divMain, referenceDiv);
+        }
 
         //function for add a objects draggeables
         var idObjectDrag = 1;
