@@ -308,19 +308,19 @@
             var i;
             for (i = 0; i < objectsDragg.length; i++) {
                 var X = document.getElementById('x' + objectsDragg[i].id());
-                rect.x(parseInt(X.value));
+                objectsDragg[i].x(parseInt(X.value));
 
                 var Y = document.getElementById('y' + objectsDragg[i].id());
-                rect.y(parseInt(Y.value));
+                objectsDragg[i].y(parseInt(Y.value));
 
                 var R = document.getElementById('r' + objectsDragg[i].id());
-                rect.rotation(parseInt(R.value));
+                objectsDragg[i].rotation(parseInt(R.value));
 
                 var W = document.getElementById('w' + objectsDragg[i].id());
-                rect.width(parseInt(W.value));
+                objectsDragg[i].width(parseInt(W.value));
 
                 var H = document.getElementById('h' + objectsDragg[i].id());
-                rect.height(parseInt(H.value));
+                objectsDragg[i].height(parseInt(H.value));
             }
         }
     </script>
