@@ -149,18 +149,37 @@
                 fontSize: 30,
                 fontFamily: 'Calibri',
                 fill: 'black',
+                name: 'text',
                 draggable: true
             });
 
             layer.add(text);
             textsDragg.push(text);
-            idTextDraggeable++;
 
             //create new transformer
             var transformer = new Konva.Transformer();
             layer.add(transformer);
             transformer.nodes([text]);
             layer.draw();
+
+            text.on('transformstart', function () {
+                UpdatePropertiesText();
+                console.log('transform start');
+            });
+
+            text.on('dragmove', function () {
+                UpdatePropertiesText();
+                console.log('dragmove')
+            });
+            text.on('transform', function () {
+                UpdatePropertiesText();
+                console.log('transform');
+            });
+
+            text.on('transformend', function () {
+                UpdatePropertiesText();
+                console.log('transform end');
+            });
 
             text.on('mouseover', function () {
                 document.body.style.cursor = 'pointer';
@@ -170,7 +189,8 @@
                 document.body.style.cursor = 'default';
             });
 
-            CreatePropertiesTextDraggable(text.id);
+            CreatePropertiesTextDraggable('text' + idTextDraggeable);
+            idTextDraggeable++;
         }
         document.getElementById('addText').addEventListener('click', AddTextDreaggeable);
 
@@ -315,6 +335,32 @@
             var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
             var referenceDiv = document.getElementById('divReferenceToolbarLeft');
             parentDiv.insertBefore(divMain, referenceDiv);
+        }
+
+        //update datas of object draggeable
+        function UpdatePropertiesText() {
+            var i;
+            for (i = 0; i < textsDragg.length; i++) {
+                var X = document.getElementById('xtext' + (i+1));
+                X.value = textsDragg[i].x();
+                X.addEventListener('change', ChangeProperties);
+
+                var Y = document.getElementById('ytext' + (i+1));
+                Y.value = textsDragg[i].y();
+                Y.addEventListener('change', ChangeProperties);
+
+                var R = document.getElementById('rtext' + (i+1));
+                R.value = textsDragg[i].rotation();
+                R.addEventListener('change', ChangeProperties);
+
+                var W = document.getElementById('wtext' + (i+1));
+                W.value = textsDragg[i].width();
+                W.addEventListener('change', ChangeProperties);
+
+                var H = document.getElementById('htext' + (i+1));
+                H.value = textsDragg[i].height();
+                H.addEventListener('change', ChangeProperties);
+            }
         }
 
         //function for add a objects draggeables
