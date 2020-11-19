@@ -52,6 +52,78 @@
         </div>
     </div>
     <script>
+        //parent class for objects draggable
+        class ObjectDraggable {
+            constructor(id, x, y, fill, draggable) {
+                this.id = id;
+                this.x = x;
+                this.y = y;
+                this.fill = fill;
+                this.draggable = draggable;
+            }
+        }
+
+        //children class for TextDraggable
+        class TextDraggable extends ObjectDraggable {
+            constructor(id, x, y, fill, draggable, text, fontSize, fontFamily) {
+                super(id, x, y, fill, draggable);
+                this.id = id;
+                this.x = x;
+                this.y = y;
+                this.fill = fill;
+                this.draggable = draggable;
+                this.text = text;
+                this.fontSize = fontSize;
+                this.fontFamily = fontFamily;
+            }
+
+            CreateText() {
+                var text = new Konva.Text({
+                    id: this.id,
+                    x: this.x,
+                    y: this.y,
+                    text: this.text,
+                    fontSize: this.fontSize,
+                    fontFamily: this.fontFamily,
+                    fill: this.fil,
+                    name: 'text',
+                    draggable: this.draggable,
+                });
+
+                return text;
+            }
+        }
+
+        //children class for RectDraggable
+        class RectDraggable extends ObjectDraggable {
+            constructor(id, x, y, width, height, fill, draggable) {
+                super(id, x, y, fill, draggable);
+                this.id = id;
+                this.x = x;
+                this.y = y;
+                this.width = width;
+                this.height = height;
+                this.fill = fill;
+                this.draggable = draggable;
+            }
+
+            CreateRect() {
+                var rectangle = new Konva.Rect({
+                    id: this.id,
+                    x: this.x,
+                    y: this.y,
+                    width: this.width,
+                    height: this.height,
+                    fill: this.fill,
+                    name: 'rect',
+                    stroke: 'black',
+                    draggable: this.draggable,
+                });
+
+                return rectangle;
+            }
+        }
+
         // If absolute URL from the remote server is provided, configure the CORS
         // header on that server.
         var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf';
@@ -139,19 +211,11 @@
         var idTextDraggeable = 1;
         var text = null;
 
-        function AddTextDreaggeable() {
+        function AddTextDraggable() {
             //create the Konva.Text
-            text = new Konva.Text({
-                id: 'text' + idTextDraggeable,
-                x: 10,
-                y: 15,
-                text: 'Lorem ipsum.',
-                fontSize: 30,
-                fontFamily: 'Calibri',
-                fill: 'black',
-                name: 'text',
-                draggable: true
-            });
+            var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, 'Lorem ipsum', 30, 'Calibri', true);
+
+            text = textDraggable.CreateText();
 
             layer.add(text);
             textsDragg.push(text);
@@ -192,7 +256,7 @@
             CreatePropertiesTextDraggable('text' + idTextDraggeable);
             idTextDraggeable++;
         }
-        document.getElementById('addText').addEventListener('click', AddTextDreaggeable);
+        document.getElementById('addText').addEventListener('click', AddTextDraggable);
 
         //function for add a properties in the toolbar
         function CreatePropertiesTextDraggable(id) {
@@ -458,18 +522,9 @@
         var idObjectDrag = 1;
         var rect = null;
 
-        function AddObjectDraggeable() {
-            rect = new Konva.Rect({
-                id: 'rect' + idObjectDrag,
-                x: 160,
-                y: 60,
-                width: 100,
-                height: 90,
-                fill: 'white',
-                name: 'rect',
-                stroke: 'black',
-                draggable: true,
-            });
+        function AddRectDraggeable() {
+            var rectangle = new RectDraggable('rect' + idObjectDrag, 160, 60, 100, 90, 'white', true);
+            rect = rectangle.CreateRect();
             layer.add(rect);
 
             //create new transformer
@@ -515,7 +570,7 @@
 
             CreatePropertiesObjects(rect.id());
         }
-        document.getElementById('addObject').addEventListener('click', AddObjectDraggeable);
+        document.getElementById('addObject').addEventListener('click', AddRectDraggeable);
 
         //function for add a properties in the toolbar
         function CreatePropertiesObjects(id) {
