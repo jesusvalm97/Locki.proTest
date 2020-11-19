@@ -134,10 +134,12 @@
         pagesSelect.addEventListener('change', ChangePage);
 
         //function for add a objects draggeables
+        var idObjectDrag = 1;
         var rect = null;
 
         function AddObjectDraggeable() {
             rect = new Konva.Rect({
+                id: 'rect' + idObjectDrag,
                 x: 160,
                 y: 60,
                 width: 100,
@@ -156,6 +158,7 @@
             layer.draw();
 
             objectsDragg.push(rect);
+            idObjectDrag++;
 
             rect.on('transformstart', function () {
                 UpdateProperties();
@@ -184,14 +187,13 @@
                 document.body.style.cursor = 'default';
             });
 
-            CreatePropertiesObjects();
+            CreatePropertiesObjects(rect.id());
             UpdateProperties();
         }
         document.getElementById('addObject').addEventListener('click', AddObjectDraggeable);
 
         //function for add a properties in the toolbar
-        var idProperties = 1;
-        function CreatePropertiesObjects() {
+        function CreatePropertiesObjects(id) {
             //div for position x ************************************
             var divX = document.createElement('div');
 
@@ -200,7 +202,7 @@
             divX.appendChild(lblX);
 
             var X = document.createElement('input');
-            X.id = 'x' + idProperties;
+            X.id = 'x' + id;
             X.type = 'text';
             X.value = rect.x();
             divX.appendChild(X);
@@ -213,7 +215,7 @@
             divY.appendChild(lblY);
 
             var Y = document.createElement('input');
-            Y.id = 'y' + idProperties;
+            Y.id = 'y' + id;
             Y.type = 'text';
             Y.value = rect.y();
             divY.appendChild(Y);
@@ -226,7 +228,7 @@
             divR.appendChild(lblR);
 
             var R = document.createElement('input');
-            R.id = 'r' + idProperties;
+            R.id = 'r' + id;
             R.type = 'text';
             R.value = rect.rotation();
             divR.appendChild(R);
@@ -239,7 +241,7 @@
             divW.appendChild(lblW);
 
             var W = document.createElement('input');
-            W.id = 'w' + idProperties;
+            W.id = 'w' + id;
             W.type = 'text';
             W.value = rect.width();
             divW.appendChild(W);
@@ -252,7 +254,7 @@
             divH.appendChild(lblH);
 
             var H = document.createElement('input');
-            H.id = 'h' + idProperties;
+            H.id = 'h' + id;
             H.type = 'text';
             H.value = rect.height();
             divH.appendChild(H);
@@ -269,49 +271,53 @@
             var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
             var referenceDiv = document.getElementById('divReferenceToolbarLeft');
             parentDiv.insertBefore(divMain, referenceDiv);
-
-            idProperties++;
         }
 
         //update datas of object draggeable
         function UpdateProperties() {
-            var X = document.getElementById('x1');
-            X.value = rect.x();
-            X.addEventListener('change', ChangeProperties);
+            var i;
+            for (i = 0; i <= objectsDragg.length; i++) {
+                var X = document.getElementById('x' + objectsDragg[i].id());
+                X.value = rect.x();
+                X.addEventListener('change', ChangeProperties);
 
-            var Y = document.getElementById('y1');
-            Y.value = rect.y();
-            Y.addEventListener('change', ChangeProperties);
+                var Y = document.getElementById('y' + objectsDragg[i].id());
+                Y.value = rect.y();
+                Y.addEventListener('change', ChangeProperties);
 
-            var R = document.getElementById('r1');
-            R.value = rect.rotation();
-            R.addEventListener('change', ChangeProperties);
+                var R = document.getElementById('r' + objectsDragg[i].id());
+                R.value = rect.rotation();
+                R.addEventListener('change', ChangeProperties);
 
-            var W = document.getElementById('w1');
-            W.value = rect.width();
-            W.addEventListener('change', ChangeProperties);
+                var W = document.getElementById('w' + objectsDragg[i].id());
+                W.value = rect.width();
+                W.addEventListener('change', ChangeProperties);
 
-            var H = document.getElementById('h1');
-            H.value = rect.height();
-            H.addEventListener('change', ChangeProperties);
+                var H = document.getElementById('h' + objectsDragg[i].id());
+                H.value = rect.height();
+                H.addEventListener('change', ChangeProperties);
+            }
         }
 
         //function for set datas of object draggeable
         function ChangeProperties() {
-            var X = document.getElementById('x1');
-            rect.x(parseInt(X.value));
-            
-            var Y = document.getElementById('y1');
-            rect.y(parseInt(Y.value));
+            var i;
+            for (i = 0; i <= objectsDragg.length; i++) {
+                var X = document.getElementById('x' + objectsDragg[i].id());
+                rect.x(parseInt(X.value));
 
-            var R = document.getElementById('r1');
-            rect.rotation(parseInt(R.value));
+                var Y = document.getElementById('y' + objectsDragg[i].id());
+                rect.y(parseInt(Y.value));
 
-            var W = document.getElementById('w1');
-            rect.width(parseInt(W.value));
+                var R = document.getElementById('r' + objectsDragg[i].id());
+                rect.rotation(parseInt(R.value));
 
-            var H = document.getElementById('h1');
-            rect.height(parseInt(H.value));
+                var W = document.getElementById('w' + objectsDragg[i].id());
+                rect.width(parseInt(W.value));
+
+                var H = document.getElementById('h' + objectsDragg[i].id());
+                rect.height(parseInt(H.value));
+            }
         }
     </script>
 </body>
