@@ -233,9 +233,14 @@
             FF.id = 'ff' + id;
             divFF.appendChild(FF);
 
+            var FFCalibri = document.createElement('option');
+            FFCalibri.text = text.fontFamily();
+            FFCalibri.value = text.fontFamily();
+            FF.add(FFCalibri);
+
             var FFArial = document.createElement('option');
-            FFArial.text = text.fontFamily();
-            FFArial.value = text.fontFamily();
+            FFArial.text = 'Arial';
+            FFArial.value = 'Arial';
             FF.add(FFArial);
 
             //div for font color ************************************
@@ -341,25 +346,71 @@
         function UpdatePropertiesText() {
             var i;
             for (i = 0; i < textsDragg.length; i++) {
-                var X = document.getElementById('xtext' + (i+1));
+                var T = document.getElementById('ttext' + (i + 1));
+                T.addEventListener('change', ChangePropertiesText);
+
+                var FS = document.getElementById('fstext' + (i + 1));
+                FS.addEventListener('change', ChangePropertiesText);
+
+                var FF = document.getElementById('fftext' + (i + 1));
+                FF.addEventListener('change', ChangePropertiesText);
+
+                var FC = document.getElementById('fctext' + (i + 1));
+                FC.addEventListener('change', ChangePropertiesText);
+
+                var X = document.getElementById('xtext' + (i + 1));
                 X.value = textsDragg[i].x();
-                X.addEventListener('change', ChangeProperties);
+                X.addEventListener('change', ChangePropertiesText);
 
-                var Y = document.getElementById('ytext' + (i+1));
+                var Y = document.getElementById('ytext' + (i + 1));
                 Y.value = textsDragg[i].y();
-                Y.addEventListener('change', ChangeProperties);
+                Y.addEventListener('change', ChangePropertiesText);
 
-                var R = document.getElementById('rtext' + (i+1));
+                var R = document.getElementById('rtext' + (i + 1));
                 R.value = textsDragg[i].rotation();
-                R.addEventListener('change', ChangeProperties);
+                R.addEventListener('change', ChangePropertiesText);
 
-                var W = document.getElementById('wtext' + (i+1));
+                var W = document.getElementById('wtext' + (i + 1));
                 W.value = textsDragg[i].width();
-                W.addEventListener('change', ChangeProperties);
+                W.addEventListener('change', ChangePropertiesText);
 
-                var H = document.getElementById('htext' + (i+1));
+                var H = document.getElementById('htext' + (i + 1));
                 H.value = textsDragg[i].height();
-                H.addEventListener('change', ChangeProperties);
+                H.addEventListener('change', ChangePropertiesText);
+            }
+        }
+
+        //function for set datas of text draggable
+        function ChangePropertiesText() {
+            var i;
+            for (i = 0; i < textsDragg.length; i++) {
+                var T = document.getElementById('ttext' + (i + 1));
+                textsDragg[i].text(T.value);
+
+                var FS = document.getElementById('fstext' + (i + 1));
+                textsDragg[i].fontSize(parseInt(FS.value));
+
+                var FF = document.getElementById('fftext' + (i + 1));
+                textsDragg[i].fontFamily(FF.value);
+                console.log(textsDragg[i].fontFamily());
+
+                var FC = document.getElementById('fctext' + (i + 1));
+                textsDragg[i].fill(FC.value);
+
+                var X = document.getElementById('xtext' + (i + 1));
+                textsDragg[i].x(parseInt(X.value));
+
+                var Y = document.getElementById('ytext' + (i + 1));
+                textsDragg[i].y(parseInt(Y.value));
+
+                var R = document.getElementById('rtext' + (i + 1));
+                textsDragg[i].rotation(parseInt(R.value));
+
+                var W = document.getElementById('wtext' + (i + 1));
+                textsDragg[i].width(parseInt(W.value));
+
+                var H = document.getElementById('htext' + (i + 1));
+                textsDragg[i].height(parseInt(H.value));
             }
         }
 
