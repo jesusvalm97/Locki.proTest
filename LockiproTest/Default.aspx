@@ -160,6 +160,13 @@
             objectsDragg.push(rect);
             idObjectDrag++;
 
+            var i;
+            for (i = 0; i < objectsDragg.length; i++) {
+                if (objectsDragg[i].id == rect.id) {
+                    
+                }
+            }
+
             rect.on('transformstart', function () {
                 UpdateProperties(rect);
                 console.log('transform start');
@@ -276,25 +283,25 @@
         function UpdateProperties(obj) {
             //var i;
             //for (i = 0; i <= objectsDragg.length; i++) {
-                var X = document.getElementById('x' + obj.id());
-                X.value = rect.x();
-                X.addEventListener('change', ChangeProperties);
+            var X = document.getElementById('x' + obj.id());
+            X.value = obj.x();
+            X.addEventListener('change', ChangeProperties);
 
-                var Y = document.getElementById('y' + obj.id());
-                Y.value = rect.y();
-                Y.addEventListener('change', ChangeProperties);
+            var Y = document.getElementById('y' + obj.id());
+            Y.value = obj.y();
+            Y.addEventListener('change', ChangeProperties);
 
-                var R = document.getElementById('r' + obj.id());
-                R.value = rect.rotation();
-                R.addEventListener('change', ChangeProperties);
+            var R = document.getElementById('r' + obj.id());
+            R.value = obj.rotation();
+            R.addEventListener('change', ChangeProperties);
 
-                var W = document.getElementById('w' + obj.id());
-                W.value = rect.width();
-                W.addEventListener('change', ChangeProperties);
+            var W = document.getElementById('w' + obj.id());
+            W.value = obj.width();
+            W.addEventListener('change', ChangeProperties);
 
-                var H = document.getElementById('h' + obj.id());
-                H.value = rect.height();
-                H.addEventListener('change', ChangeProperties);
+            var H = document.getElementById('h' + obj.id());
+            H.value = obj.height();
+            H.addEventListener('change', ChangeProperties);
             //}
         }
 
