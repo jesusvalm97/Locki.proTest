@@ -68,7 +68,7 @@
 
         //properties for pdf.js
         var pdfDoc = null;
-        var scale = 1.5;
+        var scale = 1.3;
         var pageNum = 1;
         var pagesSelect = document.getElementById('pagesSelect');
         var canvas = document.getElementById('the-canvas');
@@ -465,7 +465,7 @@
                 y: 60,
                 width: 100,
                 height: 90,
-                fill: 'blue',
+                fill: 'white',
                 name: 'rect',
                 stroke: 'black',
                 draggable: true,
