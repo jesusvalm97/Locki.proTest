@@ -176,6 +176,19 @@
 
         //function for add a properties in the toolbar
         function CreatePropertiesTextDraggable(id) {
+            //div for text ******************************************
+            var divT = document.createElement('div');
+
+            //content of divT
+            var lblT = document.createTextNode('Texto: ');
+            divT.appendChild(lblT);
+
+            var T = document.createElement('input');
+            T.id = 't' + id;
+            T.type = 'text';
+            T.value = text.text();
+            divT.appendChild(T);
+
             //div for fontsize **************************************
             var divFS = document.createElement('div');
 
@@ -287,6 +300,7 @@
 
             //div main
             var divMain = document.createElement('div');
+            divMain.appendChild(divT);
             divMain.appendChild(divFS);
             divMain.appendChild(divFF);
             divMain.appendChild(divFC);
