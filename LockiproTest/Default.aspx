@@ -163,36 +163,34 @@
             var i;
             for (i = 0; i < objectsDragg.length; i++) {
                 if (objectsDragg[i].id == rect.id) {
-                    
+                    rect.on('transformstart', function () {
+                        UpdateProperties();
+                        console.log('transform start');
+                    });
+
+                    rect.on('dragmove', function () {
+                        UpdateProperties();
+                        console.log('dragmove')
+                    });
+                    rect.on('transform', function () {
+                        UpdateProperties();
+                        console.log('transform');
+                    });
+
+                    rect.on('transformend', function () {
+                        UpdateProperties();
+                        console.log('transform end');
+                    });
+
+                    rect.on('mouseover', function () {
+                        document.body.style.cursor = 'pointer';
+                    });
+
+                    rect.on('mouseout', function () {
+                        document.body.style.cursor = 'default';
+                    });
                 }
             }
-
-            rect.on('transformstart', function () {
-                UpdateProperties(rect);
-                console.log('transform start');
-            });
-
-            rect.on('dragmove', function () {
-                UpdateProperties(rect);
-                console.log('dragmove')
-            });
-            rect.on('transform', function () {
-                UpdateProperties(rect);
-                console.log('transform');
-            });
-
-            rect.on('transformend', function () {
-                UpdateProperties(rect);
-                console.log('transform end');
-            });
-
-            rect.on('mouseover', function () {
-                document.body.style.cursor = 'pointer';
-            });
-
-            rect.on('mouseout', function () {
-                document.body.style.cursor = 'default';
-            });
 
             CreatePropertiesObjects(rect.id());
         }
@@ -280,35 +278,35 @@
         }
 
         //update datas of object draggeable
-        function UpdateProperties(obj) {
-            //var i;
-            //for (i = 0; i <= objectsDragg.length; i++) {
-            var X = document.getElementById('x' + obj.id());
-            X.value = obj.x();
-            X.addEventListener('change', ChangeProperties);
+        function UpdateProperties() {
+            var i;
+            for (i = 0; i < objectsDragg.length; i++) {
+                var X = document.getElementById('x' + objectsDragg[i].id());
+                X.value = objectsDragg[i].x();
+                X.addEventListener('change', ChangeProperties);
 
-            var Y = document.getElementById('y' + obj.id());
-            Y.value = obj.y();
-            Y.addEventListener('change', ChangeProperties);
+                var Y = document.getElementById('y' + objectsDragg[i].id());
+                Y.value = objectsDragg[i].y();
+                Y.addEventListener('change', ChangeProperties);
 
-            var R = document.getElementById('r' + obj.id());
-            R.value = obj.rotation();
-            R.addEventListener('change', ChangeProperties);
+                var R = document.getElementById('r' + objectsDragg[i].id());
+                R.value = objectsDragg[i].rotation();
+                R.addEventListener('change', ChangeProperties);
 
-            var W = document.getElementById('w' + obj.id());
-            W.value = obj.width();
-            W.addEventListener('change', ChangeProperties);
+                var W = document.getElementById('w' + objectsDragg[i].id());
+                W.value = objectsDragg[i].width();
+                W.addEventListener('change', ChangeProperties);
 
-            var H = document.getElementById('h' + obj.id());
-            H.value = obj.height();
-            H.addEventListener('change', ChangeProperties);
-            //}
+                var H = document.getElementById('h' + objectsDragg[i].id());
+                H.value = objectsDragg[i].height();
+                H.addEventListener('change', ChangeProperties);
+            }
         }
 
         //function for set datas of object draggeable
         function ChangeProperties() {
             var i;
-            for (i = 0; i <= objectsDragg.length; i++) {
+            for (i = 0; i < objectsDragg.length; i++) {
                 var X = document.getElementById('x' + objectsDragg[i].id());
                 rect.x(parseInt(X.value));
 
