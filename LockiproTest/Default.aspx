@@ -59,7 +59,7 @@
         var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
         // The workerSrc property shall be specified.
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
 
         //array of objects draggeables
         var objectsDragg = [];
@@ -161,21 +161,21 @@
             idObjectDrag++;
 
             rect.on('transformstart', function () {
-                UpdateProperties();
+                UpdateProperties(rect);
                 console.log('transform start');
             });
 
             rect.on('dragmove', function () {
-                UpdateProperties();
+                UpdateProperties(rect);
                 console.log('dragmove')
             });
             rect.on('transform', function () {
-                UpdateProperties();
+                UpdateProperties(rect);
                 console.log('transform');
             });
 
             rect.on('transformend', function () {
-                UpdateProperties();
+                UpdateProperties(rect);
                 console.log('transform end');
             });
 
@@ -188,7 +188,6 @@
             });
 
             CreatePropertiesObjects(rect.id());
-            UpdateProperties();
         }
         document.getElementById('addObject').addEventListener('click', AddObjectDraggeable);
 
@@ -236,7 +235,7 @@
             //div for width *****************************************
             var divW = document.createElement('div');
 
-            //content of divR
+            //content of divW
             var lblW = document.createTextNode('Ancho: ');
             divW.appendChild(lblW);
 
@@ -249,7 +248,7 @@
             //div for height *****************************************
             var divH = document.createElement('div');
 
-            //content of divR
+            //content of divH
             var lblH = document.createTextNode('Alto: ');
             divH.appendChild(lblH);
 
@@ -274,29 +273,29 @@
         }
 
         //update datas of object draggeable
-        function UpdateProperties() {
-            var i;
-            for (i = 0; i <= objectsDragg.length; i++) {
-                var X = document.getElementById('x' + objectsDragg[i].id());
+        function UpdateProperties(obj) {
+            //var i;
+            //for (i = 0; i <= objectsDragg.length; i++) {
+                var X = document.getElementById('x' + obj.id());
                 X.value = rect.x();
                 X.addEventListener('change', ChangeProperties);
 
-                var Y = document.getElementById('y' + objectsDragg[i].id());
+                var Y = document.getElementById('y' + obj.id());
                 Y.value = rect.y();
                 Y.addEventListener('change', ChangeProperties);
 
-                var R = document.getElementById('r' + objectsDragg[i].id());
+                var R = document.getElementById('r' + obj.id());
                 R.value = rect.rotation();
                 R.addEventListener('change', ChangeProperties);
 
-                var W = document.getElementById('w' + objectsDragg[i].id());
+                var W = document.getElementById('w' + obj.id());
                 W.value = rect.width();
                 W.addEventListener('change', ChangeProperties);
 
-                var H = document.getElementById('h' + objectsDragg[i].id());
+                var H = document.getElementById('h' + obj.id());
                 H.value = rect.height();
                 H.addEventListener('change', ChangeProperties);
-            }
+            //}
         }
 
         //function for set datas of object draggeable
