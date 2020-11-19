@@ -243,6 +243,46 @@
             FFArial.value = 'Arial';
             FF.add(FFArial);
 
+            var FFSansSerif = document.createElement('option');
+            FFSansSerif.text = 'Sans Serif';
+            FFSansSerif.value = 'Sans Serif';
+            FF.add(FFSansSerif);
+
+            var FFHelvetica = document.createElement('option');
+            FFHelvetica.text = 'Helvetica';
+            FFHelvetica.value = 'Helvetica';
+            FF.add(FFHelvetica);
+
+            var FFGaramond = document.createElement('option');
+            FFGaramond.text = 'Garamond';
+            FFGaramond.value = 'Garamond';
+            FF.add(FFGaramond);
+
+            var FFBodoni = document.createElement('option');
+            FFBodoni.text = 'Bodoni';
+            FFBodoni.value = 'Bodoni';
+            FF.add(FFBodoni);
+
+            var FFRockwell = document.createElement('option');
+            FFRockwell.text = 'Rockwell';
+            FFRockwell.value = 'Rockwell';
+            FF.add(FFRockwell);
+
+            var FFTahoma = document.createElement('option');
+            FFTahoma.text = 'Tahoma';
+            FFTahoma.value = 'Tahoma';
+            FF.add(FFTahoma);
+
+            var FFTimesNewRoman = document.createElement('option');
+            FFTimesNewRoman.text = 'Times New Roman';
+            FFTimesNewRoman.value = 'Times New Roman';
+            FF.add(FFTimesNewRoman);
+
+            var FFVerdana = document.createElement('option');
+            FFVerdana.text = 'Verdana';
+            FFVerdana.value = 'Verdana';
+            FF.add(FFVerdana);
+
             //div for font color ************************************
             var divFC = document.createElement('div');
 
