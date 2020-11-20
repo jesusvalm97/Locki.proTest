@@ -41,8 +41,8 @@
     </div>
     <div id="Container">
         <div id="divToolbarLeft">
-            <button id="addObject">Agregar objeto</button>
-            <button id="addText">Agregar texto</button>
+            <%--<button id="addObject">Agregar objeto</button>
+            <button id="addText">Agregar texto</button>--%>
             <div id="parentReference">
                 <div id="divReferenceToolbarLeft"></div>
             </div>
@@ -283,9 +283,12 @@
                 divMain.appendChild(line);
 
                 //add the div main before the reference div
-                var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
-                var referenceDiv = document.getElementById('divReferenceToolbarLeft');
-                parentDiv.insertBefore(divMain, referenceDiv);
+                //var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
+                //var referenceDiv = document.getElementById('divReferenceToolbarLeft');
+                //parentDiv.insertBefore(divMain, referenceDiv);
+
+                var parentDiv = document.getElementById('signer1');
+                parentDiv.appendChild(divMain);
             }
 
             UpdatePropertiesForm() {
@@ -326,6 +329,7 @@
             }
         }
 
+        var idDivSigner = 1;
         //children class for RectDraggable
         class RectDraggable extends ObjectDraggable {
             constructor(id, x, y, width, height, fill, draggable) {
@@ -434,9 +438,12 @@
                 divMain.appendChild(line);
 
                 //add the div main before the reference div
-                var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
-                var referenceDiv = document.getElementById('divReferenceToolbarLeft');
-                parentDiv.insertBefore(divMain, referenceDiv);
+                //var parentDiv = document.getElementById(this.id).parentNode;
+                //var referenceDiv = document.getElementById(this.id);
+                //parentDiv.insertBefore(divMain, referenceDiv);
+
+                var parentDiv = document.getElementById('signer1');
+                parentDiv.appendChild(divMain);
             }
 
             UpdatePropertiesForm() {
@@ -607,7 +614,7 @@
             textDraggable.CreatePropertiesForm();
             idTextDraggeable++;
         }
-        document.getElementById('addText').addEventListener('click', AddTextDraggable);
+        //document.getElementById('addText').addEventListener('click', AddTextDraggable);
 
         //function for set datas of text draggable
         function ChangePropertiesText() {
@@ -644,11 +651,11 @@
         }
 
         //function for add a objects draggeables
-        var idObjectDrag = 1;
+        var idRectDragg = 1;
         var rect = null;
 
         function AddRectDraggeable() {
-            var rectangle = new RectDraggable('rect' + idObjectDrag, 160, 60, 100, 90, 'white', true);
+            var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true);
             rect = rectangle.CreateRect();
             layer.add(rect);
 
@@ -659,7 +666,7 @@
             layer.draw();
 
             objectsDragg.push(rect);
-            idObjectDrag++;
+            idRectDragg++;
 
             var i;
             for (i = 0; i < objectsDragg.length; i++) {
@@ -695,7 +702,7 @@
 
             rectangle.CreatePropertiesForm();
         }
-        document.getElementById('addObject').addEventListener('click', AddRectDraggeable);
+        //document.getElementById('addObject').addEventListener('click', AddRectDraggeable);
 
         //function for set datas of object draggeable
         function ChangePropertiesRectangle() {
@@ -741,15 +748,20 @@
                 btnAddText.value = 'Agregar Texto';
                 btnAddText.addEventListener('click', AddTextDraggable);
 
-                //line
+                //divline
+                var divLine = document.createElement('div');
+                divLine.id = 'rect' + (i + 1);
+
                 var line = document.createElement('hr');
+                divLine.appendChild(line);
 
                 //create div main
                 var divMain = document.createElement('div');
+                divMain.id = 'signer' + (i + 1);
                 divMain.appendChild(divTitle);
                 divMain.appendChild(btnAddObject);
                 divMain.appendChild(btnAddText);
-                divMain.appendChild(line);
+                divMain.appendChild(divLine);
 
                 //insert div main
                 var parentDiv = document.getElementById('divReferenceSigners').parentNode;
