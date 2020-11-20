@@ -44,7 +44,9 @@
             <div>
                 <h5>Firmantes existentes</h5>
                 Selecciona el firmante al que le quieres agregar un objeto: 
-                <select class="signers" name="signers" id="signers"></select>
+                <select class="signers" name="signers" id="signers">
+                    <option value="null">Nulo</option>
+                </select>
             </div>
             
             <button id="addObject">Agregar objeto</button>
@@ -577,49 +579,54 @@
         var text = null;
 
         function AddTextDraggable() {
-            //create the Konva.Text
-            var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, 'Lorem ipsum', 30, 'Calibri', true);
+            if (existingSigners.value == 'null') {
+                alert('Primero selecciona a que firmante le quieres agregar un texto');
+            }
+            else {
+                //create the Konva.Text
+                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, 'Lorem ipsum', 30, 'Calibri', true);
 
-            text = textDraggable.CreateText();
+                text = textDraggable.CreateText();
 
-            layer.add(text);
-            textsDragg.push(text);
+                layer.add(text);
+                textsDragg.push(text);
 
-            //create new transformer
-            var transformer = new Konva.Transformer();
-            layer.add(transformer);
-            transformer.nodes([text]);
-            layer.draw();
+                //create new transformer
+                var transformer = new Konva.Transformer();
+                layer.add(transformer);
+                transformer.nodes([text]);
+                layer.draw();
 
-            text.on('transformstart', function () {
-                textDraggable.UpdatePropertiesForm();
-                console.log('transform start');
-            });
+                text.on('transformstart', function () {
+                    textDraggable.UpdatePropertiesForm();
+                    console.log('transform start');
+                });
 
-            text.on('dragmove', function () {
-                textDraggable.UpdatePropertiesForm();
-                console.log('dragmove')
-            });
-            text.on('transform', function () {
-                textDraggable.UpdatePropertiesForm();
-                console.log('transform');
-            });
+                text.on('dragmove', function () {
+                    textDraggable.UpdatePropertiesForm();
+                    console.log('dragmove')
+                });
+                text.on('transform', function () {
+                    textDraggable.UpdatePropertiesForm();
+                    console.log('transform');
+                });
 
-            text.on('transformend', function () {
-                textDraggable.UpdatePropertiesForm();
-                console.log('transform end');
-            });
+                text.on('transformend', function () {
+                    textDraggable.UpdatePropertiesForm();
+                    console.log('transform end');
+                });
 
-            text.on('mouseover', function () {
-                document.body.style.cursor = 'pointer';
-            });
+                text.on('mouseover', function () {
+                    document.body.style.cursor = 'pointer';
+                });
 
-            text.on('mouseout', function () {
-                document.body.style.cursor = 'default';
-            });
+                text.on('mouseout', function () {
+                    document.body.style.cursor = 'default';
+                });
 
-            textDraggable.CreatePropertiesForm(existingSigners.value);
-            idTextDraggeable++;
+                textDraggable.CreatePropertiesForm(existingSigners.value);
+                idTextDraggeable++;
+            }
         }
         document.getElementById('addText').addEventListener('click', AddTextDraggable);
 
@@ -662,52 +669,57 @@
         var rect = null;
 
         function AddRectDraggeable() {
-            var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true);
-            rect = rectangle.CreateRect();
-            layer.add(rect);
-
-            //create new transformer
-            var transformer = new Konva.Transformer();
-            layer.add(transformer);
-            transformer.nodes([rect]);
-            layer.draw();
-
-            objectsDragg.push(rect);
-            idRectDragg++;
-
-            var i;
-            for (i = 0; i < objectsDragg.length; i++) {
-                if (objectsDragg[i].id == rect.id) {
-                    rect.on('transformstart', function () {
-                        rectangle.UpdatePropertiesForm();
-                        console.log('transform start');
-                    });
-
-                    rect.on('dragmove', function () {
-                        rectangle.UpdatePropertiesForm();
-                        console.log('dragmove')
-                    });
-                    rect.on('transform', function () {
-                        rectangle.UpdatePropertiesForm();
-                        console.log('transform');
-                    });
-
-                    rect.on('transformend', function () {
-                        rectangle.UpdatePropertiesForm();
-                        console.log('transform end');
-                    });
-
-                    rect.on('mouseover', function () {
-                        document.body.style.cursor = 'pointer';
-                    });
-
-                    rect.on('mouseout', function () {
-                        document.body.style.cursor = 'default';
-                    });
-                }
+            if (existingSigners.value == 'null') {
+                alert('Primero selecciona a que firmante le quieres agregar un objeto');
             }
+            else {
+                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true);
+                rect = rectangle.CreateRect();
+                layer.add(rect);
 
-            rectangle.CreatePropertiesForm(existingSigners.value);
+                //create new transformer
+                var transformer = new Konva.Transformer();
+                layer.add(transformer);
+                transformer.nodes([rect]);
+                layer.draw();
+
+                objectsDragg.push(rect);
+                idRectDragg++;
+
+                var i;
+                for (i = 0; i < objectsDragg.length; i++) {
+                    if (objectsDragg[i].id == rect.id) {
+                        rect.on('transformstart', function () {
+                            rectangle.UpdatePropertiesForm();
+                            console.log('transform start');
+                        });
+
+                        rect.on('dragmove', function () {
+                            rectangle.UpdatePropertiesForm();
+                            console.log('dragmove')
+                        });
+                        rect.on('transform', function () {
+                            rectangle.UpdatePropertiesForm();
+                            console.log('transform');
+                        });
+
+                        rect.on('transformend', function () {
+                            rectangle.UpdatePropertiesForm();
+                            console.log('transform end');
+                        });
+
+                        rect.on('mouseover', function () {
+                            document.body.style.cursor = 'pointer';
+                        });
+
+                        rect.on('mouseout', function () {
+                            document.body.style.cursor = 'default';
+                        });
+                    }
+                }
+
+                rectangle.CreatePropertiesForm(existingSigners.value);
+            }
         }
         document.getElementById('addObject').addEventListener('click', AddRectDraggeable);
 
