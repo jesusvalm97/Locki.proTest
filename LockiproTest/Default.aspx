@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>PDF Viewer</title>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
-    <script src="konva.js"></script>
+    <script src="https://unpkg.com/konva@7.0.3/konva.min.js"></script>
 
     <style>
         #divToolbarLeft {
@@ -49,12 +49,14 @@
                 </select>
             </div>
             
-            <button id="addObject">Agregar objeto</button>
-            <button id="addText">Agregar texto</button>
+            <button id="addObject">Agregar campo para firma</button>
+            <button id="addText">Agregar campo de texto</button>
             <div id="parentReference">
                 <div id="divReferenceToolbarLeft"></div>
             </div>
-            <div id="divReferenceSigners"></div>
+            <div>
+                <div id="divReferenceSigners"></div>
+            </div>
         </div>
 
         <div id="divPdf" style="position: relative;">
@@ -448,13 +450,12 @@
                 divMain.appendChild(divH);
                 divMain.appendChild(line);
 
-                //add the div main before the reference div
-                //var parentDiv = document.getElementById(this.id).parentNode;
-                //var referenceDiv = document.getElementById(this.id);
-                //parentDiv.insertBefore(divMain, referenceDiv);
+                //parent for divMain
+                var parent = document.createElement('div');
+                parent.appendChild(divMain);
 
                 var parentDiv = document.getElementById(signer);
-                parentDiv.appendChild(divMain);
+                parentDiv.appendChild(parent);
             }
 
             UpdatePropertiesForm() {
@@ -564,15 +565,6 @@
 
             //remove objects draggables
             layer.removeChildren();
-
-            //remove divs with properties form
-            //var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
-            //while (parentDiv.lastElementChild) {
-            //    parentDiv.removeChild(parentDiv.lastElementChild);
-            //}
-            //var divReferenceToolbarLeft = document.createElement('div');
-            //divReferenceToolbarLeft.id = 'divReferenceToolbarLeft';
-            //parentDiv.appendChild(divReferenceToolbarLeft);
         }
         //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);
@@ -583,7 +575,7 @@
 
         function AddTextDraggable() {
             if (existingSigners.value == 'null') {
-                alert('Primero selecciona a que firmante le quieres agregar un texto');
+                alert('Primero selecciona a que firmante le quieres agregar un campo de texto');
             }
             else {
                 //create the Konva.Text
@@ -673,7 +665,7 @@
 
         function AddRectDraggeable() {
             if (existingSigners.value == 'null') {
-                alert('Primero selecciona a que firmante le quieres agregar un objeto');
+                alert('Primero selecciona a que firmante le quieres agregar un campo para firma');
             }
             else {
                 var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, pagesSelect.value);
