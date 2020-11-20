@@ -33,6 +33,11 @@
     <div>
         <label>Pagina:</label>
         <select class="pages" name="pages" id="pagesSelect"></select>
+        <div>
+            <h2>Numero de firmantes</h2>
+            <input type="number" max="10" min="1" value="1" />
+            <button id="addSigners">Agregar Firmantes</button>
+        </div>
     </div>
     <div id="Container">
         <div id="divToolbarLeft">
@@ -41,6 +46,7 @@
             <div id="parentReference">
                 <div id="divReferenceToolbarLeft"></div>
             </div>
+            <div id="divReferenceSigners"></div>
         </div>
 
         <div id="divPdf" style="position: relative;">
@@ -711,6 +717,35 @@
                 objectsDragg[i].height(parseInt(H.value));
             }
         }
+
+        //function for adde tools for signers
+        function AddSigner() {
+            <%--<button id="addObject">Agregar objeto</button>
+            <button id="addText">Agregar texto</button>--%>
+            //create button for add objects
+            var btnAddObject = document.createElement('input');
+            btnAddObject.type = 'button';
+            btnAddObject.value = 'Agregar Objeto';
+            btnAddObject.addEventListener('click', AddRectDraggeable);
+
+            //create button for add text
+            var btnAddText = document.createElement('input');
+            btnAddText.type = 'button';
+            btnAddText.value = 'Agregar Texto';
+            btnAddText.addEventListener('click', AddTextDraggable);
+
+            //create div main
+            var divMain = document.createElement('div');
+            divMain.appendChild(btnAddObject);
+            divMain.appendChild(btnAddText);
+
+            //insert div main
+            var parentDiv = document.getElementById('divReferenceSigners').parentNode;
+            var referenceDiv = document.getElementById('divReferenceSigners');
+            parentDiv.insertBefore(divMain, referenceDiv);
+        }
+        document.getElementById('addSigners').addEventListener('click', AddSigner);
+
     </script>
 </body>
 </html>
