@@ -43,6 +43,7 @@
         <div id="divToolbarLeft">
             <div>
                 <h5>Firmantes existentes</h5>
+                Selecciona el firmante al que le quieres agregar un objeto: 
                 <select class="signers" name="signers" id="signers"></select>
             </div>
             
@@ -741,38 +742,21 @@
                 option.value = 'signer' + (i + 1);
                 existingSigners.add(option);
 
+                //line
+                var line = document.createElement('hr');
+                line.color = 'red';
+
                 //div title
                 var divTitle = document.createElement('div');
 
                 var signer = document.createTextNode('Firmante ' + (i + 1));
                 divTitle.appendChild(signer);
 
-                ////create button for add objects
-                //var btnAddObject = document.createElement('input');
-                //btnAddObject.type = 'button';
-                //btnAddObject.value = 'Agregar Objeto';
-                //btnAddObject.addEventListener('click', AddRectDraggeable);
-
-                ////create button for add text
-                //var btnAddText = document.createElement('input');
-                //btnAddText.type = 'button';
-                //btnAddText.value = 'Agregar Texto';
-                //btnAddText.addEventListener('click', AddTextDraggable);
-
-                //divline
-                var divLine = document.createElement('div');
-                divLine.id = 'rect' + (i + 1);
-
-                var line = document.createElement('hr');
-                divLine.appendChild(line);
-
                 //create div main
                 var divMain = document.createElement('div');
                 divMain.id = 'signer' + (i + 1);
+                divMain.appendChild(line);
                 divMain.appendChild(divTitle);
-                //divMain.appendChild(btnAddObject);
-                //divMain.appendChild(btnAddText);
-                divMain.appendChild(divLine);
 
                 //insert div main
                 var parentDiv = document.getElementById('divReferenceSigners').parentNode;
