@@ -211,23 +211,23 @@
                 for (i = 0; i < objectsDragg.length; i++) {
                     var X = document.getElementById('x' + objectsDragg[i].id());
                     X.value = objectsDragg[i].x();
-                    X.addEventListener('change', ChangeProperties);
+                    X.addEventListener('change', ChangePropertiesRectangle);
 
                     var Y = document.getElementById('y' + objectsDragg[i].id());
                     Y.value = objectsDragg[i].y();
-                    Y.addEventListener('change', ChangeProperties);
+                    Y.addEventListener('change', ChangePropertiesRectangle);
 
                     var R = document.getElementById('r' + objectsDragg[i].id());
                     R.value = objectsDragg[i].rotation();
-                    R.addEventListener('change', ChangeProperties);
+                    R.addEventListener('change', ChangePropertiesRectangle);
 
                     var W = document.getElementById('w' + objectsDragg[i].id());
                     W.value = objectsDragg[i].width();
-                    W.addEventListener('change', ChangeProperties);
+                    W.addEventListener('change', ChangePropertiesRectangle);
 
                     var H = document.getElementById('h' + objectsDragg[i].id());
                     H.value = objectsDragg[i].height();
-                    H.addEventListener('change', ChangeProperties);
+                    H.addEventListener('change', ChangePropertiesRectangle);
                 }
             }
         }
@@ -681,7 +681,7 @@
         document.getElementById('addObject').addEventListener('click', AddRectDraggeable);
 
         //function for set datas of object draggeable
-        function ChangeProperties() {
+        function ChangePropertiesRectangle() {
             var i;
             for (i = 0; i < objectsDragg.length; i++) {
                 var X = document.getElementById('x' + objectsDragg[i].id());
