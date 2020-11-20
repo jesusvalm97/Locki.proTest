@@ -70,24 +70,26 @@
     <script>
         //parent class for objects draggable
         class ObjectDraggable {
-            constructor(id, x, y, fill, draggable) {
+            constructor(id, x, y, fill, draggable, page) {
                 this.id = id;
                 this.x = x;
                 this.y = y;
                 this.fill = fill;
                 this.draggable = draggable;
+                this.page = page;
             }
         }
 
         //children class for TextDraggable
         class TextDraggable extends ObjectDraggable {
-            constructor(id, x, y, fill, draggable, text, fontSize, fontFamily) {
-                super(id, x, y, fill, draggable);
+            constructor(id, x, y, fill, draggable, page, text, fontSize, fontFamily) {
+                super(id, x, y, fill, draggable, page);
                 this.id = id;
                 this.x = x;
                 this.y = y;
                 this.fill = fill;
                 this.draggable = draggable;
+                this.page = page;
                 this.text = text;
                 this.fontSize = fontSize;
                 this.fontFamily = fontFamily;
@@ -102,7 +104,7 @@
                     fontSize: this.fontSize,
                     fontFamily: this.fontFamily,
                     fill: this.fil,
-                    name: 'text',
+                    name: this.page,
                     draggable: this.draggable,
                 });
 
@@ -340,8 +342,8 @@
         var idDivSigner = 1;
         //children class for RectDraggable
         class RectDraggable extends ObjectDraggable {
-            constructor(id, x, y, width, height, fill, draggable) {
-                super(id, x, y, fill, draggable);
+            constructor(id, x, y, width, height, fill, draggable, page) {
+                super(id, x, y, fill, draggable, page);
                 this.id = id;
                 this.x = x;
                 this.y = y;
@@ -349,6 +351,7 @@
                 this.height = height;
                 this.fill = fill;
                 this.draggable = draggable;
+                this.page = page;
             }
 
             CreateRect() {
@@ -359,7 +362,7 @@
                     width: this.width,
                     height: this.height,
                     fill: this.fill,
-                    name: 'rect',
+                    name: this.page,
                     stroke: 'black',
                     draggable: this.draggable,
                 });
@@ -584,7 +587,7 @@
             }
             else {
                 //create the Konva.Text
-                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, 'Lorem ipsum', 30, 'Calibri', true);
+                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, pagesSelect.value ,'Lorem ipsum', 30, 'Calibri', true);
 
                 text = textDraggable.CreateText();
 
@@ -673,7 +676,7 @@
                 alert('Primero selecciona a que firmante le quieres agregar un objeto');
             }
             else {
-                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true);
+                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, pagesSelect.value);
                 rect = rectangle.CreateRect();
                 layer.add(rect);
 
