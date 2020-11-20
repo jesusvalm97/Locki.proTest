@@ -35,7 +35,7 @@
         <select class="pages" name="pages" id="pagesSelect"></select>
         <div>
             <h2>Numero de firmantes</h2>
-            <input type="number" max="10" min="1" value="1" />
+            <input type="number" max="10" min="1" value="1" id="numberSigners"/>
             <button id="addSigners">Agregar Firmantes</button>
         </div>
     </div>
@@ -720,29 +720,42 @@
 
         //function for adde tools for signers
         function AddSigner() {
-            <%--<button id="addObject">Agregar objeto</button>
-            <button id="addText">Agregar texto</button>--%>
-            //create button for add objects
-            var btnAddObject = document.createElement('input');
-            btnAddObject.type = 'button';
-            btnAddObject.value = 'Agregar Objeto';
-            btnAddObject.addEventListener('click', AddRectDraggeable);
+            var numberSigners = document.getElementById('numberSigners').value;
 
-            //create button for add text
-            var btnAddText = document.createElement('input');
-            btnAddText.type = 'button';
-            btnAddText.value = 'Agregar Texto';
-            btnAddText.addEventListener('click', AddTextDraggable);
+            for (var i = 0; i < numberSigners; i++) {
+                //div title
+                var divTitle = document.createElement('div');
 
-            //create div main
-            var divMain = document.createElement('div');
-            divMain.appendChild(btnAddObject);
-            divMain.appendChild(btnAddText);
+                var signer = document.createTextNode('Firmante ' + (i + 1));
+                divTitle.appendChild(signer);
 
-            //insert div main
-            var parentDiv = document.getElementById('divReferenceSigners').parentNode;
-            var referenceDiv = document.getElementById('divReferenceSigners');
-            parentDiv.insertBefore(divMain, referenceDiv);
+                //create button for add objects
+                var btnAddObject = document.createElement('input');
+                btnAddObject.type = 'button';
+                btnAddObject.value = 'Agregar Objeto';
+                btnAddObject.addEventListener('click', AddRectDraggeable);
+
+                //create button for add text
+                var btnAddText = document.createElement('input');
+                btnAddText.type = 'button';
+                btnAddText.value = 'Agregar Texto';
+                btnAddText.addEventListener('click', AddTextDraggable);
+
+                //line
+                var line = document.createElement('hr');
+
+                //create div main
+                var divMain = document.createElement('div');
+                divMain.appendChild(divTitle);
+                divMain.appendChild(btnAddObject);
+                divMain.appendChild(btnAddText);
+                divMain.appendChild(line);
+
+                //insert div main
+                var parentDiv = document.getElementById('divReferenceSigners').parentNode;
+                var referenceDiv = document.getElementById('divReferenceSigners');
+                parentDiv.insertBefore(divMain, referenceDiv);
+            }
         }
         document.getElementById('addSigners').addEventListener('click', AddSigner);
 
