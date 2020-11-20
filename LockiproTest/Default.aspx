@@ -41,8 +41,13 @@
     </div>
     <div id="Container">
         <div id="divToolbarLeft">
-            <%--<button id="addObject">Agregar objeto</button>
-            <button id="addText">Agregar texto</button>--%>
+            <div>
+                <h5>Firmantes existentes</h5>
+                <select class="signers" name="signers" id="signers"></select>
+            </div>
+            
+            <button id="addObject">Agregar objeto</button>
+            <button id="addText">Agregar texto</button>
             <div id="parentReference">
                 <div id="divReferenceToolbarLeft"></div>
             </div>
@@ -101,7 +106,7 @@
                 return text;
             }
 
-            CreatePropertiesForm() {
+            CreatePropertiesForm(signer) {
                 //div for text ******************************************
                 var divT = document.createElement('div');
 
@@ -287,7 +292,7 @@
                 //var referenceDiv = document.getElementById('divReferenceToolbarLeft');
                 //parentDiv.insertBefore(divMain, referenceDiv);
 
-                var parentDiv = document.getElementById('signer1');
+                var parentDiv = document.getElementById(signer);
                 parentDiv.appendChild(divMain);
             }
 
@@ -359,7 +364,7 @@
                 return rectangle;
             }
 
-            CreatePropertiesForm() {
+            CreatePropertiesForm(signer) {
                 //div for position x ************************************
                 var divX = document.createElement('div');
 
@@ -442,7 +447,7 @@
                 //var referenceDiv = document.getElementById(this.id);
                 //parentDiv.insertBefore(divMain, referenceDiv);
 
-                var parentDiv = document.getElementById('signer1');
+                var parentDiv = document.getElementById(signer);
                 parentDiv.appendChild(divMain);
             }
 
@@ -491,6 +496,7 @@
         var scale = 1.3;
         var pageNum = 1;
         var pagesSelect = document.getElementById('pagesSelect');
+        var existingSigners = document.getElementById('signers');
         var canvas = document.getElementById('the-canvas');
         var context = canvas.getContext('2d');
 
@@ -611,10 +617,10 @@
                 document.body.style.cursor = 'default';
             });
 
-            textDraggable.CreatePropertiesForm();
+            textDraggable.CreatePropertiesForm(existingSigners.value);
             idTextDraggeable++;
         }
-        //document.getElementById('addText').addEventListener('click', AddTextDraggable);
+        document.getElementById('addText').addEventListener('click', AddTextDraggable);
 
         //function for set datas of text draggable
         function ChangePropertiesText() {
@@ -700,9 +706,9 @@
                 }
             }
 
-            rectangle.CreatePropertiesForm();
+            rectangle.CreatePropertiesForm(existingSigners.value);
         }
-        //document.getElementById('addObject').addEventListener('click', AddRectDraggeable);
+        document.getElementById('addObject').addEventListener('click', AddRectDraggeable);
 
         //function for set datas of object draggeable
         function ChangePropertiesRectangle() {
@@ -730,23 +736,28 @@
             var numberSigners = document.getElementById('numberSigners').value;
 
             for (var i = 0; i < numberSigners; i++) {
+                var option = document.createElement('option');
+                option.text = 'Firmante' + (i + 1);
+                option.value = 'signer' + (i + 1);
+                existingSigners.add(option);
+
                 //div title
                 var divTitle = document.createElement('div');
 
                 var signer = document.createTextNode('Firmante ' + (i + 1));
                 divTitle.appendChild(signer);
 
-                //create button for add objects
-                var btnAddObject = document.createElement('input');
-                btnAddObject.type = 'button';
-                btnAddObject.value = 'Agregar Objeto';
-                btnAddObject.addEventListener('click', AddRectDraggeable);
+                ////create button for add objects
+                //var btnAddObject = document.createElement('input');
+                //btnAddObject.type = 'button';
+                //btnAddObject.value = 'Agregar Objeto';
+                //btnAddObject.addEventListener('click', AddRectDraggeable);
 
-                //create button for add text
-                var btnAddText = document.createElement('input');
-                btnAddText.type = 'button';
-                btnAddText.value = 'Agregar Texto';
-                btnAddText.addEventListener('click', AddTextDraggable);
+                ////create button for add text
+                //var btnAddText = document.createElement('input');
+                //btnAddText.type = 'button';
+                //btnAddText.value = 'Agregar Texto';
+                //btnAddText.addEventListener('click', AddTextDraggable);
 
                 //divline
                 var divLine = document.createElement('div');
@@ -759,8 +770,8 @@
                 var divMain = document.createElement('div');
                 divMain.id = 'signer' + (i + 1);
                 divMain.appendChild(divTitle);
-                divMain.appendChild(btnAddObject);
-                divMain.appendChild(btnAddText);
+                //divMain.appendChild(btnAddObject);
+                //divMain.appendChild(btnAddText);
                 divMain.appendChild(divLine);
 
                 //insert div main
