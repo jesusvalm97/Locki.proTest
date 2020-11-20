@@ -38,7 +38,9 @@
         <div id="divToolbarLeft">
             <button id="addObject">Agregar objeto</button>
             <button id="addText">Agregar texto</button>
-            <div id="divReferenceToolbarLeft"></div>
+            <div id="parentReference">
+                <div id="divReferenceToolbarLeft"></div>
+            </div>
         </div>
 
         <div id="divPdf" style="position: relative;">
@@ -417,6 +419,7 @@
 
                 //div main
                 var divMain = document.createElement('div');
+                divMain.id = 'divMain' + this.id;
                 divMain.appendChild(divX);
                 divMain.appendChild(divY);
                 divMain.appendChild(divR);
@@ -534,7 +537,17 @@
             RenderPage(parseInt(pagesSelect.value));
             console.log('pagina ' + pagesSelect.value);
 
+            //remove objects draggables
             layer.removeChildren();
+
+            //remove divs with properties form
+            //var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
+            //while (parentDiv.lastElementChild) {
+            //    parentDiv.removeChild(parentDiv.lastElementChild);
+            //}
+            //var divReferenceToolbarLeft = document.createElement('div');
+            //divReferenceToolbarLeft.id = 'divReferenceToolbarLeft';
+            //parentDiv.appendChild(divReferenceToolbarLeft);
         }
         //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);
