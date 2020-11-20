@@ -92,6 +92,230 @@
 
                 return text;
             }
+
+            CreatePropertiesForm() {
+                //div for text ******************************************
+                var divT = document.createElement('div');
+
+                //content of divT
+                var lblT = document.createTextNode('Texto: ');
+                divT.appendChild(lblT);
+
+                var T = document.createElement('input');
+                T.id = 't' + this.id;
+                T.type = 'text';
+                T.value = this.text;
+                divT.appendChild(T);
+
+                //div for fontsize **************************************
+                var divFS = document.createElement('div');
+
+                //contetn of divFS
+                var lblFS = document.createTextNode('Tamaño de letra: ');
+                divFS.appendChild(lblFS);
+
+                var FS = document.createElement('input');
+                FS.id = 'fs' + this.id;
+                FS.type = 'text';
+                FS.value = this.fontSize;
+                divFS.appendChild(FS);
+
+                //div for font family **********************************
+                var divFF = document.createElement('div');
+
+                //content of divFF
+                var lblFF = document.createTextNode('Fuente: ');
+                divFF.appendChild(lblFF);
+
+                var FF = document.createElement('select');
+                FF.id = 'ff' + this.id;
+                divFF.appendChild(FF);
+
+                var FFCalibri = document.createElement('option');
+                FFCalibri.text = this.fontFamily;
+                FFCalibri.value = this.fontFamily;
+                FF.add(FFCalibri);
+
+                var FFArial = document.createElement('option');
+                FFArial.text = 'Arial';
+                FFArial.value = 'Arial';
+                FF.add(FFArial);
+
+                var FFSansSerif = document.createElement('option');
+                FFSansSerif.text = 'Sans Serif';
+                FFSansSerif.value = 'Sans Serif';
+                FF.add(FFSansSerif);
+
+                var FFHelvetica = document.createElement('option');
+                FFHelvetica.text = 'Helvetica';
+                FFHelvetica.value = 'Helvetica';
+                FF.add(FFHelvetica);
+
+                var FFGaramond = document.createElement('option');
+                FFGaramond.text = 'Garamond';
+                FFGaramond.value = 'Garamond';
+                FF.add(FFGaramond);
+
+                var FFBodoni = document.createElement('option');
+                FFBodoni.text = 'Bodoni';
+                FFBodoni.value = 'Bodoni';
+                FF.add(FFBodoni);
+
+                var FFRockwell = document.createElement('option');
+                FFRockwell.text = 'Rockwell';
+                FFRockwell.value = 'Rockwell';
+                FF.add(FFRockwell);
+
+                var FFTahoma = document.createElement('option');
+                FFTahoma.text = 'Tahoma';
+                FFTahoma.value = 'Tahoma';
+                FF.add(FFTahoma);
+
+                var FFTimesNewRoman = document.createElement('option');
+                FFTimesNewRoman.text = 'Times New Roman';
+                FFTimesNewRoman.value = 'Times New Roman';
+                FF.add(FFTimesNewRoman);
+
+                var FFVerdana = document.createElement('option');
+                FFVerdana.text = 'Verdana';
+                FFVerdana.value = 'Verdana';
+                FF.add(FFVerdana);
+
+                //div for font color ************************************
+                var divFC = document.createElement('div');
+
+                //content of divFC
+                var lblFC = document.createTextNode('Color: ');
+                divFC.appendChild(lblFC);
+
+                var FC = document.createElement('input');
+                FC.id = 'fc' + this.id;
+                FC.type = 'color';
+                FC.value = this.fill;
+                divFC.appendChild(FC);
+
+                //div for position x ************************************
+                var divX = document.createElement('div');
+
+                //content of divX
+                var lblX = document.createTextNode('Posición x: ');
+                divX.appendChild(lblX);
+
+                var X = document.createElement('input');
+                X.id = 'x' + this.id;
+                X.type = 'text';
+                X.value = this.x;
+                divX.appendChild(X);
+
+                //div for position y ***************************************
+                var divY = document.createElement('div');
+
+                //content of divY
+                var lblY = document.createTextNode('Posición y: ');
+                divY.appendChild(lblY);
+
+                var Y = document.createElement('input');
+                Y.id = 'y' + this.id;
+                Y.type = 'text';
+                Y.value = this.y;
+                divY.appendChild(Y);
+
+                //div for rotation *****************************************
+                var divR = document.createElement('div');
+
+                //content of divR
+                var lblR = document.createTextNode('Rotación: ');
+                divR.appendChild(lblR);
+
+                var R = document.createElement('input');
+                R.id = 'r' + this.id;
+                R.type = 'text';
+                R.value = this.rotation;
+                divR.appendChild(R);
+
+                //div for width *****************************************
+                var divW = document.createElement('div');
+
+                //content of divW
+                var lblW = document.createTextNode('Ancho: ');
+                divW.appendChild(lblW);
+
+                var W = document.createElement('input');
+                W.id = 'w' + this.id;
+                W.type = 'text';
+                W.value = this.width;
+                divW.appendChild(W);
+
+                //div for height *****************************************
+                var divH = document.createElement('div');
+
+                //content of divH
+                var lblH = document.createTextNode('Alto: ');
+                divH.appendChild(lblH);
+
+                var H = document.createElement('input');
+                H.id = 'h' + this.id;
+                H.type = 'text';
+                H.value = this.height;
+                divH.appendChild(H);
+
+                var line = document.createElement('hr');
+
+                //div main
+                var divMain = document.createElement('div');
+                divMain.appendChild(divT);
+                divMain.appendChild(divFS);
+                divMain.appendChild(divFF);
+                divMain.appendChild(divFC);
+                divMain.appendChild(divX);
+                divMain.appendChild(divY);
+                divMain.appendChild(divR);
+                divMain.appendChild(divW);
+                divMain.appendChild(divH);
+                divMain.appendChild(line);
+
+                //add the div main before the reference div
+                var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
+                var referenceDiv = document.getElementById('divReferenceToolbarLeft');
+                parentDiv.insertBefore(divMain, referenceDiv);
+            }
+
+            UpdatePropertiesForm() {
+                var i;
+                for (i = 0; i < textsDragg.length; i++) {
+                    var T = document.getElementById('ttext' + (i + 1));
+                    T.addEventListener('change', ChangePropertiesText);
+
+                    var FS = document.getElementById('fstext' + (i + 1));
+                    FS.addEventListener('change', ChangePropertiesText);
+
+                    var FF = document.getElementById('fftext' + (i + 1));
+                    FF.addEventListener('change', ChangePropertiesText);
+
+                    var FC = document.getElementById('fctext' + (i + 1));
+                    FC.addEventListener('change', ChangePropertiesText);
+
+                    var X = document.getElementById('xtext' + (i + 1));
+                    X.value = textsDragg[i].x();
+                    X.addEventListener('change', ChangePropertiesText);
+
+                    var Y = document.getElementById('ytext' + (i + 1));
+                    Y.value = textsDragg[i].y();
+                    Y.addEventListener('change', ChangePropertiesText);
+
+                    var R = document.getElementById('rtext' + (i + 1));
+                    R.value = textsDragg[i].rotation();
+                    R.addEventListener('change', ChangePropertiesText);
+
+                    var W = document.getElementById('wtext' + (i + 1));
+                    W.value = textsDragg[i].width();
+                    W.addEventListener('change', ChangePropertiesText);
+
+                    var H = document.getElementById('htext' + (i + 1));
+                    H.value = textsDragg[i].height();
+                    H.addEventListener('change', ChangePropertiesText);
+                }
+            }
         }
 
         //children class for RectDraggable
@@ -335,21 +559,21 @@
             layer.draw();
 
             text.on('transformstart', function () {
-                UpdatePropertiesText();
+                textDraggable.UpdatePropertiesForm();
                 console.log('transform start');
             });
 
             text.on('dragmove', function () {
-                UpdatePropertiesText();
+                textDraggable.UpdatePropertiesForm();
                 console.log('dragmove')
             });
             text.on('transform', function () {
-                UpdatePropertiesText();
+                textDraggable.UpdatePropertiesForm();
                 console.log('transform');
             });
 
             text.on('transformend', function () {
-                UpdatePropertiesText();
+                textDraggable.UpdatePropertiesForm();
                 console.log('transform end');
             });
 
@@ -361,236 +585,10 @@
                 document.body.style.cursor = 'default';
             });
 
-            CreatePropertiesTextDraggable('text' + idTextDraggeable);
+            textDraggable.CreatePropertiesForm();
             idTextDraggeable++;
         }
         document.getElementById('addText').addEventListener('click', AddTextDraggable);
-
-        //function for add a properties in the toolbar
-        function CreatePropertiesTextDraggable(id) {
-            //div for text ******************************************
-            var divT = document.createElement('div');
-
-            //content of divT
-            var lblT = document.createTextNode('Texto: ');
-            divT.appendChild(lblT);
-
-            var T = document.createElement('input');
-            T.id = 't' + id;
-            T.type = 'text';
-            T.value = text.text();
-            divT.appendChild(T);
-
-            //div for fontsize **************************************
-            var divFS = document.createElement('div');
-
-            //contetn of divFS
-            var lblFS = document.createTextNode('Tamaño de letra: ');
-            divFS.appendChild(lblFS);
-
-            var FS = document.createElement('input');
-            FS.id = 'fs' + id;
-            FS.type = 'text';
-            FS.value = text.fontSize();
-            divFS.appendChild(FS);
-
-            //div for font family **********************************
-            var divFF = document.createElement('div');
-
-            //content of divFF
-            var lblFF = document.createTextNode('Fuente: ');
-            divFF.appendChild(lblFF);
-
-            var FF = document.createElement('select');
-            FF.id = 'ff' + id;
-            divFF.appendChild(FF);
-
-            var FFCalibri = document.createElement('option');
-            FFCalibri.text = text.fontFamily();
-            FFCalibri.value = text.fontFamily();
-            FF.add(FFCalibri);
-
-            var FFArial = document.createElement('option');
-            FFArial.text = 'Arial';
-            FFArial.value = 'Arial';
-            FF.add(FFArial);
-
-            var FFSansSerif = document.createElement('option');
-            FFSansSerif.text = 'Sans Serif';
-            FFSansSerif.value = 'Sans Serif';
-            FF.add(FFSansSerif);
-
-            var FFHelvetica = document.createElement('option');
-            FFHelvetica.text = 'Helvetica';
-            FFHelvetica.value = 'Helvetica';
-            FF.add(FFHelvetica);
-
-            var FFGaramond = document.createElement('option');
-            FFGaramond.text = 'Garamond';
-            FFGaramond.value = 'Garamond';
-            FF.add(FFGaramond);
-
-            var FFBodoni = document.createElement('option');
-            FFBodoni.text = 'Bodoni';
-            FFBodoni.value = 'Bodoni';
-            FF.add(FFBodoni);
-
-            var FFRockwell = document.createElement('option');
-            FFRockwell.text = 'Rockwell';
-            FFRockwell.value = 'Rockwell';
-            FF.add(FFRockwell);
-
-            var FFTahoma = document.createElement('option');
-            FFTahoma.text = 'Tahoma';
-            FFTahoma.value = 'Tahoma';
-            FF.add(FFTahoma);
-
-            var FFTimesNewRoman = document.createElement('option');
-            FFTimesNewRoman.text = 'Times New Roman';
-            FFTimesNewRoman.value = 'Times New Roman';
-            FF.add(FFTimesNewRoman);
-
-            var FFVerdana = document.createElement('option');
-            FFVerdana.text = 'Verdana';
-            FFVerdana.value = 'Verdana';
-            FF.add(FFVerdana);
-
-            //div for font color ************************************
-            var divFC = document.createElement('div');
-
-            //content of divFC
-            var lblFC = document.createTextNode('Color: ');
-            divFC.appendChild(lblFC);
-
-            var FC = document.createElement('input');
-            FC.id = 'fc' + id;
-            FC.type = 'color';
-            FC.value = text.fill();
-            divFC.appendChild(FC);
-
-            //div for position x ************************************
-            var divX = document.createElement('div');
-
-            //content of divX
-            var lblX = document.createTextNode('Posición x: ');
-            divX.appendChild(lblX);
-
-            var X = document.createElement('input');
-            X.id = 'x' + id;
-            X.type = 'text';
-            X.value = text.x();
-            divX.appendChild(X);
-
-            //div for position y ***************************************
-            var divY = document.createElement('div');
-
-            //content of divY
-            var lblY = document.createTextNode('Posición y: ');
-            divY.appendChild(lblY);
-
-            var Y = document.createElement('input');
-            Y.id = 'y' + id;
-            Y.type = 'text';
-            Y.value = text.y();
-            divY.appendChild(Y);
-
-            //div for rotation *****************************************
-            var divR = document.createElement('div');
-
-            //content of divR
-            var lblR = document.createTextNode('Rotación: ');
-            divR.appendChild(lblR);
-
-            var R = document.createElement('input');
-            R.id = 'r' + id;
-            R.type = 'text';
-            R.value = text.rotation();
-            divR.appendChild(R);
-
-            //div for width *****************************************
-            var divW = document.createElement('div');
-
-            //content of divW
-            var lblW = document.createTextNode('Ancho: ');
-            divW.appendChild(lblW);
-
-            var W = document.createElement('input');
-            W.id = 'w' + id;
-            W.type = 'text';
-            W.value = text.width();
-            divW.appendChild(W);
-
-            //div for height *****************************************
-            var divH = document.createElement('div');
-
-            //content of divH
-            var lblH = document.createTextNode('Alto: ');
-            divH.appendChild(lblH);
-
-            var H = document.createElement('input');
-            H.id = 'h' + id;
-            H.type = 'text';
-            H.value = text.height();
-            divH.appendChild(H);
-
-            var line = document.createElement('hr');
-
-            //div main
-            var divMain = document.createElement('div');
-            divMain.appendChild(divT);
-            divMain.appendChild(divFS);
-            divMain.appendChild(divFF);
-            divMain.appendChild(divFC);
-            divMain.appendChild(divX);
-            divMain.appendChild(divY);
-            divMain.appendChild(divR);
-            divMain.appendChild(divW);
-            divMain.appendChild(divH);
-            divMain.appendChild(line);
-
-            //add the div main before the reference div
-            var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
-            var referenceDiv = document.getElementById('divReferenceToolbarLeft');
-            parentDiv.insertBefore(divMain, referenceDiv);
-        }
-
-        //update datas of object draggeable
-        function UpdatePropertiesText() {
-            var i;
-            for (i = 0; i < textsDragg.length; i++) {
-                var T = document.getElementById('ttext' + (i + 1));
-                T.addEventListener('change', ChangePropertiesText);
-
-                var FS = document.getElementById('fstext' + (i + 1));
-                FS.addEventListener('change', ChangePropertiesText);
-
-                var FF = document.getElementById('fftext' + (i + 1));
-                FF.addEventListener('change', ChangePropertiesText);
-
-                var FC = document.getElementById('fctext' + (i + 1));
-                FC.addEventListener('change', ChangePropertiesText);
-
-                var X = document.getElementById('xtext' + (i + 1));
-                X.value = textsDragg[i].x();
-                X.addEventListener('change', ChangePropertiesText);
-
-                var Y = document.getElementById('ytext' + (i + 1));
-                Y.value = textsDragg[i].y();
-                Y.addEventListener('change', ChangePropertiesText);
-
-                var R = document.getElementById('rtext' + (i + 1));
-                R.value = textsDragg[i].rotation();
-                R.addEventListener('change', ChangePropertiesText);
-
-                var W = document.getElementById('wtext' + (i + 1));
-                W.value = textsDragg[i].width();
-                W.addEventListener('change', ChangePropertiesText);
-
-                var H = document.getElementById('htext' + (i + 1));
-                H.value = textsDragg[i].height();
-                H.addEventListener('change', ChangePropertiesText);
-            }
-        }
 
         //function for set datas of text draggable
         function ChangePropertiesText() {
