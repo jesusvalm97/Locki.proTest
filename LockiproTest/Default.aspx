@@ -579,6 +579,7 @@
 
         //function for add existing objects
         function AddExistingObjects(page) {
+            //add exisitng rects
             for (var i = 0; i < objectsDragg.length; i++) {
                 if (objectsDragg[i].name() == page) {
                     var rectangle = new RectDraggable(objectsDragg[i].id(), objectsDragg[i].x(), objectsDragg[i].y(), objectsDragg[i].width(), objectsDragg[i].height(), objectsDragg[i].fill(), objectsDragg[i].draggable(), objectsDragg[i].name());
@@ -624,7 +625,8 @@
                     });
                 }
             }
-            
+
+            //add existing texts
             for (var j = 0; j < textsDragg.length; j++) {
                 if (textsDragg[j].name() == page) {
                     //create the Konva.Text
