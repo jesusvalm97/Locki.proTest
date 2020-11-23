@@ -579,9 +579,7 @@
 
         //function for add existing objects
         function AddExistingObjects(page) {
-            var i;
-            var existing = 0;
-            for (i = 0; i < objectsDragg.length; i++) {
+            for (var i = 0; i < objectsDragg.length; i++) {
                 if (objectsDragg[i].name() == page) {
                     var rectangle = new RectDraggable(objectsDragg[i].id(), objectsDragg[i].x(), objectsDragg[i].y(), objectsDragg[i].width(), objectsDragg[i].height(), objectsDragg[i].fill(), objectsDragg[i].draggable(), objectsDragg[i].name());
                     rect = rectangle.CreateRect();
@@ -621,15 +619,12 @@
                         document.body.style.cursor = 'default';
                     });
                 }
-
-                    existing++;
             }
             
-            var j;
-            for (j = 0; textsDragg.length; j++) {
+            for (var j = 0; j < textsDragg.length; j++) {
                 if (textsDragg[j].name() == page) {
                     //create the Konva.Text
-                    var textDraggable = new TextDraggable(textsDragg[j].id(), textsDragg[j].x(), textsDragg[j].y, textsDragg[j].fill, textsDragg[j].draggable, textsDragg[j].name(), textsDragg[j].text(), textsDragg[j].fontSize(), textsDragg[j].fontFamily());
+                    var textDraggable = new TextDraggable(textsDragg[j].id(), textsDragg[j].x(), textsDragg[j].y(), textsDragg[j].fill(), textsDragg[j].draggable(), textsDragg[j].name(), textsDragg[j].text(), textsDragg[j].fontSize(), textsDragg[j].fontFamily());
                     text = textDraggable.CreateText();
                     layer.add(text);
 
@@ -638,11 +633,35 @@
                     layer.add(transformer);
                     transformer.nodes([text]);
                     layer.draw();
+
+                    text.on('transformstart', function () {
+                        textDraggable.UpdatePropertiesForm();
+                        console.log('transform start');
+                    });
+
+                    text.on('dragmove', function () {
+                        textDraggable.UpdatePropertiesForm();
+                        console.log('dragmove')
+                    });
+                    text.on('transform', function () {
+                        textDraggable.UpdatePropertiesForm();
+                        console.log('transform');
+                    });
+
+                    text.on('transformend', function () {
+                        textDraggable.UpdatePropertiesForm();
+                        console.log('transform end');
+                    });
+
+                    text.on('mouseover', function () {
+                        document.body.style.cursor = 'pointer';
+                    });
+
+                    text.on('mouseout', function () {
+                        document.body.style.cursor = 'default';
+                    });
                 }
             }
-
-            console.log('esta pagina tiene ' + existing + ' objetos');
-            existing = 0;
         }
 
         //function for add a text draggeable
