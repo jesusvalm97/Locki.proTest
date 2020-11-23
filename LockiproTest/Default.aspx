@@ -51,6 +51,7 @@
             
             <button id="addObject">Agregar campo para firma</button>
             <button id="addText">Agregar campo de texto</button>
+            <button id="save">Guardar</button>
             <div id="parentReference">
                 <div id="divReferenceToolbarLeft"></div>
             </div>
@@ -772,6 +773,32 @@
             }
         }
         document.getElementById('addSigners').addEventListener('click', AddSigner);
+
+        //function for save the datas of objects
+        function Save() {
+            var i;
+            for (i = 0; i < objectsDragg.length; i++) {
+                if (objectsDragg[i].id() == 'rect' + (i + 1)) {
+                    var X = document.getElementById('x' + objectsDragg[i].id());
+                    objectsDragg[i].x(parseInt(X.value));
+
+                    var Y = document.getElementById('y' + objectsDragg[i].id());
+                    objectsDragg[i].y(parseInt(Y.value));
+
+                    var R = document.getElementById('r' + objectsDragg[i].id());
+                    objectsDragg[i].rotation(parseInt(R.value));
+
+                    var W = document.getElementById('w' + objectsDragg[i].id());
+                    objectsDragg[i].width(parseInt(W.value));
+
+                    var H = document.getElementById('h' + objectsDragg[i].id());
+                    objectsDragg[i].height(parseInt(H.value));
+
+                    console.log('Se guardaron los datos de ' + objectsDragg[i].id());
+                }
+            }
+        }
+        document.getElementById('save').addEventListener('click', Save);
 
     </script>
 </body>
