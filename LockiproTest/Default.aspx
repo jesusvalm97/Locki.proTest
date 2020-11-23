@@ -584,17 +584,45 @@
             for (i = 0; i < objectsDragg.length; i++) {
                 if (objectsDragg[i].name() == page) {
                     var rectangle = new RectDraggable(objectsDragg[i].id(), objectsDragg[i].x(), objectsDragg[i].y(), objectsDragg[i].width(), objectsDragg[i].height(), objectsDragg[i].fill(), objectsDragg[i].draggable(), objectsDragg[i].name());
-                    var rectAdd = rectangle.CreateRect();
-                    layer.add(rectAdd);
+                    rect = rectangle.CreateRect();
+                    layer.add(rect);
 
                     //create new transformer
                     var transformer = new Konva.Transformer();
                     layer.add(transformer);
-                    transformer.nodes([rectAdd]);
+                    transformer.nodes([rect]);
                     layer.draw();
 
-                    existing++;
+                    rect.on('transformstart', function () {
+                        rectangle.UpdatePropertiesForm();
+                        console.log('transform start');
+                    });
+
+                    rect.on('dragmove', function () {
+                        rectangle.UpdatePropertiesForm();
+                        console.log('dragmove')
+                    });
+
+                    rect.on('transform', function () {
+                        rectangle.UpdatePropertiesForm();
+                        console.log('transform');
+                    });
+
+                    rect.on('transformend', function () {
+                        rectangle.UpdatePropertiesForm();
+                        console.log('transform end');
+                    });
+
+                    rect.on('mouseover', function () {
+                        document.body.style.cursor = 'pointer';
+                    });
+
+                    rect.on('mouseout', function () {
+                        document.body.style.cursor = 'default';
+                    });
                 }
+
+                    existing++;
             }
 
             console.log('esta pagina tiene ' + existing + ' objetos');
