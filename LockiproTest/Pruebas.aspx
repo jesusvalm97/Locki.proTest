@@ -88,8 +88,8 @@
 
         //function for change page with select
         function ChangePage() {
-            RenderPage(parseInt(pagesSelect.value));
-            console.log('pagina ' + pagesSelect.value);
+            RenderPage(parseInt(currentPage));
+            console.log('pagina ' + currentPage);
         }
         //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);

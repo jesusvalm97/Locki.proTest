@@ -307,37 +307,39 @@
             UpdatePropertiesForm() {
                 var i;
                 for (i = 0; i < textsDragg.length; i++) {
-                    var T = document.getElementById('ttext' + (i + 1));
-                    T.addEventListener('change', ChangePropertiesText);
+                    if (textsDragg[i].name() == currentPage) {
+                        var T = document.getElementById('ttext' + (i + 1));
+                        T.addEventListener('change', ChangePropertiesText);
 
-                    var FS = document.getElementById('fstext' + (i + 1));
-                    FS.addEventListener('change', ChangePropertiesText);
+                        var FS = document.getElementById('fstext' + (i + 1));
+                        FS.addEventListener('change', ChangePropertiesText);
 
-                    var FF = document.getElementById('fftext' + (i + 1));
-                    FF.addEventListener('change', ChangePropertiesText);
+                        var FF = document.getElementById('fftext' + (i + 1));
+                        FF.addEventListener('change', ChangePropertiesText);
 
-                    var FC = document.getElementById('fctext' + (i + 1));
-                    FC.addEventListener('change', ChangePropertiesText);
+                        var FC = document.getElementById('fctext' + (i + 1));
+                        FC.addEventListener('change', ChangePropertiesText);
 
-                    var X = document.getElementById('xtext' + (i + 1));
-                    X.value = textsDragg[i].x();
-                    X.addEventListener('change', ChangePropertiesText);
+                        var X = document.getElementById('xtext' + (i + 1));
+                        X.value = textsDragg[i].x();
+                        X.addEventListener('change', ChangePropertiesText);
 
-                    var Y = document.getElementById('ytext' + (i + 1));
-                    Y.value = textsDragg[i].y();
-                    Y.addEventListener('change', ChangePropertiesText);
+                        var Y = document.getElementById('ytext' + (i + 1));
+                        Y.value = textsDragg[i].y();
+                        Y.addEventListener('change', ChangePropertiesText);
 
-                    var R = document.getElementById('rtext' + (i + 1));
-                    R.value = textsDragg[i].rotation();
-                    R.addEventListener('change', ChangePropertiesText);
+                        var R = document.getElementById('rtext' + (i + 1));
+                        R.value = textsDragg[i].rotation();
+                        R.addEventListener('change', ChangePropertiesText);
 
-                    var W = document.getElementById('wtext' + (i + 1));
-                    W.value = textsDragg[i].width();
-                    W.addEventListener('change', ChangePropertiesText);
+                        var W = document.getElementById('wtext' + (i + 1));
+                        W.value = textsDragg[i].width();
+                        W.addEventListener('change', ChangePropertiesText);
 
-                    var H = document.getElementById('htext' + (i + 1));
-                    H.value = textsDragg[i].height();
-                    H.addEventListener('change', ChangePropertiesText);
+                        var H = document.getElementById('htext' + (i + 1));
+                        H.value = textsDragg[i].height();
+                        H.addEventListener('change', ChangePropertiesText);
+                    }
                 }
             }
         }
@@ -462,7 +464,7 @@
             UpdatePropertiesForm() {
                 var i;
                 for (i = 0; i < objectsDragg.length; i++) {
-                    if (objectsDragg[i].name() == pagesSelect.value) {
+                    if (objectsDragg[i].name() == currentPage) {
                         var X = document.getElementById('x' + objectsDragg[i].id());
                         X.value = objectsDragg[i].x();
                         X.addEventListener('change', ChangePropertiesRectangle);
@@ -577,14 +579,14 @@
             layer.removeChildren();
 
             //remove properties form
-            CleanPropertiesForm();
+            //CleanPropertiesForm();
 
             //render the next page
-            RenderPage(parseInt(pagesSelect.value));
-            console.log('pagina ' + pagesSelect.value);
+            RenderPage(parseInt(currentPage));
+            console.log('pagina ' + currentPage);
 
             //add existing object
-            AddExistingObjects(pagesSelect.value);
+            AddExistingObjects(currentPage);
         }
         //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);
@@ -706,7 +708,7 @@
             }
             else {
                 //create the Konva.Text
-                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, pagesSelect.value, 'Lorem ipsum', 30, 'Calibri');
+                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, currentPage, 'Lorem ipsum', 30, 'Calibri');
 
                 text = textDraggable.CreateText();
 
@@ -795,7 +797,7 @@
                 alert('Primero selecciona a que firmante le quieres agregar un campo para firma');
             }
             else {
-                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, pagesSelect.value);
+                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, currentPage);
                 rect = rectangle.CreateRect();
                 layer.add(rect);
 
@@ -926,7 +928,7 @@
 
             var j;
             for (j = 0; j < textsDragg.length; j++) {
-                if (textsDragg[j].id() == 'text' + (j + 1)) {
+                if (textsDragg[j].id() == 'text' + (j + 1) && textsDragg[j].name() == ancientPage) {
                     var T = document.getElementById('ttext' + (j + 1));
                     textsDragg[j].text(T.value);
 
