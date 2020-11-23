@@ -506,6 +506,8 @@
         var scale = 1.3;
         var pageNum = 1;
         var pagesSelect = document.getElementById('pagesSelect');
+        var currentPage = 0;
+        var ancientPage = 0;
         var existingSigners = document.getElementById('signers');
         var canvas = document.getElementById('the-canvas');
         var context = canvas.getContext('2d');
@@ -538,6 +540,8 @@
                 option.value = i;
                 pagesSelect.add(option);
             }
+
+            currentPage = pagesSelect.value;
         });
 
         //function for render page in the canvas
@@ -563,6 +567,9 @@
 
         //function for change page with select
         function ChangePage() {
+            ancientPage = currentPage;
+            currentPage = pagesSelect.value;
+
             //save datas
             Save();
 
@@ -897,7 +904,7 @@
         function Save() {
             var i;
             for (i = 0; i < objectsDragg.length; i++) {
-                if (objectsDragg[i].id() == 'rect' + (i + 1)) {
+                if (objectsDragg[i].id() == 'rect' + (i + 1) && objectsDragg[i].name() == ancientPage) {
                     var X = document.getElementById('x' + objectsDragg[i].id());
                     objectsDragg[i].x(parseInt(X.value));
 
