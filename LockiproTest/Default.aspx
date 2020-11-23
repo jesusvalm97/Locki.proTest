@@ -561,14 +561,45 @@
 
         //function for change page with select
         function ChangePage() {
-            RenderPage(parseInt(pagesSelect.value));
-            console.log('pagina ' + pagesSelect.value);
+            //save datas
+            Save();
 
             //remove objects draggables
             layer.removeChildren();
+
+            //render the next page
+            RenderPage(parseInt(pagesSelect.value));
+            console.log('pagina ' + pagesSelect.value);
+
+            //add existing object
+            AddExistingObjects(pagesSelect.value);
         }
         //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);
+
+        //function for add existing objects
+        function AddExistingObjects(page) {
+            var i;
+            var existing = 0;
+            for (i = 0; i < objectsDragg.length; i++) {
+                if (objectsDragg[i].name() == page) {
+                    var rectangle = new RectDraggable(objectsDragg[i].id(), objectsDragg[i].x(), objectsDragg[i].y(), objectsDragg[i].width(), objectsDragg[i].height(), objectsDragg[i].fill(), objectsDragg[i].draggable(), objectsDragg[i].name());
+                    var rectAdd = rectangle.CreateRect();
+                    layer.add(rectAdd);
+
+                    //create new transformer
+                    var transformer = new Konva.Transformer();
+                    layer.add(transformer);
+                    transformer.nodes([rectAdd]);
+                    layer.draw();
+
+                    existing++;
+                }
+            }
+
+            console.log('esta pagina tiene ' + existing + ' objetos');
+            existing = 0;
+        }
 
         //function for add a text draggeable
         var idTextDraggeable = 1;
