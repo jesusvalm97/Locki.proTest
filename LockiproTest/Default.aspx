@@ -585,11 +585,15 @@
                     rect = rectangle.CreateRect();
                     layer.add(rect);
 
+                    //change the object for made the match with the properties form
+                    objectsDragg[i] = rect;
+
                     //create new transformer
                     var transformer = new Konva.Transformer();
                     layer.add(transformer);
                     transformer.nodes([rect]);
                     layer.draw();
+
 
                     rect.on('transformstart', function () {
                         rectangle.UpdatePropertiesForm();
@@ -627,6 +631,9 @@
                     var textDraggable = new TextDraggable(textsDragg[j].id(), textsDragg[j].x(), textsDragg[j].y(), textsDragg[j].fill(), textsDragg[j].draggable(), textsDragg[j].name(), textsDragg[j].text(), textsDragg[j].fontSize(), textsDragg[j].fontFamily());
                     text = textDraggable.CreateText();
                     layer.add(text);
+
+                    //change the object for made the match with the properties form
+                    textsDragg[j] = text;
 
                     //create new transformer
                     var transformer = new Konva.Transformer();
