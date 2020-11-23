@@ -35,7 +35,7 @@
         <select class="pages" name="pages" id="pagesSelect"></select>
         <div>
             <h2>Numero de firmantes</h2>
-            <input type="number" max="10" min="1" value="1" id="numberSigners"/>
+            <input type="number" max="10" min="1" value="1" id="numberSigners" />
             <button id="addSigners">Agregar Firmantes</button>
         </div>
     </div>
@@ -48,7 +48,7 @@
                     <option value="null">Nulo</option>
                 </select>
             </div>
-            
+
             <button id="addObject">Agregar campo para firma</button>
             <button id="addText">Agregar campo de texto</button>
             <button id="save">Guardar</button>
@@ -462,25 +462,27 @@
             UpdatePropertiesForm() {
                 var i;
                 for (i = 0; i < objectsDragg.length; i++) {
-                    var X = document.getElementById('x' + objectsDragg[i].id());
-                    X.value = objectsDragg[i].x();
-                    X.addEventListener('change', ChangePropertiesRectangle);
+                    if (objectsDragg[i].name() == pagesSelect.value) {
+                        var X = document.getElementById('x' + objectsDragg[i].id());
+                        X.value = objectsDragg[i].x();
+                        X.addEventListener('change', ChangePropertiesRectangle);
 
-                    var Y = document.getElementById('y' + objectsDragg[i].id());
-                    Y.value = objectsDragg[i].y();
-                    Y.addEventListener('change', ChangePropertiesRectangle);
+                        var Y = document.getElementById('y' + objectsDragg[i].id());
+                        Y.value = objectsDragg[i].y();
+                        Y.addEventListener('change', ChangePropertiesRectangle);
 
-                    var R = document.getElementById('r' + objectsDragg[i].id());
-                    R.value = objectsDragg[i].rotation();
-                    R.addEventListener('change', ChangePropertiesRectangle);
+                        var R = document.getElementById('r' + objectsDragg[i].id());
+                        R.value = objectsDragg[i].rotation();
+                        R.addEventListener('change', ChangePropertiesRectangle);
 
-                    var W = document.getElementById('w' + objectsDragg[i].id());
-                    W.value = objectsDragg[i].width();
-                    W.addEventListener('change', ChangePropertiesRectangle);
+                        var W = document.getElementById('w' + objectsDragg[i].id());
+                        W.value = objectsDragg[i].width();
+                        W.addEventListener('change', ChangePropertiesRectangle);
 
-                    var H = document.getElementById('h' + objectsDragg[i].id());
-                    H.value = objectsDragg[i].height();
-                    H.addEventListener('change', ChangePropertiesRectangle);
+                        var H = document.getElementById('h' + objectsDragg[i].id());
+                        H.value = objectsDragg[i].height();
+                        H.addEventListener('change', ChangePropertiesRectangle);
+                    }
                 }
             }
         }
@@ -566,6 +568,9 @@
 
             //remove objects draggables
             layer.removeChildren();
+
+            //remove properties form
+            CleanPropertiesForm();
 
             //render the next page
             RenderPage(parseInt(pagesSelect.value));
@@ -673,6 +678,17 @@
             }
         }
 
+        //clean properties form
+        function CleanPropertiesForm() {
+            var i;
+            for (i = 0; i < existingSigners.length; i++) {
+                if (existingSigners.options[i].value != 'null') {
+                    var parentDivMain = document.getElementById('divMainrect' + i).parentNode;
+                    parentDivMain.innerHTML = '';
+                }
+            }
+        }
+
         //function for add a text draggeable
         var idTextDraggeable = 1;
         var text = null;
@@ -683,7 +699,7 @@
             }
             else {
                 //create the Konva.Text
-                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, pagesSelect.value ,'Lorem ipsum', 30, 'Calibri');
+                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, pagesSelect.value, 'Lorem ipsum', 30, 'Calibri');
 
                 text = textDraggable.CreateText();
 
