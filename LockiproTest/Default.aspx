@@ -797,6 +797,41 @@
                     console.log('Se guardaron los datos de ' + objectsDragg[i].id());
                 }
             }
+
+            var j;
+            for (j = 0; j < textsDragg.length; j++) {
+                if (textsDragg[j].id() == 'text' + (j + 1)) {
+                    var T = document.getElementById('ttext' + (j + 1));
+                    textsDragg[j].text(T.value);
+
+                    var FS = document.getElementById('fstext' + (j + 1));
+                    textsDragg[j].fontSize(parseInt(FS.value));
+
+                    var FF = document.getElementById('fftext' + (j + 1));
+                    textsDragg[j].fontFamily(FF.value);
+                    console.log(textsDragg[j].fontFamily());
+
+                    var FC = document.getElementById('fctext' + (j + 1));
+                    textsDragg[j].fill(FC.value);
+
+                    var X = document.getElementById('xtext' + (j + 1));
+                    textsDragg[j].x(parseInt(X.value));
+
+                    var Y = document.getElementById('ytext' + (j + 1));
+                    textsDragg[j].y(parseInt(Y.value));
+
+                    var R = document.getElementById('rtext' + (j + 1));
+                    textsDragg[j].rotation(parseInt(R.value));
+
+                    var W = document.getElementById('wtext' + (j + 1));
+                    textsDragg[j].width(parseInt(W.value));
+
+                    var H = document.getElementById('htext' + (j + 1));
+                    textsDragg[j].height(parseInt(H.value));
+
+                    console.log('Se guardaron los datos de ' + textsDragg[j].id());
+                }
+            }
         }
         document.getElementById('save').addEventListener('click', Save);
 
