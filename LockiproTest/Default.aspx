@@ -624,6 +624,22 @@
 
                     existing++;
             }
+            
+            var j;
+            for (j = 0; textsDragg.length; j++) {
+                if (textsDragg[j].name() == page) {
+                    //create the Konva.Text
+                    var textDraggable = new TextDraggable(textsDragg[j].id(), textsDragg[j].x(), textsDragg[j].y, textsDragg[j].fill, textsDragg[j].draggable, textsDragg[j].name(), textsDragg[j].text(), textsDragg[j].fontSize(), textsDragg[j].fontFamily());
+                    text = textDraggable.CreateText();
+                    layer.add(text);
+
+                    //create new transformer
+                    var transformer = new Konva.Transformer();
+                    layer.add(transformer);
+                    transformer.nodes([text]);
+                    layer.draw();
+                }
+            }
 
             console.log('esta pagina tiene ' + existing + ' objetos');
             existing = 0;
@@ -639,7 +655,7 @@
             }
             else {
                 //create the Konva.Text
-                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, pagesSelect.value ,'Lorem ipsum', 30, 'Calibri', true);
+                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, pagesSelect.value ,'Lorem ipsum', 30, 'Calibri');
 
                 text = textDraggable.CreateText();
 
