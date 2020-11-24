@@ -351,7 +351,7 @@
         var idDivSigner = 1;
         //children class for RectDraggable
         class RectDraggable extends ObjectDraggable {
-            constructor(id, x, y, width, height, fill, draggable, page) {
+            constructor(id, x, y, width, height, fill, draggable, page, stroke) {
                 super(id, x, y, fill, draggable, page);
                 this.id = id;
                 this.x = x;
@@ -361,6 +361,7 @@
                 this.fill = fill;
                 this.draggable = draggable;
                 this.page = page;
+                this.stroke = stroke;
             }
 
             CreateRect() {
@@ -372,7 +373,7 @@
                     height: this.height,
                     fill: this.fill,
                     name: this.page,
-                    stroke: 'black',
+                    stroke: this.stroke,
                     draggable: this.draggable,
                 });
 
@@ -600,7 +601,7 @@
             //add exisitng rects
             for (var i = 0; i < objectsDragg.length; i++) {
                 if (objectsDragg[i].name() == page) {
-                    var rectangle = new RectDraggable(objectsDragg[i].id(), objectsDragg[i].x(), objectsDragg[i].y(), objectsDragg[i].width(), objectsDragg[i].height(), objectsDragg[i].fill(), objectsDragg[i].draggable(), objectsDragg[i].name());
+                    var rectangle = new RectDraggable(objectsDragg[i].id(), objectsDragg[i].x(), objectsDragg[i].y(), objectsDragg[i].width(), objectsDragg[i].height(), objectsDragg[i].fill(), objectsDragg[i].draggable(), objectsDragg[i].name(), objectsDragg[i].stroke());
                     rect = rectangle.CreateRect();
                     layer.add(rect);
 
@@ -813,7 +814,7 @@
                 alert('Primero selecciona a que firmante le quieres agregar un campo para firma');
             }
             else {
-                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, currentPage);
+                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, currentPage, 'black');
                 rect = rectangle.CreateRect();
                 layer.add(rect);
 
