@@ -978,7 +978,19 @@
         function Delete() {
             for (var i = 0; i < objectsDragg.length; i++) {
                 if (objectsDragg[i].id() == document.getElementById('txtDelete').value) {
-                    objectsDragg[i].remove();
+                    var transformer = layer.find('Transformer').toArray();
+                    
+                    for (var x = 0; x < transformer.length; x++) {
+                        var nodes = transformer[x].nodes();
+
+                        for (var y = 0; y < nodes.length; y++) {
+
+                            if (nodes[y].id() == document.getElementById('txtDelete').value) {
+                                nodes[y].remove();
+                                transformer[x].destroy();
+                            }
+                        }
+                    }
                 }
             }
 
