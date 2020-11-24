@@ -641,6 +641,10 @@
                     rect.on('mouseout', function () {
                         document.body.style.cursor = 'default';
                     });
+
+                    rect.on('click', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
+                    });
                 }
             }
 
@@ -686,6 +690,10 @@
 
                     text.on('mouseout', function () {
                         document.body.style.cursor = 'default';
+                    });
+
+                    text.on('click', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
                     });
                 }
             }
