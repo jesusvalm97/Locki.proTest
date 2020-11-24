@@ -976,7 +976,18 @@
         document.getElementById('save').addEventListener('click', Save);
 
         function Delete() {
-            
+            for (var i = 0; i < objectsDragg.length; i++) {
+                if (objectsDragg[i].id() == document.getElementById('txtDelete').value) {
+                    objectsDragg[i].remove();
+                }
+            }
+
+            //add existing texts
+            for (var j = 0; j < textsDragg.length; j++) {
+                if (textsDragg[j].id() == document.getElementById('txtDelete').value) {
+                    textsDragg[j].remove();
+                }
+            }
         }
         document.getElementById('delete').addEventListener('click', Delete);
 
