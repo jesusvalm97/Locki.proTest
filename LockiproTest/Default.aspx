@@ -984,6 +984,7 @@
         document.getElementById('save').addEventListener('click', Save);
 
         function Delete() {
+            //delete rect
             for (var i = 0; i < objectsDragg.length; i++) {
                 if (objectsDragg[i].id() == document.getElementById('txtDelete').value) {
                     var transformer = layer.find('Transformer').toArray();
@@ -1006,6 +1007,7 @@
                 }
             }
 
+            //delete text
             for (var j = 0; j < textsDragg.length; j++) {
                 if (textsDragg[j].id() == document.getElementById('txtDelete').value) {
                     var transformer = layer.find('Transformer').toArray();
