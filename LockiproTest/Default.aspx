@@ -52,6 +52,10 @@
             <button id="addObject">Agregar campo para firma</button>
             <button id="addText">Agregar campo de texto</button>
             <button id="save">Guardar</button>
+            <div>
+                <input type="text" id="txtDelete" placeholder="Objeto seleccionado" disabled/>
+                <button id="delete">Borrar</button>
+            </div>
             <div id="parentReference">
                 <div id="divReferenceToolbarLeft"></div>
             </div>
@@ -748,6 +752,10 @@
                     document.body.style.cursor = 'default';
                 });
 
+                text.on('click', function (e) {
+                    document.getElementById('txtDelete').value = e.target.id();
+                });
+
                 textDraggable.CreatePropertiesForm(existingSigners.value);
                 idTextDraggeable++;
             }
@@ -838,6 +846,10 @@
 
                         rect.on('mouseout', function () {
                             document.body.style.cursor = 'default';
+                        });
+
+                        rect.on('click', function (e) {
+                            document.getElementById('txtDelete').value = e.target.id();
                         });
                     }
                 }
@@ -962,6 +974,11 @@
             }
         }
         document.getElementById('save').addEventListener('click', Save);
+
+        function Delete() {
+            
+        }
+        document.getElementById('delete').addEventListener('click', Delete);
 
     </script>
 </body>
