@@ -986,18 +986,37 @@
                         for (var y = 0; y < nodes.length; y++) {
 
                             if (nodes[y].id() == document.getElementById('txtDelete').value) {
+                                //remove the object
                                 nodes[y].remove();
+                                //destroy the transform of the node
                                 transformer[x].destroy();
+                                //remove the object from the array
+                                objectsDragg.splice(i, 1);
                             }
                         }
                     }
                 }
             }
 
-            //add existing texts
             for (var j = 0; j < textsDragg.length; j++) {
                 if (textsDragg[j].id() == document.getElementById('txtDelete').value) {
-                    textsDragg[j].remove();
+                    var transformer = layer.find('Transformer').toArray();
+
+                    for (var x = 0; x < transformer.length; x++) {
+                        var nodes = transformer[x].nodes();
+
+                        for (var y = 0; y < nodes.length; y++) {
+
+                            if (nodes[y].id() == document.getElementById('txtDelete').value) {
+                                //remove the object
+                                nodes[y].remove();
+                                //destroy the transform of the node
+                                transformer[x].destroy();
+                                //remove the object from the array
+                                textsDragg.splice(j, 1);
+                            }
+                        }
+                    }
                 }
             }
         }
