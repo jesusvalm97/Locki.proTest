@@ -89,7 +89,7 @@
 
         //children class for TextDraggable
         class TextDraggable extends ObjectDraggable {
-            constructor(id, x, y, fill, draggable, page, text, fontSize, fontFamily) {
+            constructor(id, x, y, fill, draggable, page, text, fontSize, fontFamily, stroke) {
                 super(id, x, y, fill, draggable, page);
                 this.id = id;
                 this.x = x;
@@ -100,6 +100,7 @@
                 this.text = text;
                 this.fontSize = fontSize;
                 this.fontFamily = fontFamily;
+                this.stroke = stroke;
             }
 
             CreateText() {
@@ -113,6 +114,7 @@
                     fill: this.fil,
                     name: this.page,
                     draggable: this.draggable,
+                    stroke: this.stroke,
                 });
 
                 return text;
@@ -653,7 +655,7 @@
             for (var j = 0; j < textsDragg.length; j++) {
                 if (textsDragg[j].name() == page) {
                     //create the Konva.Text
-                    var textDraggable = new TextDraggable(textsDragg[j].id(), textsDragg[j].x(), textsDragg[j].y(), textsDragg[j].fill(), textsDragg[j].draggable(), textsDragg[j].name(), textsDragg[j].text(), textsDragg[j].fontSize(), textsDragg[j].fontFamily());
+                    var textDraggable = new TextDraggable(textsDragg[j].id(), textsDragg[j].x(), textsDragg[j].y(), textsDragg[j].fill(), textsDragg[j].draggable(), textsDragg[j].name(), textsDragg[j].text(), textsDragg[j].fontSize(), textsDragg[j].fontFamily(), textsDragg[j].stroke());
                     text = textDraggable.CreateText();
                     layer.add(text);
 
@@ -720,8 +722,51 @@
                 alert('Primero selecciona a que firmante le quieres agregar un campo de texto');
             }
             else {
+                var stroke;
+                switch (document.getElementById('signers').value) {
+                    case 'signer1':
+                        stroke = 'black';
+                        break;
+
+                    case 'signer2':
+                        stroke = 'yellow';
+                        break;
+
+                    case 'signer3':
+                        stroke = 'red';
+                        break;
+
+                    case 'signer4':
+                        stroke = 'blue';
+                        break;
+
+                    case 'signer5':
+                        stroke = 'gray';
+                        break;
+
+                    case 'signer6':
+                        stroke = 'orange';
+                        break;
+
+                    case 'signer7':
+                        stroke = 'pink';
+                        break;
+
+                    case 'signer8':
+                        stroke = 'purple';
+                        break;
+
+                    case 'signer9':
+                        stroke = 'green';
+                        break;
+
+                    case 'signer10':
+                        stroke = 'brown';
+                        break;
+                }
+
                 //create the Konva.Text
-                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, currentPage, 'Lorem ipsum', 30, 'Calibri');
+                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, currentPage, 'Lorem ipsum', 30, 'Calibri', stroke);
 
                 text = textDraggable.CreateText();
 
