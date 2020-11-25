@@ -814,7 +814,50 @@
                 alert('Primero selecciona a que firmante le quieres agregar un campo para firma');
             }
             else {
-                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, currentPage, 'black');
+                var stroke;
+                switch (document.getElementById('signers').value) {
+                    case 'signer1':
+                        stroke = 'black';
+                        break;
+
+                    case 'signer2':
+                        stroke = 'yellow';
+                        break;
+
+                    case 'signer3':
+                        stroke = 'red';
+                        break;
+
+                    case 'signer4':
+                        stroke = 'blue';
+                        break;
+
+                    case 'signer5':
+                        stroke = 'gray';
+                        break;
+
+                    case 'signer6':
+                        stroke = 'orange';
+                        break;
+
+                    case 'signer7':
+                        stroke = 'pink';
+                        break;
+
+                    case 'signer8':
+                        stroke = 'purple';
+                        break;
+
+                    case 'signer9':
+                        stroke = 'green';
+                        break;
+
+                    case 'signer10':
+                        stroke = 'brown';
+                        break;
+                }
+
+                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, currentPage, stroke);
                 rect = rectangle.CreateRect();
                 layer.add(rect);
 
