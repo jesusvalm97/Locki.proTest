@@ -53,7 +53,7 @@
             <button id="addText">Agregar campo de texto</button>
             <button id="save">Guardar</button>
             <div>
-                <input type="text" id="txtDelete" placeholder="Objeto seleccionado" disabled/>
+                <input type="text" id="txtDelete" placeholder="Objeto seleccionado" disabled />
                 <button id="delete">Borrar</button>
             </div>
             <div id="parentReference">
@@ -709,16 +709,27 @@
         //clean properties form
         function CleanPropertiesForm() {
             var i;
-            for (i = 0; i < existingSigners.length; i++) {
-                if (existingSigners.options[i].value != 'null') {
-                    if (document.getElementById('divMainrect' + i) != null) {
-                        var parentDivMain = document.getElementById('divMainrect' + i).parentNode;
-                        parentDivMain.innerHTML = '';
-                    }
-                    else if (document.getElementById('divMainrect' + (i + 1)) != null) {
-                        var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
-                        parentDivMain.innerHTML = '';
-                    } 
+            //for (i = 0; i < existingSigners.length; i++) {
+            //    if (existingSigners.options[i].value == 'null') {
+            //        if (document.getElementById('divMainrect' + (i + 1)) != null) {
+            //            var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
+            //            parentDivMain.innerHTML = '';
+            //        }
+            //        else if (document.getElementById('divMainrect' + (i + 1)) != null) {
+            //            var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
+            //            parentDivMain.innerHTML = '';
+            //        } 
+            //    }
+            //}
+
+            for (i = 0; i < objectsDragg.length; i++) {
+                if (document.getElementById('divMainrect' + i) != null) {
+                    var parentDivMain = document.getElementById('divMainrect' + i).parentNode;
+                    parentDivMain.innerHTML = '';
+                }
+                else if (document.getElementById('divMainrect' + (i + 1)) != null) {
+                    var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
+                    parentDivMain.innerHTML = '';
                 }
             }
         }
@@ -829,7 +840,7 @@
             }
             else {
                 var stroke = GetColorObject();
-                
+
                 var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, currentPage, stroke);
                 rect = rectangle.CreateRect();
                 layer.add(rect);
@@ -1101,7 +1112,7 @@
             for (var i = 0; i < objectsDragg.length; i++) {
                 if (objectsDragg[i].id() == document.getElementById('txtDelete').value) {
                     var transformer = layer.find('Transformer').toArray();
-                    
+
                     for (var x = 0; x < transformer.length; x++) {
                         var nodes = transformer[x].nodes();
 
