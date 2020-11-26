@@ -708,14 +708,14 @@
 
         //clean all properties form
         function CleanPropertiesForm() {
-            for (var i = 0; i < objectsDragg.length; i++) {
+            for (var i = 0; i <= objectsDragg.length; i++) {
                 if (document.getElementById('divMainrect' + (i + 1)) != null) {
                     var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
                     parentDivMain.innerHTML = '';
                 }
             }
 
-            for (var i = 0; i < textsDragg.length; i++) {
+            for (var i = 0; i <= textsDragg.length; i++) {
                 if (document.getElementById('divMaintext' + (i + 1)) != null) {
                     var parentDivMain = document.getElementById('divMaintext' + (i + 1)).parentNode;
                     parentDivMain.innerHTML = '';
