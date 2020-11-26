@@ -594,6 +594,9 @@
 
             //add existing object
             AddExistingObjects(currentPage);
+
+            //call method draw from layer for if don't exist an objects update the layer
+            layer.draw();
         }
         //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);
