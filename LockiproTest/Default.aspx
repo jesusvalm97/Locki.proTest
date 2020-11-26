@@ -616,6 +616,7 @@
 
                     //create new transformer
                     var transformer = new Konva.Transformer();
+                    transformer.rotateEnabled(false);
                     layer.add(transformer);
                     transformer.nodes([rect]);
                     layer.draw();
@@ -670,6 +671,7 @@
 
                     //create new transformer
                     var transformer = new Konva.Transformer();
+                    transformer.rotateEnabled(false);
                     layer.add(transformer);
                     transformer.nodes([text]);
                     layer.draw();
@@ -754,6 +756,7 @@
 
                 //create new transformer
                 var transformer = new Konva.Transformer();
+                transformer.rotateEnabled(false);
                 layer.add(transformer);
                 transformer.nodes([text]);
                 layer.draw();
@@ -848,6 +851,7 @@
 
                 //create new transformer
                 var transformer = new Konva.Transformer();
+                transformer.rotateEnabled(false);
                 layer.add(transformer);
                 transformer.nodes([rect]);
                 layer.draw();
