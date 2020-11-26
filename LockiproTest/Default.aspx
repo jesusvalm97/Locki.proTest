@@ -709,19 +709,6 @@
         //clean properties form
         function CleanPropertiesForm() {
             var i;
-            //for (i = 0; i < existingSigners.length; i++) {
-            //    if (existingSigners.options[i].value == 'null') {
-            //        if (document.getElementById('divMainrect' + (i + 1)) != null) {
-            //            var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
-            //            parentDivMain.innerHTML = '';
-            //        }
-            //        else if (document.getElementById('divMainrect' + (i + 1)) != null) {
-            //            var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
-            //            parentDivMain.innerHTML = '';
-            //        } 
-            //    }
-            //}
-
             for (i = 0; i < objectsDragg.length; i++) {
                 if (document.getElementById('divMainrect' + i) != null) {
                     var parentDivMain = document.getElementById('divMainrect' + i).parentNode;
