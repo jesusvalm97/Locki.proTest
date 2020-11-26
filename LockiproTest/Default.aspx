@@ -706,7 +706,7 @@
             }
         }
 
-        //clean properties form
+        //clean all properties form
         function CleanPropertiesForm() {
             for (var i = 0; i < objectsDragg.length; i++) {
                 if (document.getElementById('divMainrect' + (i + 1)) != null) {
@@ -721,6 +721,12 @@
                     parentDivMain.innerHTML = '';
                 }
             }
+        }
+
+        //clean specific property form
+        function CleanSpecificPropertyForm(idObject) {
+            var parentDivMain = document.getElementById('divMain' + idObject).parentNode;
+            parentDivMain.innerHTML = '';
         }
 
         //function for add a text draggeable
@@ -1112,6 +1118,8 @@
                                 nodes[y].remove();
                                 //destroy the transform of the node
                                 transformer[x].destroy();
+                                //clean the properties form
+                                CleanSpecificPropertyForm(objectsDragg[i].id());
                                 //remove the object from the array
                                 objectsDragg.splice(i, 1);
                             }
@@ -1135,6 +1143,8 @@
                                 nodes[y].remove();
                                 //destroy the transform of the node
                                 transformer[x].destroy();
+                                //clean the properties form
+                                CleanSpecificPropertyForm(textsDragg[j].id());
                                 //remove the object from the array
                                 textsDragg.splice(j, 1);
                             }
