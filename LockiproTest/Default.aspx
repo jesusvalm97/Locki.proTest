@@ -314,35 +314,35 @@
                 var i;
                 for (i = 0; i < textsDragg.length; i++) {
                     if (textsDragg[i].name() == currentPage) {
-                        var T = document.getElementById('ttext' + (i + 1));
+                        var T = document.getElementById('t' + textsDragg[i].id());
                         T.addEventListener('change', ChangePropertiesText);
 
-                        var FS = document.getElementById('fstext' + (i + 1));
+                        var FS = document.getElementById('fs' + textsDragg[i].id());
                         FS.addEventListener('change', ChangePropertiesText);
 
-                        var FF = document.getElementById('fftext' + (i + 1));
+                        var FF = document.getElementById('ff' + textsDragg[i].id());
                         FF.addEventListener('change', ChangePropertiesText);
 
-                        var FC = document.getElementById('fctext' + (i + 1));
+                        var FC = document.getElementById('fc' + textsDragg[i].id());
                         FC.addEventListener('change', ChangePropertiesText);
 
-                        var X = document.getElementById('xtext' + (i + 1));
+                        var X = document.getElementById('x' + textsDragg[i].id());
                         X.value = textsDragg[i].x();
                         X.addEventListener('change', ChangePropertiesText);
 
-                        var Y = document.getElementById('ytext' + (i + 1));
+                        var Y = document.getElementById('y' + textsDragg[i].id());
                         Y.value = textsDragg[i].y();
                         Y.addEventListener('change', ChangePropertiesText);
 
-                        var R = document.getElementById('rtext' + (i + 1));
+                        var R = document.getElementById('r' + textsDragg[i].id());
                         R.value = textsDragg[i].rotation();
                         R.addEventListener('change', ChangePropertiesText);
 
-                        var W = document.getElementById('wtext' + (i + 1));
+                        var W = document.getElementById('w' + textsDragg[i].id());
                         W.value = textsDragg[i].width();
                         W.addEventListener('change', ChangePropertiesText);
 
-                        var H = document.getElementById('htext' + (i + 1));
+                        var H = document.getElementById('h' + textsDragg[i].id());
                         H.value = textsDragg[i].height();
                         H.addEventListener('change', ChangePropertiesText);
                     }
@@ -1125,6 +1125,8 @@
                                 CleanSpecificPropertyForm(objectsDragg[i].id());
                                 //remove the object from the array
                                 objectsDragg.splice(i, 1);
+                                //update the layer
+                                layer.draw();
                             }
                         }
                     }
@@ -1150,6 +1152,8 @@
                                 CleanSpecificPropertyForm(textsDragg[j].id());
                                 //remove the object from the array
                                 textsDragg.splice(j, 1);
+                                //update the layer
+                                layer.draw();
                             }
                         }
                     }
