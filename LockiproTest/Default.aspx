@@ -709,22 +709,14 @@
         //clean properties form
         function CleanPropertiesForm() {
             for (var i = 0; i < objectsDragg.length; i++) {
-                if (document.getElementById('divMainrect' + i) != null) {
-                    var parentDivMain = document.getElementById('divMainrect' + i).parentNode;
-                    parentDivMain.innerHTML = '';
-                }
-                else if (document.getElementById('divMainrect' + (i + 1)) != null) {
+                if (document.getElementById('divMainrect' + (i + 1)) != null) {
                     var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
                     parentDivMain.innerHTML = '';
                 }
             }
 
             for (var i = 0; i < textsDragg.length; i++) {
-                if (document.getElementById('divMaintext' + i) != null) {
-                    var parentDivMain = document.getElementById('divMaintext' + i).parentNode;
-                    parentDivMain.innerHTML = '';
-                }
-                else if (document.getElementById('divMaintext' + (i + 1)) != null) {
+                if (document.getElementById('divMaintext' + (i + 1)) != null) {
                     var parentDivMain = document.getElementById('divMaintext' + (i + 1)).parentNode;
                     parentDivMain.innerHTML = '';
                 }
