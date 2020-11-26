@@ -210,17 +210,17 @@
                 FF.add(FFVerdana);
 
                 //div for font color ************************************
-                var divFC = document.createElement('div');
+                //var divFC = document.createElement('div');
 
                 //content of divFC
-                var lblFC = document.createTextNode('Color: ');
-                divFC.appendChild(lblFC);
+                //var lblFC = document.createTextNode('Color: ');
+                //divFC.appendChild(lblFC);
 
-                var FC = document.createElement('input');
-                FC.id = 'fc' + this.id;
-                FC.type = 'color';
-                FC.value = this.fill;
-                divFC.appendChild(FC);
+                //var FC = document.createElement('input');
+                //FC.id = 'fc' + this.id;
+                //FC.type = 'color';
+                //FC.value = this.fill;
+                //divFC.appendChild(FC);
 
                 //div for position x ************************************
                 var divX = document.createElement('div');
@@ -249,17 +249,17 @@
                 divY.appendChild(Y);
 
                 //div for rotation *****************************************
-                var divR = document.createElement('div');
+                //var divR = document.createElement('div');
 
                 //content of divR
-                var lblR = document.createTextNode('Rotación: ');
-                divR.appendChild(lblR);
+                //var lblR = document.createTextNode('Rotación: ');
+                //divR.appendChild(lblR);
 
-                var R = document.createElement('input');
-                R.id = 'r' + this.id;
-                R.type = 'text';
-                R.value = this.rotation;
-                divR.appendChild(R);
+                //var R = document.createElement('input');
+                //R.id = 'r' + this.id;
+                //R.type = 'text';
+                //R.value = this.rotation;
+                //divR.appendChild(R);
 
                 //div for width *****************************************
                 var divW = document.createElement('div');
@@ -295,10 +295,10 @@
                 divMain.appendChild(divT);
                 divMain.appendChild(divFS);
                 divMain.appendChild(divFF);
-                divMain.appendChild(divFC);
+                //divMain.appendChild(divFC);
                 divMain.appendChild(divX);
                 divMain.appendChild(divY);
-                divMain.appendChild(divR);
+                //divMain.appendChild(divR);
                 divMain.appendChild(divW);
                 divMain.appendChild(divH);
                 divMain.appendChild(line);
@@ -324,8 +324,8 @@
                         var FF = document.getElementById('ff' + textsDragg[i].id());
                         FF.addEventListener('change', ChangePropertiesText);
 
-                        var FC = document.getElementById('fc' + textsDragg[i].id());
-                        FC.addEventListener('change', ChangePropertiesText);
+                        //var FC = document.getElementById('fc' + textsDragg[i].id());
+                        //FC.addEventListener('change', ChangePropertiesText);
 
                         var X = document.getElementById('x' + textsDragg[i].id());
                         X.value = textsDragg[i].x();
@@ -335,9 +335,9 @@
                         Y.value = textsDragg[i].y();
                         Y.addEventListener('change', ChangePropertiesText);
 
-                        var R = document.getElementById('r' + textsDragg[i].id());
-                        R.value = textsDragg[i].rotation();
-                        R.addEventListener('change', ChangePropertiesText);
+                        //var R = document.getElementById('r' + textsDragg[i].id());
+                        //R.value = textsDragg[i].rotation();
+                        //R.addEventListener('change', ChangePropertiesText);
 
                         var W = document.getElementById('w' + textsDragg[i].id());
                         W.value = textsDragg[i].width();
@@ -809,8 +809,8 @@
                 textsDragg[i].fontFamily(FF.value);
                 console.log(textsDragg[i].fontFamily());
 
-                var FC = document.getElementById('fctext' + (i + 1));
-                textsDragg[i].fill(FC.value);
+                //var FC = document.getElementById('fctext' + (i + 1));
+                //textsDragg[i].fill(FC.value);
 
                 var X = document.getElementById('xtext' + (i + 1));
                 textsDragg[i].x(parseInt(X.value));
@@ -818,8 +818,8 @@
                 var Y = document.getElementById('ytext' + (i + 1));
                 textsDragg[i].y(parseInt(Y.value));
 
-                var R = document.getElementById('rtext' + (i + 1));
-                textsDragg[i].rotation(parseInt(R.value));
+                //var R = document.getElementById('rtext' + (i + 1));
+                //textsDragg[i].rotation(parseInt(R.value));
 
                 var W = document.getElementById('wtext' + (i + 1));
                 textsDragg[i].width(parseInt(W.value));
@@ -1082,8 +1082,8 @@
                     textsDragg[j].fontFamily(FF.value);
                     console.log(textsDragg[j].fontFamily());
 
-                    var FC = document.getElementById('fctext' + (j + 1));
-                    textsDragg[j].fill(FC.value);
+                    //var FC = document.getElementById('fctext' + (j + 1));
+                    //textsDragg[j].fill(FC.value);
 
                     var X = document.getElementById('xtext' + (j + 1));
                     textsDragg[j].x(parseInt(X.value));
@@ -1091,8 +1091,8 @@
                     var Y = document.getElementById('ytext' + (j + 1));
                     textsDragg[j].y(parseInt(Y.value));
 
-                    var R = document.getElementById('rtext' + (j + 1));
-                    textsDragg[j].rotation(parseInt(R.value));
+                    //var R = document.getElementById('rtext' + (j + 1));
+                    //textsDragg[j].rotation(parseInt(R.value));
 
                     var W = document.getElementById('wtext' + (j + 1));
                     textsDragg[j].width(parseInt(W.value));
