@@ -115,6 +115,7 @@
                     name: this.page,
                     draggable: this.draggable,
                     stroke: this.stroke,
+                    strokeWidth: 1,
                 });
 
                 return text;
