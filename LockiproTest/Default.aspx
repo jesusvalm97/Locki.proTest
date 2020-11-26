@@ -852,6 +852,12 @@
                 //create new transformer
                 var transformer = new Konva.Transformer();
                 transformer.rotateEnabled(false);
+
+                transformer.boundBoxFunc(function (oldBox, newBox) {
+                    rect.width(newBox.width);
+                    rect.height(newBox.height);
+                });
+
                 layer.add(transformer);
                 transformer.nodes([rect]);
                 layer.draw();
