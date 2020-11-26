@@ -649,7 +649,7 @@
                         document.getElementById('txtDelete').value = e.target.id();
                     });
 
-                    rectangle.CreatePropertiesForm();
+                    rectangle.CreatePropertiesForm(GetSigner(rect.stroke()));
                 }
             }
 
@@ -700,6 +700,8 @@
                     text.on('click', function (e) {
                         document.getElementById('txtDelete').value = e.target.id();
                     });
+
+                    textDraggable.CreatePropertiesForm(GetSigner(text.stroke()));
                 }
             }
         }
