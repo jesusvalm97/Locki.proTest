@@ -290,6 +290,7 @@
 
                 //div main
                 var divMain = document.createElement('div');
+                divMain.id = 'divMain' + this.id;
                 divMain.appendChild(divT);
                 divMain.appendChild(divFS);
                 divMain.appendChild(divFF);
@@ -301,13 +302,12 @@
                 divMain.appendChild(divH);
                 divMain.appendChild(line);
 
-                //add the div main before the reference div
-                //var parentDiv = document.getElementById('divReferenceToolbarLeft').parentNode;
-                //var referenceDiv = document.getElementById('divReferenceToolbarLeft');
-                //parentDiv.insertBefore(divMain, referenceDiv);
+                //parent for divMain
+                var parent = document.createElement('div');
+                parent.appendChild(divMain);
 
                 var parentDiv = document.getElementById(signer);
-                parentDiv.appendChild(divMain);
+                parentDiv.appendChild(parent);
             }
 
             UpdatePropertiesForm() {
@@ -708,14 +708,24 @@
 
         //clean properties form
         function CleanPropertiesForm() {
-            var i;
-            for (i = 0; i < objectsDragg.length; i++) {
+            for (var i = 0; i < objectsDragg.length; i++) {
                 if (document.getElementById('divMainrect' + i) != null) {
                     var parentDivMain = document.getElementById('divMainrect' + i).parentNode;
                     parentDivMain.innerHTML = '';
                 }
                 else if (document.getElementById('divMainrect' + (i + 1)) != null) {
                     var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
+                    parentDivMain.innerHTML = '';
+                }
+            }
+
+            for (var i = 0; i < textsDragg.length; i++) {
+                if (document.getElementById('divMaintext' + i) != null) {
+                    var parentDivMain = document.getElementById('divMaintext' + i).parentNode;
+                    parentDivMain.innerHTML = '';
+                }
+                else if (document.getElementById('divMaintext' + (i + 1)) != null) {
+                    var parentDivMain = document.getElementById('divMaintext' + (i + 1)).parentNode;
                     parentDivMain.innerHTML = '';
                 }
             }
