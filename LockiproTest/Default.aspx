@@ -586,7 +586,7 @@
             layer.removeChildren();
 
             //remove properties form
-            //CleanPropertiesForm();
+            CleanPropertiesForm();
 
             //render the next page
             RenderPage(parseInt(currentPage));
@@ -707,8 +707,10 @@
             var i;
             for (i = 0; i < existingSigners.length; i++) {
                 if (existingSigners.options[i].value != 'null') {
-                    var parentDivMain = document.getElementById('divMainrect' + i).parentNode;
-                    parentDivMain.innerHTML = '';
+                    if (document.getElementById('divMainrect' + i) != null) {
+                        var parentDivMain = document.getElementById('divMainrect' + i).parentNode;
+                        parentDivMain.innerHTML = '';
+                    }
                 }
             }
         }
