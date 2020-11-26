@@ -715,6 +715,10 @@
                         var parentDivMain = document.getElementById('divMainrect' + i).parentNode;
                         parentDivMain.innerHTML = '';
                     }
+                    else if (document.getElementById('divMainrect' + (i + 1)) != null) {
+                        var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
+                        parentDivMain.innerHTML = '';
+                    } 
                 }
             }
         }
