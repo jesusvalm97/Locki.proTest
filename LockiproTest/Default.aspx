@@ -411,17 +411,17 @@
                 divY.appendChild(Y);
 
                 //div for rotation *****************************************
-                var divR = document.createElement('div');
+                //var divR = document.createElement('div');
 
                 //content of divR
-                var lblR = document.createTextNode('Rotación: ');
-                divR.appendChild(lblR);
+                //var lblR = document.createTextNode('Rotación: ');
+                //divR.appendChild(lblR);
 
-                var R = document.createElement('input');
-                R.id = 'r' + this.id;
-                R.type = 'text';
-                R.value = 0;
-                divR.appendChild(R);
+                //var R = document.createElement('input');
+                //R.id = 'r' + this.id;
+                //R.type = 'text';
+                //R.value = 0;
+                //divR.appendChild(R);
 
                 //div for width *****************************************
                 var divW = document.createElement('div');
@@ -456,7 +456,7 @@
                 divMain.id = 'divMain' + this.id;
                 divMain.appendChild(divX);
                 divMain.appendChild(divY);
-                divMain.appendChild(divR);
+                //divMain.appendChild(divR);
                 divMain.appendChild(divW);
                 divMain.appendChild(divH);
                 divMain.appendChild(line);
@@ -481,9 +481,9 @@
                         Y.value = objectsDragg[i].y();
                         Y.addEventListener('change', ChangePropertiesRectangle);
 
-                        var R = document.getElementById('r' + objectsDragg[i].id());
-                        R.value = objectsDragg[i].rotation();
-                        R.addEventListener('change', ChangePropertiesRectangle);
+                        //var R = document.getElementById('r' + objectsDragg[i].id());
+                        //R.value = objectsDragg[i].rotation();
+                        //R.addEventListener('change', ChangePropertiesRectangle);
 
                         var W = document.getElementById('w' + objectsDragg[i].id());
                         W.value = objectsDragg[i].width();
@@ -904,8 +904,8 @@
                 var Y = document.getElementById('y' + objectsDragg[i].id());
                 objectsDragg[i].y(parseInt(Y.value));
 
-                var R = document.getElementById('r' + objectsDragg[i].id());
-                objectsDragg[i].rotation(parseInt(R.value));
+                //var R = document.getElementById('r' + objectsDragg[i].id());
+                //objectsDragg[i].rotation(parseInt(R.value));
 
                 var W = document.getElementById('w' + objectsDragg[i].id());
                 objectsDragg[i].width(parseInt(W.value));
@@ -1056,8 +1056,8 @@
                     var Y = document.getElementById('y' + objectsDragg[i].id());
                     objectsDragg[i].y(parseInt(Y.value));
 
-                    var R = document.getElementById('r' + objectsDragg[i].id());
-                    objectsDragg[i].rotation(parseInt(R.value));
+                    //var R = document.getElementById('r' + objectsDragg[i].id());
+                    //objectsDragg[i].rotation(parseInt(R.value));
 
                     var W = document.getElementById('w' + objectsDragg[i].id());
                     objectsDragg[i].width(parseInt(W.value));
