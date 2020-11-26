@@ -648,6 +648,8 @@
                     rect.on('click', function (e) {
                         document.getElementById('txtDelete').value = e.target.id();
                     });
+
+                    rectangle.CreatePropertiesForm();
                 }
             }
 
@@ -724,48 +726,7 @@
                 alert('Primero selecciona a que firmante le quieres agregar un campo de texto');
             }
             else {
-                var stroke;
-                switch (document.getElementById('signers').value) {
-                    case 'signer1':
-                        stroke = 'black';
-                        break;
-
-                    case 'signer2':
-                        stroke = 'yellow';
-                        break;
-
-                    case 'signer3':
-                        stroke = 'red';
-                        break;
-
-                    case 'signer4':
-                        stroke = 'blue';
-                        break;
-
-                    case 'signer5':
-                        stroke = 'gray';
-                        break;
-
-                    case 'signer6':
-                        stroke = 'orange';
-                        break;
-
-                    case 'signer7':
-                        stroke = 'pink';
-                        break;
-
-                    case 'signer8':
-                        stroke = 'purple';
-                        break;
-
-                    case 'signer9':
-                        stroke = 'green';
-                        break;
-
-                    case 'signer10':
-                        stroke = 'brown';
-                        break;
-                }
+                var stroke = GetColorObject();
 
                 //create the Konva.Text
                 var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, currentPage, 'Lorem ipsum', 30, 'Calibri', stroke);
@@ -861,49 +822,8 @@
                 alert('Primero selecciona a que firmante le quieres agregar un campo para firma');
             }
             else {
-                var stroke;
-                switch (document.getElementById('signers').value) {
-                    case 'signer1':
-                        stroke = 'black';
-                        break;
-
-                    case 'signer2':
-                        stroke = 'yellow';
-                        break;
-
-                    case 'signer3':
-                        stroke = 'red';
-                        break;
-
-                    case 'signer4':
-                        stroke = 'blue';
-                        break;
-
-                    case 'signer5':
-                        stroke = 'gray';
-                        break;
-
-                    case 'signer6':
-                        stroke = 'orange';
-                        break;
-
-                    case 'signer7':
-                        stroke = 'pink';
-                        break;
-
-                    case 'signer8':
-                        stroke = 'purple';
-                        break;
-
-                    case 'signer9':
-                        stroke = 'green';
-                        break;
-
-                    case 'signer10':
-                        stroke = 'brown';
-                        break;
-                }
-
+                var stroke = GetColorObject();
+                
                 var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, currentPage, stroke);
                 rect = rectangle.CreateRect();
                 layer.add(rect);
@@ -977,6 +897,102 @@
                 var H = document.getElementById('h' + objectsDragg[i].id());
                 objectsDragg[i].height(parseInt(H.value));
             }
+        }
+
+        //function for get color for objects draggable
+        function GetColorObject() {
+            var stroke;
+            switch (document.getElementById('signers').value) {
+                case 'signer1':
+                    stroke = 'black';
+                    break;
+
+                case 'signer2':
+                    stroke = 'yellow';
+                    break;
+
+                case 'signer3':
+                    stroke = 'red';
+                    break;
+
+                case 'signer4':
+                    stroke = 'blue';
+                    break;
+
+                case 'signer5':
+                    stroke = 'gray';
+                    break;
+
+                case 'signer6':
+                    stroke = 'orange';
+                    break;
+
+                case 'signer7':
+                    stroke = 'pink';
+                    break;
+
+                case 'signer8':
+                    stroke = 'purple';
+                    break;
+
+                case 'signer9':
+                    stroke = 'green';
+                    break;
+
+                case 'signer10':
+                    stroke = 'brown';
+                    break;
+            }
+
+            return stroke;
+        }
+
+        //functino for get the signer of the object
+        function GetSigner(stroke) {
+            var signer;
+            switch (stroke) {
+                case 'black':
+                    signer = 'signer1';
+                    break;
+
+                case 'yellow':
+                    signer = 'signer2';
+                    break;
+
+                case 'red':
+                    signer = 'signer3';
+                    break;
+
+                case 'blue':
+                    signer = 'signer4';
+                    break;
+
+                case 'gray':
+                    signer = 'signer5';
+                    break;
+
+                case 'orange':
+                    signer = 'signer6';
+                    break;
+
+                case 'pink':
+                    signer = 'signer7';
+                    break;
+
+                case 'purple':
+                    signer = 'signer8';
+                    break;
+
+                case 'green':
+                    signer = 'signer9';
+                    break;
+
+                case 'brown':
+                    signer = 'signer10';
+                    break;
+            }
+
+            return signer;
         }
 
         //function for adde tools for signers
