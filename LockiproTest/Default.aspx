@@ -826,6 +826,8 @@
 
                 var H = document.getElementById('htext' + (i + 1));
                 textsDragg[i].height(parseInt(H.value));
+
+                layer.draw();
             }
         }
 
@@ -912,6 +914,8 @@
 
                 var H = document.getElementById('h' + objectsDragg[i].id());
                 objectsDragg[i].height(parseInt(H.value));
+
+                layer.draw();
             }
         }
 
