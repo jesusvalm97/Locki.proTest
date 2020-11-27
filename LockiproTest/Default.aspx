@@ -340,11 +340,11 @@
                         //R.addEventListener('change', ChangePropertiesText);
 
                         var W = document.getElementById('w' + textsDragg[i].id());
-                        W.value = textsDragg[i].width();
+                        W.value = textsDragg[i].scaleX() * textsDragg[i].width();
                         W.addEventListener('change', ChangePropertiesText);
 
                         var H = document.getElementById('h' + textsDragg[i].id());
-                        H.value = textsDragg[i].height();
+                        H.value = textsDragg[i].scaleY() * textsDragg[i].height();
                         H.addEventListener('change', ChangePropertiesText);
                     }
                 }
@@ -469,7 +469,7 @@
                 parentDiv.appendChild(parent);
             }
 
-            UpdatePropertiesForm(widthObj, heigthObj) {
+            UpdatePropertiesForm() {
                 var i;
                 for (i = 0; i < objectsDragg.length; i++) {
                     if (objectsDragg[i].name() == currentPage) {
@@ -486,21 +486,11 @@
                         //R.addEventListener('change', ChangePropertiesRectangle);
 
                         var W = document.getElementById('w' + objectsDragg[i].id());
-                        if (heigthObj == null || heigthObj == 0) {
-                            W.value = objectsDragg[i].width();
-                        }
-                        else {
-                            W.value = widthObj;
-                        }
+                        W.value = objectsDragg[i].scaleX() * objectsDragg[i].width();
                         W.addEventListener('change', ChangePropertiesRectangle);
 
                         var H = document.getElementById('h' + objectsDragg[i].id());
-                        if (heigthObj == null || heigthObj == 0) {
-                            H.value = objectsDragg[i].height();
-                        }
-                        else {
-                            H.value = heigthObj;
-                        }
+                        H.value = objectsDragg[i].scaleY() * objectsDragg[i].height();
                         H.addEventListener('change', ChangePropertiesRectangle);
                     }
                 }
@@ -863,14 +853,6 @@
                 var transformer = new Konva.Transformer();
                 transformer.rotateEnabled(false);
 
-                var widthObj;
-                var heightObj;
-
-                transformer.boundBoxFunc(function (oldBox, newBox) {
-                    widthObj = newBox.width;
-                    heightObj = newBox.height;
-                });
-
                 layer.add(transformer);
                 transformer.nodes([rect]);
                 layer.draw();
@@ -882,21 +864,21 @@
                 for (i = 0; i < objectsDragg.length; i++) {
                     if (objectsDragg[i].id == rect.id) {
                         rect.on('transformstart', function () {
-                            rectangle.UpdatePropertiesForm(widthObj, heightObj);
+                            rectangle.UpdatePropertiesForm();
                             console.log('transform start');
                         });
 
                         rect.on('dragmove', function () {
-                            rectangle.UpdatePropertiesForm(widthObj, heightObj);
+                            rectangle.UpdatePropertiesForm();
                             console.log('dragmove')
                         });
                         rect.on('transform', function () {
-                            rectangle.UpdatePropertiesForm(widthObj, heightObj);
+                            rectangle.UpdatePropertiesForm();
                             console.log('transform');
                         });
 
                         rect.on('transformend', function () {
-                            rectangle.UpdatePropertiesForm(widthObj, heightObj);
+                            rectangle.UpdatePropertiesForm();
                             console.log('transform end');
                         });
 
@@ -1133,6 +1115,7 @@
         }
         document.getElementById('save').addEventListener('click', Save);
 
+        //function for delete an object
         function Delete() {
             //delete rect
             for (var i = 0; i < objectsDragg.length; i++) {
@@ -1189,7 +1172,6 @@
             }
         }
         document.getElementById('delete').addEventListener('click', Delete);
-
     </script>
 </body>
 </html>
