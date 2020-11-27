@@ -18,14 +18,26 @@
                 color: rgba(255, 255, 255, 255);
             }
 
-        input, select, button {
+        input, select {
             background-color: transparent;
             color: rgba(255, 255, 255, 255);
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        button {
+            background-color: transparent;
+            color: rgba(255, 255, 255, 255);
+            border-width: 1px;
+            border-color: white;
+            border-radius: 25px;
+            padding: 10px;
         }
 
             button:hover {
                 background-color: orchid;
                 color: rgba(0, 0, 0, 255);
+                border-color: black;
                 cursor: pointer;
             }
 
@@ -43,7 +55,7 @@
 
         #divToolbarLeft {
             grid-area: divToolbarLeft;
-            width: 450px;
+            width: 500px;
         }
 
         #divPdf {
