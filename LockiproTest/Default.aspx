@@ -10,31 +10,40 @@
     <script src="https://unpkg.com/konva@7.0.3/konva.min.js"></script>
 
     <style>
-
         body {
             background-color: rgba(0, 0, 0, 255);
         }
 
-        body * {
-            color: rgba(255, 255, 255, 255);
-        }
+            body * {
+                color: rgba(255, 255, 255, 255);
+            }
 
         input, select, button {
             background-color: transparent;
             color: rgba(255, 255, 255, 255);
         }
 
-        button:hover {
-            background-color: orchid;
-            color: rgba(0, 0, 0, 255);
-        }
+            button:hover {
+                background-color: orchid;
+                color: rgba(0, 0, 0, 255);
+                cursor: pointer;
+            }
+
+            select:hover {
+                cursor: pointer;
+            }
 
         .inputNumber {
             width: 40px;
         }
 
+        .linePink {
+            color: orchid;
+        }
+
         #divToolbarLeft {
             grid-area: divToolbarLeft;
+            width: 450px;
         }
 
         #divPdf {
@@ -54,16 +63,18 @@
 <body>
     <h1>locki.pro Test</h1>
     <div>
-        <label>Pagina:</label>
-        <select class="pages" name="pages" id="pagesSelect"></select>
-        <div>
-            <h2>Numero de firmantes</h2>
-            <input type="number" max="10" min="1" value="1" id="numberSigners" class="inputNumber"/>
-            <button id="addSigners">Agregar Firmantes</button>
-        </div>
     </div>
     <div id="Container">
         <div id="divToolbarLeft">
+
+            <label>Pagina:</label>
+            <select class="pages" name="pages" id="pagesSelect"></select>
+            <div>
+                <h2>Numero de firmantes</h2>
+                <input type="number" max="10" min="1" value="1" id="numberSigners" class="inputNumber" />
+                <button id="addSigners">Agregar Firmantes</button>
+            </div>
+
             <div>
                 <h5>Firmantes existentes</h5>
                 Selecciona el firmante al que le quieres agregar un objeto: 
@@ -1089,7 +1100,8 @@
 
                         //line
                         var line = document.createElement('hr');
-                        line.color = 'red';
+                        line.color = 'pink';
+                        line.className = 'linePink';
 
                         //div title
                         var divTitle = document.createElement('div');
@@ -1118,7 +1130,8 @@
 
                         //line
                         var line = document.createElement('hr');
-                        line.color = 'red';
+                        line.color = 'pink';
+                        line.className = 'linePink';
 
                         //div title
                         var divTitle = document.createElement('div');
