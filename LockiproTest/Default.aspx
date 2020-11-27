@@ -384,6 +384,19 @@
             }
 
             CreatePropertiesForm(signer) {
+                //div for id *********************************************
+                var divId = document.createElement('div');
+
+                //content of divID
+                var lblId = document.createTextNode('Identificador: ');
+                divId.appendChild(lblId);
+
+                var Id = document.createElement('input');
+                Id.id = 'id' + this.id;
+                Id.type = 'text';
+                Id.value = this.id;
+                divId.appendChild(Id);
+
                 //div for position x ************************************
                 var divX = document.createElement('div');
 
@@ -454,6 +467,7 @@
                 //div main
                 var divMain = document.createElement('div');
                 divMain.id = 'divMain' + this.id;
+                //divMain.appendChild(divId);
                 divMain.appendChild(divX);
                 divMain.appendChild(divY);
                 //divMain.appendChild(divR);
@@ -492,6 +506,10 @@
                         var H = document.getElementById('h' + objectsDragg[i].id());
                         H.value = objectsDragg[i].scaleY() * objectsDragg[i].height();
                         H.addEventListener('change', ChangePropertiesRectangle);
+
+                        //var ID = document.getElementById('id' + objectsDragg[i].id());
+                        //ID.value = objectsDragg[i].id();
+                        //ID.addEventListener('change', ChangePropertiesRectangle);
                     }
                 }
             }
@@ -920,7 +938,12 @@
                 var H = document.getElementById('h' + objectsDragg[i].id());
                 objectsDragg[i].height(parseInt(H.value));
 
+                //var ID = document.getElementById('id' + objectsDragg[i].id());
+                //objectsDragg[i].id(ID.value);
+
                 layer.draw();
+
+                Save();
             }
         }
 
@@ -1111,6 +1134,9 @@
                     var H = document.getElementById('h' + objectsDragg[i].id());
                     objectsDragg[i].height(parseInt(H.value));
 
+                    //var Id = document.getElementById('id' + objectsDragg[i].id());
+                    //objectsDragg[i].id(parseInt(Id.value));
+
                     console.log('Se guardaron los datos de ' + objectsDragg[i].id());
                 }
             }
@@ -1149,6 +1175,8 @@
                     console.log('Se guardaron los datos de ' + textsDragg[j].id());
                 }
             }
+
+            layer.draw();
         }
         document.getElementById('save').addEventListener('click', Save);
 
