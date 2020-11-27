@@ -469,7 +469,7 @@
                 parentDiv.appendChild(parent);
             }
 
-            UpdatePropertiesForm() {
+            UpdatePropertiesForm(widthObj, heigthObj) {
                 var i;
                 for (i = 0; i < objectsDragg.length; i++) {
                     if (objectsDragg[i].name() == currentPage) {
@@ -486,11 +486,21 @@
                         //R.addEventListener('change', ChangePropertiesRectangle);
 
                         var W = document.getElementById('w' + objectsDragg[i].id());
-                        W.value = objectsDragg[i].width();
+                        if (heigthObj == null || heigthObj == 0) {
+                            W.value = objectsDragg[i].width();
+                        }
+                        else {
+                            W.value = widthObj;
+                        }
                         W.addEventListener('change', ChangePropertiesRectangle);
 
                         var H = document.getElementById('h' + objectsDragg[i].id());
-                        H.value = objectsDragg[i].height();
+                        if (heigthObj == null || heigthObj == 0) {
+                            H.value = objectsDragg[i].height();
+                        }
+                        else {
+                            H.value = heigthObj;
+                        }
                         H.addEventListener('change', ChangePropertiesRectangle);
                     }
                 }
@@ -853,9 +863,12 @@
                 var transformer = new Konva.Transformer();
                 transformer.rotateEnabled(false);
 
+                var widthObj;
+                var heightObj;
+
                 transformer.boundBoxFunc(function (oldBox, newBox) {
-                    rect.width(newBox.width);
-                    rect.height(newBox.height);
+                    widthObj = newBox.width;
+                    heightObj = newBox.height;
                 });
 
                 layer.add(transformer);
@@ -869,21 +882,21 @@
                 for (i = 0; i < objectsDragg.length; i++) {
                     if (objectsDragg[i].id == rect.id) {
                         rect.on('transformstart', function () {
-                            rectangle.UpdatePropertiesForm();
+                            rectangle.UpdatePropertiesForm(widthObj, heightObj);
                             console.log('transform start');
                         });
 
                         rect.on('dragmove', function () {
-                            rectangle.UpdatePropertiesForm();
+                            rectangle.UpdatePropertiesForm(widthObj, heightObj);
                             console.log('dragmove')
                         });
                         rect.on('transform', function () {
-                            rectangle.UpdatePropertiesForm();
+                            rectangle.UpdatePropertiesForm(widthObj, heightObj);
                             console.log('transform');
                         });
 
                         rect.on('transformend', function () {
-                            rectangle.UpdatePropertiesForm();
+                            rectangle.UpdatePropertiesForm(widthObj, heightObj);
                             console.log('transform end');
                         });
 
