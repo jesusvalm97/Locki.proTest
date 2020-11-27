@@ -126,7 +126,7 @@
                 var divT = document.createElement('div');
 
                 //content of divT
-                var lblT = document.createTextNode('Texto: ');
+                var lblT = document.createTextNode('Nombre: ');
                 divT.appendChild(lblT);
 
                 var T = document.createElement('input');
@@ -384,19 +384,6 @@
             }
 
             CreatePropertiesForm(signer) {
-                //div for id *********************************************
-                var divId = document.createElement('div');
-
-                //content of divID
-                var lblId = document.createTextNode('Identificador: ');
-                divId.appendChild(lblId);
-
-                var Id = document.createElement('input');
-                Id.id = 'id' + this.id;
-                Id.type = 'text';
-                Id.value = this.id;
-                divId.appendChild(Id);
-
                 //div for position x ************************************
                 var divX = document.createElement('div');
 
@@ -467,7 +454,6 @@
                 //div main
                 var divMain = document.createElement('div');
                 divMain.id = 'divMain' + this.id;
-                //divMain.appendChild(divId);
                 divMain.appendChild(divX);
                 divMain.appendChild(divY);
                 //divMain.appendChild(divR);
@@ -506,10 +492,6 @@
                         var H = document.getElementById('h' + objectsDragg[i].id());
                         H.value = objectsDragg[i].scaleY() * objectsDragg[i].height();
                         H.addEventListener('change', ChangePropertiesRectangle);
-
-                        //var ID = document.getElementById('id' + objectsDragg[i].id());
-                        //ID.value = objectsDragg[i].id();
-                        //ID.addEventListener('change', ChangePropertiesRectangle);
                     }
                 }
             }
@@ -640,27 +622,32 @@
                     layer.draw();
 
 
-                    rect.on('transformstart', function () {
+                    rect.on('transformstart', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
                         rectangle.UpdatePropertiesForm();
                         console.log('transform start');
                     });
 
-                    rect.on('dragmove', function () {
+                    rect.on('dragmove', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
                         rectangle.UpdatePropertiesForm();
                         console.log('dragmove')
                     });
 
-                    rect.on('transform', function () {
+                    rect.on('transform', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
                         rectangle.UpdatePropertiesForm();
                         console.log('transform');
                     });
 
-                    rect.on('transformend', function () {
+                    rect.on('transformend', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
                         rectangle.UpdatePropertiesForm();
                         console.log('transform end');
                     });
 
-                    rect.on('mouseover', function () {
+                    rect.on('mouseover', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
                         document.body.style.cursor = 'pointer';
                     });
 
@@ -694,26 +681,31 @@
                     transformer.nodes([text]);
                     layer.draw();
 
-                    text.on('transformstart', function () {
+                    text.on('transformstart', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
                         textDraggable.UpdatePropertiesForm();
                         console.log('transform start');
                     });
 
-                    text.on('dragmove', function () {
+                    text.on('dragmove', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
                         textDraggable.UpdatePropertiesForm();
                         console.log('dragmove')
                     });
-                    text.on('transform', function () {
+                    text.on('transform', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
                         textDraggable.UpdatePropertiesForm();
                         console.log('transform');
                     });
 
-                    text.on('transformend', function () {
+                    text.on('transformend', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
                         textDraggable.UpdatePropertiesForm();
                         console.log('transform end');
                     });
 
-                    text.on('mouseover', function () {
+                    text.on('mouseover', function (e) {
+                        document.getElementById('txtDelete').value = e.target.id();
                         document.body.style.cursor = 'pointer';
                     });
 
@@ -779,26 +771,31 @@
                 transformer.nodes([text]);
                 layer.draw();
 
-                text.on('transformstart', function () {
+                text.on('transformstart', function (e) {
+                    document.getElementById('txtDelete').value = e.target.id();
                     textDraggable.UpdatePropertiesForm();
                     console.log('transform start');
                 });
 
-                text.on('dragmove', function () {
+                text.on('dragmove', function (e) {
+                    document.getElementById('txtDelete').value = e.target.id();
                     textDraggable.UpdatePropertiesForm();
                     console.log('dragmove')
                 });
-                text.on('transform', function () {
+                text.on('transform', function (e) {
+                    document.getElementById('txtDelete').value = e.target.id();
                     textDraggable.UpdatePropertiesForm();
                     console.log('transform');
                 });
 
-                text.on('transformend', function () {
+                text.on('transformend', function (e) {
+                    document.getElementById('txtDelete').value = e.target.id();
                     textDraggable.UpdatePropertiesForm();
                     console.log('transform end');
                 });
 
-                text.on('mouseover', function () {
+                text.on('mouseover', function (e) {
+                    document.getElementById('txtDelete').value = e.target.id();
                     document.body.style.cursor = 'pointer';
                 });
 
@@ -881,26 +878,31 @@
                 var i;
                 for (i = 0; i < objectsDragg.length; i++) {
                     if (objectsDragg[i].id == rect.id) {
-                        rect.on('transformstart', function () {
+                        rect.on('transformstart', function (e) {
+                            document.getElementById('txtDelete').value = e.target.id();
                             rectangle.UpdatePropertiesForm();
                             console.log('transform start');
                         });
 
-                        rect.on('dragmove', function () {
+                        rect.on('dragmove', function (e) {
+                            document.getElementById('txtDelete').value = e.target.id();
                             rectangle.UpdatePropertiesForm();
                             console.log('dragmove')
                         });
-                        rect.on('transform', function () {
+                        rect.on('transform', function (e) {
+                            document.getElementById('txtDelete').value = e.target.id();
                             rectangle.UpdatePropertiesForm();
                             console.log('transform');
                         });
 
-                        rect.on('transformend', function () {
+                        rect.on('transformend', function (e) {
+                            document.getElementById('txtDelete').value = e.target.id();
                             rectangle.UpdatePropertiesForm();
                             console.log('transform end');
                         });
 
-                        rect.on('mouseover', function () {
+                        rect.on('mouseover', function (e) {
+                            document.getElementById('txtDelete').value = e.target.id();
                             document.body.style.cursor = 'pointer';
                         });
 
@@ -1133,9 +1135,6 @@
 
                     var H = document.getElementById('h' + objectsDragg[i].id());
                     objectsDragg[i].height(parseInt(H.value));
-
-                    //var Id = document.getElementById('id' + objectsDragg[i].id());
-                    //objectsDragg[i].id(parseInt(Id.value));
 
                     console.log('Se guardaron los datos de ' + objectsDragg[i].id());
                 }
