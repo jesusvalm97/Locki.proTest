@@ -38,6 +38,7 @@
             border-color: white;
             border-radius: 25px;
             padding: 10px;
+            font-weight: bold;
         }
 
             button:hover {
