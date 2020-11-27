@@ -10,6 +10,11 @@
     <script src="https://unpkg.com/konva@7.0.3/konva.min.js"></script>
 
     <style>
+
+        * {
+            font-family: 'Averta ☞';
+        }
+
         body {
             background-color: rgba(0, 0, 0, 255);
         }
@@ -23,7 +28,7 @@
             color: rgba(255, 255, 255, 255);
             border-radius: 5px;
             padding: 5px;
-            margin: 10px;
+            margin: 5px;
         }
 
         button {
