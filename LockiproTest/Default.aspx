@@ -10,6 +10,29 @@
     <script src="https://unpkg.com/konva@7.0.3/konva.min.js"></script>
 
     <style>
+
+        body {
+            background-color: rgba(0, 0, 0, 255);
+        }
+
+        body * {
+            color: rgba(255, 255, 255, 255);
+        }
+
+        input, select, button {
+            background-color: transparent;
+            color: rgba(255, 255, 255, 255);
+        }
+
+        button:hover {
+            background-color: orchid;
+            color: rgba(0, 0, 0, 255);
+        }
+
+        .inputNumber {
+            width: 40px;
+        }
+
         #divToolbarLeft {
             grid-area: divToolbarLeft;
         }
@@ -35,7 +58,7 @@
         <select class="pages" name="pages" id="pagesSelect"></select>
         <div>
             <h2>Numero de firmantes</h2>
-            <input type="number" max="10" min="1" value="1" id="numberSigners" />
+            <input type="number" max="10" min="1" value="1" id="numberSigners" class="inputNumber"/>
             <button id="addSigners">Agregar Firmantes</button>
         </div>
     </div>
