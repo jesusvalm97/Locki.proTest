@@ -22,7 +22,8 @@
             background-color: transparent;
             color: rgba(255, 255, 255, 255);
             border-radius: 5px;
-            padding: 10px;
+            padding: 5px;
+            margin: 10px;
         }
 
         button {
