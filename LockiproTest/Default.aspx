@@ -563,6 +563,9 @@
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
 
+                stage.width(viewport.width);
+                stage.height(viewport.height);
+
                 //render pdf page into canvas context
                 var renderContext = {
                     canvasContext: context,
