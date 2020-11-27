@@ -1023,33 +1023,70 @@
         //function for adde tools for signers
         function AddSigner() {
             var numberSigners = document.getElementById('numberSigners').value;
+            var howManySigner = existingSigners.length - 1;
 
-            for (var i = 0; i < numberSigners; i++) {
-                var option = document.createElement('option');
-                option.text = 'Firmante' + (i + 1);
-                option.value = 'signer' + (i + 1);
-                existingSigners.add(option);
+            if (howManySigner == 10) {
+                alert('Solo se permite agregar como máximo 10 firmantes.');
+            }
+            else {
+                if (howManySigner > 0) {
+                    for (var i = 0; i < numberSigners; i++) {
+                        var option = document.createElement('option');
+                        option.text = 'Firmante' + (i + howManySigner);
+                        option.value = 'signer' + (i + howManySigner);
+                        existingSigners.add(option);
 
-                //line
-                var line = document.createElement('hr');
-                line.color = 'red';
+                        //line
+                        var line = document.createElement('hr');
+                        line.color = 'red';
 
-                //div title
-                var divTitle = document.createElement('div');
+                        //div title
+                        var divTitle = document.createElement('div');
 
-                var signer = document.createTextNode('Firmante ' + (i + 1));
-                divTitle.appendChild(signer);
+                        var signer = document.createTextNode('Firmante ' + (i + howManySigner));
+                        divTitle.appendChild(signer);
 
-                //create div main
-                var divMain = document.createElement('div');
-                divMain.id = 'signer' + (i + 1);
-                divMain.appendChild(line);
-                divMain.appendChild(divTitle);
+                        //create div main
+                        var divMain = document.createElement('div');
+                        divMain.id = 'signer' + (i + howManySigner);
+                        divMain.appendChild(line);
+                        divMain.appendChild(divTitle);
 
-                //insert div main
-                var parentDiv = document.getElementById('divReferenceSigners').parentNode;
-                var referenceDiv = document.getElementById('divReferenceSigners');
-                parentDiv.insertBefore(divMain, referenceDiv);
+                        //insert div main
+                        var parentDiv = document.getElementById('divReferenceSigners').parentNode;
+                        var referenceDiv = document.getElementById('divReferenceSigners');
+                        parentDiv.insertBefore(divMain, referenceDiv);
+                    }
+                }
+                else {
+                    for (var i = 0; i < numberSigners; i++) {
+                        var option = document.createElement('option');
+                        option.text = 'Firmante' + (i + 1);
+                        option.value = 'signer' + (i + 1);
+                        existingSigners.add(option);
+
+                        //line
+                        var line = document.createElement('hr');
+                        line.color = 'red';
+
+                        //div title
+                        var divTitle = document.createElement('div');
+
+                        var signer = document.createTextNode('Firmante ' + (i + 1));
+                        divTitle.appendChild(signer);
+
+                        //create div main
+                        var divMain = document.createElement('div');
+                        divMain.id = 'signer' + (i + 1);
+                        divMain.appendChild(line);
+                        divMain.appendChild(divTitle);
+
+                        //insert div main
+                        var parentDiv = document.getElementById('divReferenceSigners').parentNode;
+                        var referenceDiv = document.getElementById('divReferenceSigners');
+                        parentDiv.insertBefore(divMain, referenceDiv);
+                    }
+                }
             }
         }
         document.getElementById('addSigners').addEventListener('click', AddSigner);
