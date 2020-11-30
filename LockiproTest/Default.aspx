@@ -71,12 +71,17 @@
         #divToolbarRight {
             grid-area: divToolbarRight;
             width: 500px;
-            padding-left: 500px;
+            padding-left: 700px;
         }
 
         #Container {
             display: grid;
             grid-template-areas: 'divToolbarLeft divPdf divToolbarRigh';
+        }
+
+        #divParentSigners {
+            height: 500px;
+            overflow-y: scroll;
         }
     </style>
 </head>
@@ -125,7 +130,7 @@
             <div id="parentReference">
                 <div id="divReferenceToolbarLeft"></div>
             </div>
-            <div>
+            <div id="divParentSigners">
                 <div id="divReferenceSigners"></div>
             </div>
         </div>
