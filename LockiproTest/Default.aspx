@@ -92,8 +92,6 @@
     <div id="Container">
         <div id="divToolbarLeft">
 
-            
-
         </div>
 
         <div id="divPdf" style="position: relative;">
@@ -114,7 +112,7 @@
 
             <div>
                 <h2>Firmantes existentes</h2>
-                Selecciona el firmante al que le quieres agregar un objeto: 
+                Selecciona el firmante al que le quieres agregar un campo: 
                 <select class="signers" name="signers" id="signers">
                     <option value="null">Nulo</option>
                 </select>
@@ -128,6 +126,7 @@
                 <button id="delete">Borrar</button>
             </div>
             <div id="parentReference">
+                <h2>Firmantes</h2>
                 <div id="divReferenceToolbarLeft"></div>
             </div>
             <div id="divParentSigners">
