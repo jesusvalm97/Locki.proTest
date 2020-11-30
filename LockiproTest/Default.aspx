@@ -62,7 +62,6 @@
 
         #divToolbarLeft {
             grid-area: divToolbarLeft;
-            width: 500px;
         }
 
         #divPdf {
@@ -71,6 +70,8 @@
 
         #divToolbarRight {
             grid-area: divToolbarRight;
+            width: 500px;
+            padding-left: 500px;
         }
 
         #Container {
@@ -86,6 +87,18 @@
     <div id="Container">
         <div id="divToolbarLeft">
 
+            
+
+        </div>
+
+        <div id="divPdf" style="position: relative;">
+            <div id="divCanvas" style="position: absolute; top: 0; left: 0;">
+                <canvas id="the-canvas"></canvas>
+            </div>
+            <div id="containerKonva" style="position: absolute; top: 0; left: 0; z-index: 10;"></div>
+        </div>
+
+        <div id="divToolbarRight">
             <label>Pagina:</label>
             <select class="pages" name="pages" id="pagesSelect"></select>
             <div>
@@ -115,16 +128,6 @@
             <div>
                 <div id="divReferenceSigners"></div>
             </div>
-        </div>
-
-        <div id="divPdf" style="position: relative;">
-            <div id="divCanvas" style="position: absolute; top: 0; left: 0;">
-                <canvas id="the-canvas"></canvas>
-            </div>
-            <div id="containerKonva" style="position: absolute; top: 0; left: 0; z-index: 10;"></div>
-        </div>
-
-        <div id="divToolbarRight">
         </div>
     </div>
     <script>
@@ -618,6 +621,10 @@
 
                 stage.width(viewport.width);
                 stage.height(viewport.height);
+
+                var divpdf = document.getElementById('divPdf');
+                divpdf.width = viewport.width;
+                divpdf.height = viewport.height;
 
                 //render pdf page into canvas context
                 var renderContext = {
