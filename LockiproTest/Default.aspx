@@ -89,6 +89,7 @@
 </head>
 <body>
     <h1>locki.pro Test</h1>
+    <img src="img/logo.png" style="width: 150px;"/>
     <div>
     </div>
     <div id="Container">

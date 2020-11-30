@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="img\logo.png" />
     <Content Include="img\save.png" />
     <Content Include="konva.js" />
     <Content Include="Pruebas.aspx" />
