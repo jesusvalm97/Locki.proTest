@@ -56,6 +56,10 @@
             width: 40px;
         }
 
+        .inputFormProperties {
+            background-color: rgba(37, 37, 45, 255);
+        }
+
         .linePink {
             color: orchid;
         }
@@ -83,6 +87,7 @@
 
         #divParentSigners {
             height: 500px;
+            padding: 20px;
             overflow-y: scroll;
             background-color: rgba(53, 55, 68, 255);
         }
@@ -197,6 +202,7 @@
                 T.id = 't' + this.id;
                 T.type = 'text';
                 T.value = this.text;
+                T.className = "inputFormProperties";
                 divT.appendChild(T);
 
                 //div for fontsize **************************************
@@ -210,6 +216,7 @@
                 FS.id = 'fs' + this.id;
                 FS.type = 'text';
                 FS.value = this.fontSize;
+                FS.className = "inputFormProperties";
                 divFS.appendChild(FS);
 
                 //div for font family **********************************
@@ -221,6 +228,7 @@
 
                 var FF = document.createElement('select');
                 FF.id = 'ff' + this.id;
+                FF.className = "inputFormProperties";
                 divFF.appendChild(FF);
 
                 var FFCalibri = document.createElement('option');
@@ -297,6 +305,7 @@
                 X.id = 'x' + this.id;
                 X.type = 'text';
                 X.value = this.x;
+                X.className = "inputFormProperties";
                 divX.appendChild(X);
 
                 //div for position y ***************************************
@@ -310,6 +319,7 @@
                 Y.id = 'y' + this.id;
                 Y.type = 'text';
                 Y.value = this.y;
+                Y.className = "inputFormProperties";
                 divY.appendChild(Y);
 
                 //div for rotation *****************************************
@@ -336,6 +346,7 @@
                 W.id = 'w' + this.id;
                 W.type = 'text';
                 W.value = this.width;
+                W.className = "inputFormProperties";
                 divW.appendChild(W);
 
                 //div for height *****************************************
@@ -349,6 +360,7 @@
                 H.id = 'h' + this.id;
                 H.type = 'text';
                 H.value = this.height;
+                H.className = "inputFormProperties";
                 divH.appendChild(H);
 
                 var line = document.createElement('hr');
@@ -459,6 +471,7 @@
                 X.id = 'x' + this.id;
                 X.type = 'text';
                 X.value = this.x;
+                X.className = "inputFormProperties";
                 divX.appendChild(X);
 
                 //div for position y ***************************************
@@ -472,6 +485,7 @@
                 Y.id = 'y' + this.id;
                 Y.type = 'text';
                 Y.value = this.y;
+                Y.className = "inputFormProperties";
                 divY.appendChild(Y);
 
                 //div for rotation *****************************************
@@ -498,6 +512,7 @@
                 W.id = 'w' + this.id;
                 W.type = 'text';
                 W.value = this.width;
+                W.className = "inputFormProperties";
                 divW.appendChild(W);
 
                 //div for height *****************************************
@@ -511,6 +526,7 @@
                 H.id = 'h' + this.id;
                 H.type = 'text';
                 H.value = this.height;
+                H.className = "inputFormProperties";
                 divH.appendChild(H);
 
                 var line = document.createElement('hr');
