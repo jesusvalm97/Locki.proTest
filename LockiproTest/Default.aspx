@@ -16,7 +16,7 @@
         }
 
         body {
-            background-color: rgba(0, 0, 0, 255);
+            background-color: rgba(2, 5, 24, 255);
         }
 
             body * {
@@ -84,6 +84,7 @@
         #divParentSigners {
             height: 500px;
             overflow-y: scroll;
+            background-color: rgba(53, 55, 68, 255);
         }
     </style>
 </head>
@@ -129,7 +130,7 @@
                 <button id="delete">Borrar</button>
             </div>
             <div id="parentReference">
-                <h2>Firmantes</h2>
+                <h2>Campos existentes</h2>
                 <div id="divReferenceToolbarLeft"></div>
             </div>
             <div id="divParentSigners">
