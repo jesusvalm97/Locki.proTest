@@ -71,7 +71,9 @@
         #divToolbarRight {
             grid-area: divToolbarRight;
             width: 500px;
-            padding-left: 700px;
+            margin-left: 700px;
+            background-color: rgba(43, 45, 58, 255);
+            padding: 25px;
         }
 
         #Container {
