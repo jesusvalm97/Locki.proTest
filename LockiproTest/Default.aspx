@@ -95,7 +95,7 @@
             </div>
 
             <div>
-                <h5>Firmantes existentes</h5>
+                <h2>Firmantes existentes</h2>
                 Selecciona el firmante al que le quieres agregar un objeto: 
                 <select class="signers" name="signers" id="signers">
                     <option value="null">Nulo</option>
