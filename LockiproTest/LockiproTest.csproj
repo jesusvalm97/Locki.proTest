@@ -67,7 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Default.aspx" />
+    <Content Include="Plantilla.aspx" />
+    <Content Include="Firmar.aspx" />
     <Content Include="img\logo.png" />
     <Content Include="img\save.png" />
     <Content Include="konva.js" />
@@ -75,12 +76,19 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Plantilla.aspx.cs">
+      <DependentUpon>Plantilla.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Plantilla.aspx.designer.cs">
+      <DependentUpon>Plantilla.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Firmar.aspx.cs">
+      <DependentUpon>Firmar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Firmar.aspx.designer.cs">
+      <DependentUpon>Firmar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pruebas.aspx.cs">
