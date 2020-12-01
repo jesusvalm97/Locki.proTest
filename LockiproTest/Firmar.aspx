@@ -484,6 +484,7 @@
                 Id.id = 'id' + this.id;
                 Id.type = 'text';
                 Id.value = this.id;
+                Id.disabled = true;
                 Id.className = "inputFormProperties";
                 divId.appendChild(Id);
 
@@ -625,7 +626,6 @@
         function AddSign() {
             var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', false, currentPage, 'black');
             rect = rectangle.CreateRect();
-            //rect = rectangle.CreateImage();
             layer.add(rect);
             layer.draw();
 
@@ -687,7 +687,51 @@
 
         //function for add text
         function AddText() {
+            //create the Konva.Text
+            var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, currentPage, 'Lorem ipsum', 30, 'Calibri', stroke);
 
+            text = textDraggable.CreateText();
+
+            layer.add(text);
+            textsDragg.push(text);
+
+            //create new transformer
+            var transformer = new Konva.Transformer();
+            transformer.rotateEnabled(false);
+            layer.add(transformer);
+            transformer.nodes([text]);
+            layer.draw();
+
+            text.on('transformstart', function (e) {
+                console.log('transform start');
+            });
+
+            text.on('dragmove', function (e) {
+                console.log('dragmove')
+            });
+            text.on('transform', function (e) {
+                console.log('transform');
+            });
+
+            text.on('transformend', function (e) {
+                console.log('transform end');
+            });
+
+            text.on('mouseover', function (e) {
+                document.getElementById('txtSignSelected').value = e.target.id();
+                document.body.style.cursor = 'pointer';
+            });
+
+            text.on('mouseout', function () {
+                document.body.style.cursor = 'default';
+            });
+
+            text.on('click', function (e) {
+                document.getElementById('txtSignSelected').value = e.target.id();
+            });
+
+            textDraggable.CreatePropertiesForm(existingSigners.value);
+            idTextDraggeable++;
         }
 
         //function for delete an object

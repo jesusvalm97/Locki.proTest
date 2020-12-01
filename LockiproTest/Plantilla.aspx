@@ -1096,7 +1096,6 @@
         }
         document.getElementById('addObject').addEventListener('click', AddRectDraggeable);
 
-
         //function for set datas of object draggeable
         function ChangePropertiesRectangle() {
             var i;
