@@ -10,7 +10,6 @@
     <script src="https://unpkg.com/konva@7.0.3/konva.min.js"></script>
 
     <style>
-
         * {
             font-family: 'Averta ☞';
         }
@@ -31,7 +30,7 @@
             margin: 5px;
         }
 
-        button {
+        button, #btnEnviar {
             background-color: transparent;
             color: rgba(255, 255, 255, 255);
             border-width: 1px;
@@ -41,16 +40,16 @@
             font-weight: bold;
         }
 
-            button:hover {
+            button:hover, #btnEnviar:hover {
                 background-color: orchid;
                 color: rgba(0, 0, 0, 255);
                 border-color: black;
                 cursor: pointer;
             }
 
-            select:hover {
-                cursor: pointer;
-            }
+        select:hover {
+            cursor: pointer;
+        }
 
         .inputNumber {
             width: 40px;
@@ -95,11 +94,11 @@
 </head>
 <body>
     <h1 style="margin-left: 50px;">locki.pro Test</h1>
+    <input type="submit" id="btnEnviar" value="Enviar" style="margin-left: 50px;"/>
     <div>
     </div>
     <div id="Container">
         <div id="divToolbarLeft">
-
         </div>
 
         <div id="divPdf" style="position: relative;">
@@ -1324,6 +1323,32 @@
             }
         }
         document.getElementById('delete').addEventListener('click', Delete);
+
+        //function for send objects in JSON
+        function Send() {
+            var jsonRect = JSON.stringify(objectsDragg);
+            var jsonText = JSON.stringify(textsDragg);
+
+            var form = document.createElement('form');
+            form.method = 'post';
+            form.action = 'Firmar.aspx';
+
+            var hiddenRect = document.createElement('input');
+            hiddenRect.id = 'hiddenRect';
+            hiddenRect.type = 'hidden';
+            hiddenRect.value = jsonRect;
+            form.appendChild(hiddenRect);
+
+            var hiddenText = document.createElement('input');
+            hiddenText.id = 'hiddenText';
+            hiddenText.type = 'hidden';
+            hiddenText.value = jsonText;
+            form.appendChild(hiddenText);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+        document.getElementById('btnEnviar').addEventListener('click', Send);
     </script>
 </body>
 </html>
