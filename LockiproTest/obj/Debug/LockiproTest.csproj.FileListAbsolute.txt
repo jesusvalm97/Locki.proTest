@@ -56,3 +56,4 @@ C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\obj\Debug\LockiproTest
 C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\obj\Debug\LockiproTest.csproj.CopyComplete
 C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\obj\Debug\LockiproTest.dll
 C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\obj\Debug\LockiproTest.pdb
+C:\Desarrollo\Test.JesusVarela\Locki.proTest\LockiproTest\obj\Debug\LockiproTest.csprojAssemblyReference.cache

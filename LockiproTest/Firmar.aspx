@@ -412,7 +412,7 @@
             currentPage = pagesSelect.value;
 
             //save datas
-            //Save();
+            Save();
 
             //remove objects draggables
             layer.removeChildren();
@@ -493,9 +493,10 @@
                     layer.add(image);
                     objectsDragg[i] = image;
                     rectangle.CreatePropertiesForm();
-                    layer.draw();
                 }
             }
+
+            layer.draw();
         }
         document.getElementById('btnFirmar').addEventListener('click', Sign);
 
@@ -656,6 +657,22 @@
             var parentDivMain = document.getElementById('divMain' + idObject).parentNode;
             parentDivMain.innerHTML = '';
         }
+
+        //function for save the datas of objects
+        function Save() {
+            var j;
+            for (j = 0; j < textsDragg.length; j++) {
+                if (textsDragg[j].id() == 'text' + (j + 1) && textsDragg[j].name() == ancientPage) {
+                    var T = document.getElementById('ttext' + (j + 1));
+                    textsDragg[j].text(T.value);
+
+                    console.log('Se guardaron los datos de ' + textsDragg[j].id());
+                }
+            }
+
+            layer.draw();
+        }
+        document.getElementById('save').addEventListener('click', Save);
     </script>
 </body>
 </html>
