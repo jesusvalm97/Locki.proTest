@@ -418,20 +418,112 @@
             layer.removeChildren();
 
             //remove properties form
-            //CleanPropertiesForm();
+            CleanPropertiesForm();
 
             //render the next page
             RenderPage(parseInt(currentPage));
             console.log('pagina ' + currentPage);
 
             //add existing object
-            //AddExistingObjects(currentPage);
+            AddExistingObjects(currentPage);
 
             //call method draw from layer for if don't exist an objects update the layer
             layer.draw();
         }
         //assign the function ChangePage to the select
         pagesSelect.addEventListener('change', ChangePage);
+
+        //function for add existing objects
+        function AddExistingObjects(page) {
+            //add exisitng rects
+            for (var i = 0; i < objectsDragg.length; i++) {
+                if (objectsDragg[i].name() == page) {
+                    var rectangle = new RectDraggable(objectsDragg[i].id(), objectsDragg[i].x(), objectsDragg[i].y(), objectsDragg[i].width(), objectsDragg[i].height(), objectsDragg[i].fill(), objectsDragg[i].draggable(), objectsDragg[i].name(), objectsDragg[i].stroke());
+                    rect = rectangle.CreateImage();
+                    layer.add(rect);
+
+                    //change the object for made the match with the properties form
+                    objectsDragg[i] = rect;
+
+                    layer.draw();
+
+                    rect.on('transformstart', function (e) {
+                        console.log('transform start');
+                    });
+
+                    rect.on('dragmove', function (e) {
+                        console.log('dragmove')
+                    });
+                    rect.on('transform', function (e) {
+                        console.log('transform');
+                    });
+
+                    rect.on('transformend', function (e) {
+                        console.log('transform end');
+                    });
+
+                    rect.on('mouseover', function (e) {
+                        document.getElementById('txtSignSelected').value = e.target.id();
+                        document.body.style.cursor = 'pointer';
+                    });
+
+                    rect.on('mouseout', function () {
+                        document.body.style.cursor = 'default';
+                    });
+
+                    rect.on('click', function (e) {
+                        document.getElementById('txtSignSelected').value = e.target.id();
+                    });
+
+                    rectangle.CreatePropertiesForm();
+                }
+            }
+
+            //add existing texts
+            for (var j = 0; j < textsDragg.length; j++) {
+                if (textsDragg[j].name() == page) {
+                    //create the Konva.Text
+                    var textDraggable = new TextDraggable(textsDragg[j].id(), textsDragg[j].x(), textsDragg[j].y(), textsDragg[j].fill(), textsDragg[j].draggable(), textsDragg[j].name(), textsDragg[j].text(), textsDragg[j].fontSize(), textsDragg[j].fontFamily(), textsDragg[j].stroke());
+                    text = textDraggable.CreateText();
+                    layer.add(text);
+
+                    //change the object for made the match with the properties form
+                    textsDragg[j] = text;
+
+                    layer.draw();
+
+                    text.on('transformstart', function (e) {
+                        console.log('transform start');
+                    });
+
+                    text.on('dragmove', function (e) {
+                        console.log('dragmove')
+                    });
+                    text.on('transform', function (e) {
+                        console.log('transform');
+                    });
+
+                    text.on('transformend', function (e) {
+                        console.log('transform end');
+                    });
+
+                    text.on('mouseover', function (e) {
+                        document.getElementById('txtSignSelected').value = e.target.id();
+                        document.body.style.cursor = 'pointer';
+                    });
+
+                    text.on('mouseout', function () {
+                        document.body.style.cursor = 'default';
+                    });
+
+                    text.on('click', function (e) {
+                        document.getElementById('txtSignSelected').value = e.target.id();
+                    });
+
+                    textDraggable.CreatePropertiesForm();
+                }
+            }
+        }
 
         //function for add a objects draggeables
         var idRectDragg = 1;
