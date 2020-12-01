@@ -127,6 +127,7 @@
             <div id="divParentSigners">
                 <h3>Campos de firma</h3>
                 <button id="btnFirmar">Firmar</button>
+                <input type="text" id="txtSignSelected" placeholder="Campo seleccionado" disabled />
                 <div id="divReferenceSigners"></div>
 
                 <h3>Campos de Texto</h3>
@@ -577,7 +578,7 @@
 
             RenderPage(pageNum);
 
-            AgregarFirma();
+            AddSign();
 
             var i;
             for (i = 1; i <= pdfDoc.numPages; i++) {
@@ -649,17 +650,10 @@
         var idRectDragg = 1;
         var rect = null;
 
-        function AgregarFirma() {
+        function AddSign() {
             var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', false, currentPage, 'black');
             rect = rectangle.CreateRect();
             layer.add(rect);
-
-            //create new transformer
-            var transformer = new Konva.Transformer();
-            transformer.rotateEnabled(false);
-
-            layer.add(transformer);
-            transformer.nodes([rect]);
             layer.draw();
 
             objectsDragg.push(rect);
@@ -688,6 +682,7 @@
                     });
 
                     rect.on('mouseover', function (e) {
+                        document.getElementById('txtSignSelected').value = e.target.id();
                         document.body.style.cursor = 'pointer';
                     });
 
@@ -696,11 +691,16 @@
                     });
 
                     rect.on('click', function (e) {
+                        document.getElementById('txtSignSelected').value = e.target.id();
                     });
                 }
             }
 
             rectangle.CreatePropertiesForm();
+        }
+
+        function Sign() {
+
         }
     </script>
 </body>
