@@ -125,12 +125,20 @@
                 <div id="divReferenceToolbarLeft"></div>
             </div>
             <div id="divParentSigners">
+                <h3>Campos de firma</h3>
+                <button id="btnFirmar">Firmar</button>
                 <div id="divReferenceSigners"></div>
+
+                <h3>Campos de Texto</h3>
+                <div id="divReferenceText"></div>
+
             </div>
         </div>
     </div>
 
     <script>
+
+
         // If absolute URL from the remote server is provided, configure the CORS
         // header on that server.
         var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf';
