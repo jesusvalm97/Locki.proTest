@@ -547,6 +547,96 @@
                 parentDiv.appendChild(parent);
             }
 
+            CreatePropertiesForm() {
+                //div for position x ************************************
+                var divX = document.createElement('div');
+
+                //content of divX
+                var lblX = document.createTextNode('Posición x: ');
+                divX.appendChild(lblX);
+
+                var X = document.createElement('input');
+                X.id = 'x' + this.id;
+                X.type = 'text';
+                X.value = this.x;
+                X.className = "inputFormProperties";
+                divX.appendChild(X);
+
+                //div for position y ***************************************
+                var divY = document.createElement('div');
+
+                //content of divY
+                var lblY = document.createTextNode('Posición y: ');
+                divY.appendChild(lblY);
+
+                var Y = document.createElement('input');
+                Y.id = 'y' + this.id;
+                Y.type = 'text';
+                Y.value = this.y;
+                Y.className = "inputFormProperties";
+                divY.appendChild(Y);
+
+                //div for rotation *****************************************
+                //var divR = document.createElement('div');
+
+                //content of divR
+                //var lblR = document.createTextNode('Rotación: ');
+                //divR.appendChild(lblR);
+
+                //var R = document.createElement('input');
+                //R.id = 'r' + this.id;
+                //R.type = 'text';
+                //R.value = 0;
+                //divR.appendChild(R);
+
+                //div for width *****************************************
+                var divW = document.createElement('div');
+
+                //content of divW
+                var lblW = document.createTextNode('Ancho: ');
+                divW.appendChild(lblW);
+
+                var W = document.createElement('input');
+                W.id = 'w' + this.id;
+                W.type = 'text';
+                W.value = this.width;
+                W.className = "inputFormProperties";
+                divW.appendChild(W);
+
+                //div for height *****************************************
+                var divH = document.createElement('div');
+
+                //content of divH
+                var lblH = document.createTextNode('Alto: ');
+                divH.appendChild(lblH);
+
+                var H = document.createElement('input');
+                H.id = 'h' + this.id;
+                H.type = 'text';
+                H.value = this.height;
+                H.className = "inputFormProperties";
+                divH.appendChild(H);
+
+                var line = document.createElement('hr');
+
+                //div main
+                var divMain = document.createElement('div');
+                divMain.id = 'divMain' + this.id;
+                divMain.appendChild(divX);
+                divMain.appendChild(divY);
+                //divMain.appendChild(divR);
+                divMain.appendChild(divW);
+                divMain.appendChild(divH);
+                divMain.appendChild(line);
+
+                //parent for divMain
+                var parent = document.createElement('div');
+                parent.appendChild(divMain);
+
+                var parentDiv = document.getElementById('divReferenceSigners');
+                parentDiv.appendChild(parent);
+            }
+
             UpdatePropertiesForm() {
                 var i;
                 for (i = 0; i < objectsDragg.length; i++) {
@@ -1005,6 +1095,7 @@
             }
         }
         document.getElementById('addObject').addEventListener('click', AddRectDraggeable);
+
 
         //function for set datas of object draggeable
         function ChangePropertiesRectangle() {

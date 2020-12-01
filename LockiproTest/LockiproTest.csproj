@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="img\firma" />
     <Content Include="Plantilla.aspx" />
     <Content Include="Firmar.aspx" />
     <Content Include="img\logo.png" />
