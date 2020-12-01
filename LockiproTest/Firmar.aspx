@@ -99,7 +99,6 @@
             <input type="hidden" id="hiddenText" />
         </div>
     </form>
-
     <h1 style="margin-left: 50px;">locki.pro Test</h1>
     <div>
     </div>
@@ -455,7 +454,6 @@
 
             CreateImage() {
                 var imageObj = new Image();
-                imageObj.src = 'img/setsi.jpg';
 
                 var firma = new Konva.Image({
                     id: this.id,
@@ -465,10 +463,11 @@
                     height: this.height,
                     name: this.page,
                     stroke: this.stroke,
-                    draggable: this.draggable,
+                    draggable: false,
                     image: imageObj,
                 });
-
+                
+                imageObj.src = 'https://www.consumer.es/wp-content/uploads/2019/07/img_firma-3-300x196.jpg';
 
                 return firma;
             }
@@ -652,8 +651,8 @@
 
         function AddSign() {
             var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', false, currentPage, 'black');
-            //rect = rectangle.CreateRect();
-            rect = rectangle.CreateImage();
+            rect = rectangle.CreateRect();
+            //rect = rectangle.CreateImage();
             layer.add(rect);
             layer.draw();
 
@@ -709,11 +708,13 @@
                     image = rectangle.CreateImage();
                     DeleteSpecificObject(objectsDragg[i].id());
                     layer.add(image);
-                    layer.draw();
+                    
 
                     objectsDragg[i] = image;
 
                     rectangle.CreatePropertiesForm();
+
+                    layer.draw();
                 }
             }
         }
