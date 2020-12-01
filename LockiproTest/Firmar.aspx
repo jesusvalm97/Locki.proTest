@@ -502,33 +502,6 @@
                 var parentDiv = document.getElementById('divReferenceSigners');
                 parentDiv.appendChild(parent);
             }
-
-            UpdatePropertiesForm() {
-                var i;
-                for (i = 0; i < objectsDragg.length; i++) {
-                    if (objectsDragg[i].name() == currentPage) {
-                        var X = document.getElementById('x' + objectsDragg[i].id());
-                        X.value = objectsDragg[i].x();
-                        X.addEventListener('change', ChangePropertiesRectangle);
-
-                        var Y = document.getElementById('y' + objectsDragg[i].id());
-                        Y.value = objectsDragg[i].y();
-                        Y.addEventListener('change', ChangePropertiesRectangle);
-
-                        //var R = document.getElementById('r' + objectsDragg[i].id());
-                        //R.value = objectsDragg[i].rotation();
-                        //R.addEventListener('change', ChangePropertiesRectangle);
-
-                        var W = document.getElementById('w' + objectsDragg[i].id());
-                        W.value = objectsDragg[i].scaleX() * objectsDragg[i].width();
-                        W.addEventListener('change', ChangePropertiesRectangle);
-
-                        var H = document.getElementById('h' + objectsDragg[i].id());
-                        H.value = objectsDragg[i].scaleY() * objectsDragg[i].height();
-                        H.addEventListener('change', ChangePropertiesRectangle);
-                    }
-                }
-            }
         }
 
         // If absolute URL from the remote server is provided, configure the CORS
@@ -663,21 +636,17 @@
             for (i = 0; i < objectsDragg.length; i++) {
                 if (objectsDragg[i].id == rect.id) {
                     rect.on('transformstart', function (e) {
-                        //rectangle.UpdatePropertiesForm();
                         console.log('transform start');
                     });
 
                     rect.on('dragmove', function (e) {
-                        //rectangle.UpdatePropertiesForm();
                         console.log('dragmove')
                     });
                     rect.on('transform', function (e) {
-                        //rectangle.UpdatePropertiesForm();
                         console.log('transform');
                     });
 
                     rect.on('transformend', function (e) {
-                        //rectangle.UpdatePropertiesForm();
                         console.log('transform end');
                     });
 
@@ -715,6 +684,11 @@
             }
         }
         document.getElementById('btnFirmar').addEventListener('click', Sign);
+
+        //function for add text
+        function AddText() {
+
+        }
 
         //function for delete an object
         function Delete() {
