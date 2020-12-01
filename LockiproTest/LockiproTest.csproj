@@ -68,6 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\firma" />
+    <Content Include="img\logoblack.png" />
+    <Content Include="img\setsi.jpg" />
     <Content Include="Plantilla.aspx" />
     <Content Include="Firmar.aspx" />
     <Content Include="img\logo.png" />

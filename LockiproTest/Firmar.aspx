@@ -455,7 +455,7 @@
 
             CreateImage() {
                 var imageObj = new Image();
-                imageObj.src = 'img/firma';
+                imageObj.src = 'img/setsi.jpg';
 
                 var firma = new Konva.Image({
                     id: this.id,
@@ -652,7 +652,8 @@
 
         function AddSign() {
             var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', false, currentPage, 'black');
-            rect = rectangle.CreateRect();
+            //rect = rectangle.CreateRect();
+            rect = rectangle.CreateImage();
             layer.add(rect);
             layer.draw();
 
@@ -699,8 +700,126 @@
             rectangle.CreatePropertiesForm();
         }
 
+        //function for sign
         function Sign() {
+            for (var i = 0; i < objectsDragg.length; i++) {
+                if (document.getElementById('txtSignSelected').value == objectsDragg[i].id()) {
+                    //var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', false, currentPage, 'black');
+                    var rectangle = new RectDraggable(objectsDragg[i].id(), objectsDragg[i].x(), objectsDragg[i].y(), objectsDragg[i].width(), objectsDragg[i].height(), objectsDragg[i].fill(), objectsDragg[i].draggable(), objectsDragg[i].name(), objectsDragg[i].stroke());
+                    image = rectangle.CreateImage();
+                    DeleteSpecificObject(objectsDragg[i].id());
+                    layer.add(image);
+                    layer.draw();
 
+                    objectsDragg[i] = image;
+
+                    rectangle.CreatePropertiesForm();
+                }
+            }
+        }
+        document.getElementById('btnFirmar').addEventListener('click', Sign);
+
+        //function for delete an object
+        function Delete() {
+            //delete rect
+            for (var i = 0; i < objectsDragg.length; i++) {
+                if (objectsDragg[i].id() == document.getElementById('txtDelete').value) {
+                    var transformer = layer.find('Transformer').toArray();
+
+                    for (var x = 0; x < transformer.length; x++) {
+                        var nodes = transformer[x].nodes();
+
+                        for (var y = 0; y < nodes.length; y++) {
+
+                            if (nodes[y].id() == document.getElementById('txtDelete').value) {
+                                //remove the object
+                                nodes[y].remove();
+                                //destroy the transform of the node
+                                transformer[x].destroy();
+                                //clean the properties form
+                                CleanSpecificPropertyForm(objectsDragg[i].id());
+                                //remove the object from the array
+                                objectsDragg.splice(i, 1);
+                                //update the layer
+                                layer.draw();
+                            }
+                        }
+                    }
+                }
+            }
+
+            //delete text
+            for (var j = 0; j < textsDragg.length; j++) {
+                if (textsDragg[j].id() == document.getElementById('txtDelete').value) {
+                    var transformer = layer.find('Transformer').toArray();
+
+                    for (var x = 0; x < transformer.length; x++) {
+                        var nodes = transformer[x].nodes();
+
+                        for (var y = 0; y < nodes.length; y++) {
+
+                            if (nodes[y].id() == document.getElementById('txtDelete').value) {
+                                //remove the object
+                                nodes[y].remove();
+                                //destroy the transform of the node
+                                transformer[x].destroy();
+                                //clean the properties form
+                                CleanSpecificPropertyForm(textsDragg[j].id());
+                                //remove the object from the array
+                                textsDragg.splice(j, 1);
+                                //update the layer
+                                layer.draw();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function DeleteSpecificObject(idObject) {
+            //delete rect
+            for (var i = 0; i < objectsDragg.length; i++) {
+                if (objectsDragg[i].id() == idObject) {
+
+                    var rects = layer.find('Rect').toArray();
+
+                    for (var x = 0; x < rects.length; x++) {
+                        if (rects[x].id() == idObject) {
+                            //remove node form layer
+                            rects[x].remove();
+                            //clean the properties form
+                            CleanSpecificPropertyForm(objectsDragg[i].id());
+                            //remove the object from the array
+                            objectsDragg.splice(i, 1);
+                            //update the layer
+                            layer.draw();
+                        }
+                    }
+                }
+            }
+        }
+
+        //clean all properties form
+        function CleanPropertiesForm() {
+            for (var i = 0; i <= objectsDragg.length; i++) {
+                if (document.getElementById('divMainrect' + (i + 1)) != null) {
+                    var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
+                    parentDivMain.innerHTML = '';
+                }
+            }
+
+            for (var i = 0; i <= textsDragg.length; i++) {
+                if (document.getElementById('divMaintext' + (i + 1)) != null) {
+                    var parentDivMain = document.getElementById('divMaintext' + (i + 1)).parentNode;
+                    parentDivMain.innerHTML = '';
+                }
+            }
+        }
+
+        //clean specific property form
+        function CleanSpecificPropertyForm(idObject) {
+            var parentDivMain = document.getElementById('divMain' + idObject).parentNode;
+            parentDivMain.innerHTML = '';
         }
     </script>
 </body>
