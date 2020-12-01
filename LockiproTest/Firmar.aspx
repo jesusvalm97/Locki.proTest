@@ -708,12 +708,8 @@
                     image = rectangle.CreateImage();
                     DeleteSpecificObject(objectsDragg[i].id());
                     layer.add(image);
-                    
-
                     objectsDragg[i] = image;
-
                     rectangle.CreatePropertiesForm();
-
                     layer.draw();
                 }
             }
