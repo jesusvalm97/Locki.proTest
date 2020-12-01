@@ -145,20 +145,21 @@
     <script>
         //parent class for objects draggable
         class ObjectDraggable {
-            constructor(id, x, y, fill, draggable, page) {
+            constructor(id, x, y, fill, draggable, page, signer) {
                 this.id = id;
                 this.x = x;
                 this.y = y;
                 this.fill = fill;
                 this.draggable = draggable;
                 this.page = page;
+                this.signer = signer;
             }
         }
 
         //children class for TextDraggable
         class TextDraggable extends ObjectDraggable {
-            constructor(id, x, y, fill, draggable, page, text, fontSize, fontFamily, stroke) {
-                super(id, x, y, fill, draggable, page);
+            constructor(id, x, y, fill, draggable, page, signer, text, fontSize, fontFamily, stroke) {
+                super(id, x, y, fill, draggable, page, signer);
                 this.id = id;
                 this.x = x;
                 this.y = y;
@@ -169,6 +170,7 @@
                 this.fontSize = fontSize;
                 this.fontFamily = fontFamily;
                 this.stroke = stroke;
+                this.signer = signer;
             }
 
             CreateText() {
@@ -429,8 +431,8 @@
         var idDivSigner = 1;
         //children class for RectDraggable
         class RectDraggable extends ObjectDraggable {
-            constructor(id, x, y, width, height, fill, draggable, page, stroke) {
-                super(id, x, y, fill, draggable, page);
+            constructor(id, x, y, width, height, fill, draggable, page, signer, stroke) {
+                super(id, x, y, fill, draggable, page, signer);
                 this.id = id;
                 this.x = x;
                 this.y = y;
@@ -440,6 +442,7 @@
                 this.draggable = draggable;
                 this.page = page;
                 this.stroke = stroke;
+                this.signer = signer;
             }
 
             CreateRect() {
@@ -843,7 +846,7 @@
                 var stroke = GetColorObject();
 
                 //create the Konva.Text
-                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, currentPage, 'Lorem ipsum', 30, 'Calibri', stroke);
+                var textDraggable = new TextDraggable('text' + idTextDraggeable, 10, 15, 'black', true, currentPage, existingSigners.value, 'Lorem ipsum', 30, 'Calibri', stroke);
 
                 text = textDraggable.CreateText();
 
@@ -946,7 +949,7 @@
             else {
                 var stroke = GetColorObject();
 
-                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, currentPage, stroke);
+                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, currentPage, existingSigners.value, stroke);
                 rect = rectangle.CreateRect();
                 layer.add(rect);
 
@@ -1264,6 +1267,8 @@
             }
 
             layer.draw();
+
+            Send();
         }
         document.getElementById('save').addEventListener('click', Save);
 
@@ -1324,6 +1329,14 @@
             }
         }
         document.getElementById('delete').addEventListener('click', Delete);
+
+        function Send() {
+            //var jsonRect = JSON.stringify(objectsDragg);
+            //var jsonText = JSON.stringify(textsDragg);
+
+            //console.log(jsonRect);
+            //console.log(jsonText);
+        }
     </script>
 </body>
 </html>
