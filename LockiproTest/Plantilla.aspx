@@ -900,8 +900,8 @@
         //clean all properties form
         function CleanPropertiesForm() {
             for (var i = 0; i <= objectsDragg.length; i++) {
-                if (document.getElementById('divMainrect' + (i + 1)) != null) {
-                    var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
+                if (document.getElementById('divMainfirma' + (i + 1)) != null) {
+                    var parentDivMain = document.getElementById('divMainfirma' + (i + 1)).parentNode;
                     parentDivMain.innerHTML = '';
                 }
             }
@@ -1035,7 +1035,7 @@
             else {
                 var stroke = GetColorObject();
 
-                var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', true, currentPage, stroke);
+                var rectangle = new RectDraggable('firma' + idRectDragg, 160, 60, 100, 90, 'white', true, currentPage, stroke);
                 rect = rectangle.CreateRect();
                 layer.add(rect);
 
@@ -1297,7 +1297,7 @@
         function Save() {
             var i;
             for (i = 0; i < objectsDragg.length; i++) {
-                if (objectsDragg[i].id() == 'rect' + (i + 1) && objectsDragg[i].name() == ancientPage) {
+                if (objectsDragg[i].id() == 'firma' + (i + 1) && objectsDragg[i].name() == ancientPage) {
                     var X = document.getElementById('x' + objectsDragg[i].id());
                     objectsDragg[i].x(parseInt(X.value));
 
