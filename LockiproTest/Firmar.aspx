@@ -127,6 +127,11 @@
                 <h3>Campos de firma</h3>
                 <button id="btnFirmar">Firmar</button>
                 <input type="text" id="txtSignSelected" placeholder="Campo seleccionado" disabled />
+                <select class="firmas" name="firmas" id="firmas">
+                    <option value="null">Selecciona una firma</option>
+                    <option value="https://www.consumer.es/wp-content/uploads/2019/07/img_firma-3-300x196.jpg">Firma 1</option>
+                    <option value="https://www.tiposde.com/wp-content/uploads/Firma-ilegible.jpg">Firma 2</option>
+                </select>
                 <div id="divReferenceSigners"></div>
 
                 <h3>Campos de Texto</h3>
@@ -278,8 +283,28 @@
                     draggable: false,
                     image: imageObj,
                 });
-                
-                imageObj.src = 'https://www.consumer.es/wp-content/uploads/2019/07/img_firma-3-300x196.jpg';
+
+                imageObj.src = 'http://significadodeloscolores.info/wp-content/uploads/2015/06/color-blanco-300x300.png';
+
+                return firma;
+            }
+
+            CreateSign(imgFirma) {
+                var imageObj = new Image();
+
+                var firma = new Konva.Image({
+                    id: this.id,
+                    x: this.x,
+                    y: this.y,
+                    width: this.width,
+                    height: this.height,
+                    name: this.page,
+                    stroke: this.stroke,
+                    draggable: false,
+                    image: imageObj,
+                });
+
+                imageObj.src = imgFirma;
 
                 return firma;
             }
@@ -531,7 +556,7 @@
 
         function AddSign() {
             var rectangle = new RectDraggable('firma' + idRectDragg, 160, 60, 100, 90, 'white', false, '1', 'black');
-            rect = rectangle.CreateRect();
+            rect = rectangle.CreateImage();
             layer.add(rect);
             layer.draw();
 
@@ -576,19 +601,26 @@
 
         //function for sign
         function Sign() {
-            for (var i = 0; i < objectsDragg.length; i++) {
-                if (document.getElementById('txtSignSelected').value == objectsDragg[i].id()) {
-                    //var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', false, currentPage, 'black');
-                    var rectangle = new RectDraggable(objectsDragg[i].id(), objectsDragg[i].x(), objectsDragg[i].y(), objectsDragg[i].width(), objectsDragg[i].height(), objectsDragg[i].fill(), objectsDragg[i].draggable(), objectsDragg[i].name(), objectsDragg[i].stroke());
-                    image = rectangle.CreateImage();
-                    DeleteSpecificObject(objectsDragg[i].id());
-                    layer.add(image);
-                    objectsDragg[i] = image;
-                    rectangle.CreatePropertiesForm();
-                }
-            }
+            var imgFirma = document.getElementById('firmas').value;
 
-            layer.draw();
+            if (imgFirma == 'null') {
+                alert('Primero tienes que seleccionar la firma.');
+            }
+            else {
+                for (var i = 0; i < objectsDragg.length; i++) {
+                    if (document.getElementById('txtSignSelected').value == objectsDragg[i].id()) {
+                        //var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', false, currentPage, 'black');
+                        var rectangle = new RectDraggable(objectsDragg[i].id(), objectsDragg[i].x(), objectsDragg[i].y(), objectsDragg[i].width(), objectsDragg[i].height(), objectsDragg[i].fill(), objectsDragg[i].draggable(), objectsDragg[i].name(), objectsDragg[i].stroke());
+                        image = rectangle.CreateSign(imgFirma);
+                        DeleteSpecificObject(objectsDragg[i].id());
+                        layer.add(image);
+                        objectsDragg[i] = image;
+                        rectangle.CreatePropertiesForm();
+                    }
+                }
+
+                layer.draw();
+            }
         }
         document.getElementById('btnFirmar').addEventListener('click', Sign);
 
