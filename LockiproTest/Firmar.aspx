@@ -530,7 +530,7 @@
         var rect = null;
 
         function AddSign() {
-            var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', false, '1', 'black');
+            var rectangle = new RectDraggable('firma' + idRectDragg, 160, 60, 100, 90, 'white', false, '1', 'black');
             rect = rectangle.CreateRect();
             layer.add(rect);
             layer.draw();
@@ -730,8 +730,8 @@
         //clean all properties form
         function CleanPropertiesForm() {
             for (var i = 0; i <= objectsDragg.length; i++) {
-                if (document.getElementById('divMainrect' + (i + 1)) != null) {
-                    var parentDivMain = document.getElementById('divMainrect' + (i + 1)).parentNode;
+                if (document.getElementById('divMainfirma' + (i + 1)) != null) {
+                    var parentDivMain = document.getElementById('divMainfirma' + (i + 1)).parentNode;
                     parentDivMain.innerHTML = '';
                 }
             }
