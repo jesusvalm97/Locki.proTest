@@ -609,7 +609,6 @@
             else {
                 for (var i = 0; i < objectsDragg.length; i++) {
                     if (document.getElementById('txtSignSelected').value == objectsDragg[i].id()) {
-                        //var rectangle = new RectDraggable('rect' + idRectDragg, 160, 60, 100, 90, 'white', false, currentPage, 'black');
                         var rectangle = new RectDraggable(objectsDragg[i].id(), objectsDragg[i].x(), objectsDragg[i].y(), objectsDragg[i].width(), objectsDragg[i].height(), objectsDragg[i].fill(), objectsDragg[i].draggable(), objectsDragg[i].name(), objectsDragg[i].stroke());
                         image = rectangle.CreateSign(imgFirma);
                         DeleteSpecificObject(objectsDragg[i].id());
