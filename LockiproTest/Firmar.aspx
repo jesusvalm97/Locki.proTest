@@ -619,6 +619,7 @@
                 }
 
                 layer.draw();
+                Save();
             }
         }
         document.getElementById('btnFirmar').addEventListener('click', Sign);
